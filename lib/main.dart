@@ -60,6 +60,7 @@ class _HomeState extends State<Home> {
             Positioned(
               child: Center(
                   child: ClipPath(
+                clipper: BackgroundClipper(),
                 child: Container(
                     color: Theme.of(context).primaryColor,
                     child: Column(
