@@ -75,18 +75,19 @@ flutter:
   # example:
   fonts:
     - family: Schyler
-       fonts:
+      fonts:
          - asset: fonts/Schyler-Regular.ttf
          - asset: fonts/Schyler-Italic.ttf
            style: italic
+
     - family: RobotoSlab
-       fonts:
-        - asset: lib/fonts/RobotoSlab-Thin.ttf
-        - asset: lib/fonts/RobotoSlab-Medium.ttf
-        - asset: lib/fonts/RobotoSlab-Light.ttf
-        - asset: lib/fonts/RobotoSlab-Regular.ttf
-        - asset: lib/fonts/RobotoSlab-Bold.ttf
-        - asset: lib/fonts/RobotoSlab-Black.ttf
+      fonts:
+         - asset: lib/fonts/RobotoSlab-Thin.ttf
+         - asset: lib/fonts/RobotoSlab-Medium.ttf
+         - asset: lib/fonts/RobotoSlab-Light.ttf
+         - asset: lib/fonts/RobotoSlab-Regular.ttf
+         - asset: lib/fonts/RobotoSlab-Bold.ttf
+         - asset: lib/fonts/RobotoSlab-Black.ttf
        
   #   - family: Trajan Pro
   #     fonts:
