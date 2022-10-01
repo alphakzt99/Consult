@@ -27,9 +27,17 @@ class Consult extends StatelessWidget {
             onTertiaryContainer: Colors.white54),
         fontFamily: font,
         textTheme: TextTheme(
+            bodyText2: const TextStyle(
+                fontSize: 12, color: Color.fromARGB(255, 234, 235, 237)),
             bodyText1: const TextStyle(
               color: Colors.white54,
               fontSize: 12,
+            ),
+            headline2: TextStyle(
+              fontSize: 20,
+              fontFamily: font,
+              fontWeight: FontWeight.bold,
+              color: const Color(0xFFD38F5E)
             ),
             headline1: TextStyle(
               fontSize: 30,
@@ -102,7 +110,9 @@ class _HomeState extends State<Home> {
                             child: Text("each other",
                                 style: Theme.of(context).textTheme.headline1),
                           ),
-                          SizedBox(height: 15,),
+                          SizedBox(
+                            height: 15,
+                          ),
                           RichText(
                               textAlign: TextAlign.center,
                               text: TextSpan(children: [
@@ -116,13 +126,18 @@ class _HomeState extends State<Home> {
                                     style:
                                         Theme.of(context).textTheme.bodyText1)
                               ])),
-                          SizedBox(height: 30,),
+                          SizedBox(
+                            height: 30,
+                          ),
                           TextButton(
                             style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(Theme.of(context).colorScheme.onSecondaryContainer),
+                                backgroundColor: MaterialStateProperty.all(
+                                    Theme.of(context)
+                                        .colorScheme
+                                        .onSecondaryContainer),
                                 padding: MaterialStateProperty.all(
                                     EdgeInsets.symmetric(
-                                        vertical:10, horizontal: 20))),
+                                        vertical: 10, horizontal: 20))),
                             onPressed: () {
                               Navigator.of(context).push(
                                   MaterialPageRoute(builder: (ctx) => Main()));
