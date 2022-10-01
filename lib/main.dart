@@ -6,6 +6,7 @@ void main() {
 }
 
 var font = "RobotoSlab";
+var font1 = "Roboto";
 
 class Consult extends StatelessWidget {
   const Consult({Key? key}) : super(key: key);
@@ -28,17 +29,19 @@ class Consult extends StatelessWidget {
         fontFamily: font,
         textTheme: TextTheme(
             bodyText2: const TextStyle(
+              fontFamily: "Roboto",
+              fontWeight: FontWeight.bold,
                 fontSize: 12, color: Color.fromARGB(255, 234, 235, 237)),
             bodyText1: const TextStyle(
               color: Colors.white54,
+              fontFamily: "Roboto",
               fontSize: 12,
             ),
             headline2: TextStyle(
-              fontSize: 20,
-              fontFamily: font,
-              fontWeight: FontWeight.bold,
-              color: const Color(0xFFD38F5E)
-            ),
+                fontSize: 20,
+                fontFamily: font,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xFFD38F5E)),
             headline1: TextStyle(
               fontSize: 30,
               fontFamily: font,

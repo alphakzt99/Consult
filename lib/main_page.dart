@@ -28,34 +28,44 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
         color: Theme.of(context).colorScheme.onPrimary,
         size: 12,
       ),
-      Icon(Remix.mental_health_line,color: Theme.of(context).colorScheme.onPrimary,size: 25,),
-      Icon(Icons.business_center_outlined,color: Theme.of(context).colorScheme.onPrimary,)
+      Icon(
+        Remix.mental_health_line,
+        color: Theme.of(context).colorScheme.onPrimary,
+        size: 25,
+      ),
+      Icon(
+        Icons.business_center_outlined,
+        color: Theme.of(context).colorScheme.onPrimary,
+      )
     ];
     Widget TabItem(num, text) {
       return Container(
         child: Column(children: [
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 0,vertical: 10),
+            margin: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
             padding: EdgeInsets.all(10),
             width: 50,
             height: 50,
             decoration: BoxDecoration(
                 gradient: RadialGradient(colors: [
                   Theme.of(context).colorScheme.onBackground,
-                  Theme.of(context).backgroundColor
+                  Theme.of(context).colorScheme.onPrimary
                 ]),
                 borderRadius: BorderRadius.circular(25)),
             child: items[num],
           ),
-          Text(text,textAlign: TextAlign.center,style: Theme.of(context).textTheme.bodyText2,)
+          Text(
+            text,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyText2,
+          )
         ]),
       );
     }
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.onBackground,
-      body: Column(
-        children: [
+      body: Column(children: [
         ClipPath(
             clipper: Clipper(),
             child: Container(
@@ -63,22 +73,45 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
               width: size.width,
               height: size.height * 0.35,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center, children: [
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
                     Padding(
-                      padding: EdgeInsets.only(bottom: 10),
-                      child: Text("Hi, User",style: Theme.of(context).textTheme.headline1,)),
+                        padding: EdgeInsets.only(bottom: 10),
+                        child: Text(
+                          "Hi, User",
+                          style: Theme.of(context).textTheme.headline1,
+                        )),
                     DefaultTabController(
-                      length: 3, child: TabBar(
-                        indicatorColor: Theme.of(context).colorScheme.onPrimary,
-                        indicatorWeight: 0.1,
-                        tabs: [
-                      TabItem(0, "Education"),
-                      TabItem(1, "Mental Health"),
-                      TabItem(2,"Business")
-                    ],))
+                        length: 3,
+                        child: TabBar(
+                          indicatorColor:
+                              Theme.of(context).colorScheme.onPrimary,
+                          indicatorWeight: 0.1,
+                          tabs: [
+                            TabItem(0, "Education"),
+                            TabItem(1, "Mental Health"),
+                            TabItem(2, "Business")
+                          ],
+                        ))
                   ]),
-            ))
+            )),
+        Text(
+          "Daily Blog",
+          style: Theme.of(context).textTheme.headline2,
+        ),
+        ListView.builder(itemBuilder: ((context, index) {
+          return Container(
+            width: size.width * 0.6,
+            height: size.height * 0.3,
+            child: Text("Infographics of education and what to do",style: Theme.of(context).textTheme.bodyText1,),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                opacity: 0.7,
+                image: AssetImage('lib/photos/some_photo.jpg')),
+              borderRadius: BorderRadius.circular(20)),
+          );
+        }))
       ]),
     );
   }
