@@ -13,15 +13,14 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> with TickerProviderStateMixin {
-  late int _currentPage; 
-  late TabController maincontroller;
+  late int _currentPage;
+  late ScrollController maincontroller = ScrollController();
   late TabController controller;
-  late final ScrollController _controller =
+  late final ScrollController Scrollcontroller =
       InheritedDataProvider.of(context).InheritedScrollcontroller;
 
   void initState() {
     _currentPage = 0;
-    maincontroller = TabController(length: 3,vsync: this);
     controller = TabController(length: 3, vsync: this);
     controller.addListener(() {
       final value = controller.animation!.value.round();
@@ -42,7 +41,8 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    _controller.dispose();
+    maincontroller.dispose();
+    Scrollcontroller.dispose();
     controller.dispose();
     // TODO: implement dispose
     super.dispose();
@@ -135,7 +135,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                         child: Container(
                           width: size.width * 0.9,
                           child: TabBar(
-                            controller: maincontroller,
+                            controller: controller,
                             onTap: (value) {
                               setState(() {
                                 controller.index = value;
@@ -166,7 +166,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
           height: size.height * 0.3,
           child: ListView.builder(
               shrinkWrap: true,
-              controller: _controller,
+              controller: maincontroller,
               scrollDirection: Axis.horizontal,
               itemBuilder: ((context, index) {
                 return Container(
@@ -184,7 +184,14 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                       borderRadius: BorderRadius.circular(20)),
                 );
               })),
-        )
+        ),
+        ListView.builder(
+            controller: Scrollcontroller,
+            itemBuilder: ((context, index) {
+              return Card(
+                elevation: 5,
+              );
+            }))
       ]),
     );
   }

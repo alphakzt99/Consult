@@ -5,9 +5,9 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Flutter: Attach to Device",
+            "name": "Flutter: (Pixel 4a API 31)",
             "type": "dart",
-            "request": "attach"
+            "request": "launch"
         },
         
         {
