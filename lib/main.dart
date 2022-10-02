@@ -1,9 +1,4 @@
 import 'package:consult_app/Home.dart';
-import 'package:consult_app/bottom_bar.dart';
-import 'package:consult_app/pages/account.dart';
-import 'package:consult_app/pages/main_page.dart';
-import 'package:consult_app/pages/chat.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,11 +6,16 @@ void main() {
 }
 
 var font = "RobotoSlab";
-final font1 = "Roboto";
+var font1 = "Roboto";
 
-class Consult extends StatelessWidget {
+class Consult extends StatefulWidget {
   const Consult({Key? key}) : super(key: key);
 
+  @override
+  State<Consult> createState() => _ConsultState();
+}
+
+class _ConsultState extends State<Consult> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
