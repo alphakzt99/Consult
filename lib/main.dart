@@ -1,4 +1,8 @@
-import 'package:consult_app/main_page.dart';
+import 'package:consult_app/bottom_bar.dart';
+import 'package:consult_app/pages/account.dart';
+import 'package:consult_app/pages/main_page.dart';
+import 'package:consult_app/pages/chat.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -6,6 +10,7 @@ void main() {
 }
 
 var font = "RobotoSlab";
+final font1 = "Roboto";
 
 class Consult extends StatelessWidget {
   const Consult({Key? key}) : super(key: key);
@@ -27,16 +32,32 @@ class Consult extends StatelessWidget {
             onTertiaryContainer: Colors.white54),
         fontFamily: font,
         textTheme: TextTheme(
-            bodyText1: const TextStyle(
-              color: Colors.white54,
-              fontSize: 12,
-            ),
-            headline1: TextStyle(
-              fontSize: 30,
+          headline1: TextStyle(
+            fontSize: 30,
+            fontFamily: font,
+            fontWeight: FontWeight.bold,
+            color: Color.fromARGB(255, 234, 235, 237),
+          ),
+          headline2: TextStyle(
+              fontSize: 20,
               fontFamily: font,
               fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 234, 235, 237),
-            )),
+              color: const Color(0xFFD38F5E)),
+          headline3: const TextStyle(
+              fontFamily: "Roboto",
+              fontSize: 12,
+              color: const Color(0xFFD38F5E)),
+          bodyText1: const TextStyle(
+            color: Colors.white54,
+            fontFamily: "Roboto",
+            fontSize: 12,
+          ),
+          bodyText2: const TextStyle(
+              fontFamily: "Roboto",
+              fontWeight: FontWeight.bold,
+              fontSize: 12,
+              color: Color.fromARGB(255, 234, 235, 237)),
+        ),
       ),
       home: Home(),
     );
@@ -50,7 +71,29 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with TickerProviderStateMixin {
+  late int CurrentPage;
+  late TabController tabcontroller;
+  @override
+  void initState() {
+    tabcontroller = TabController(length: 3, vsync: this);
+    CurrentPage = 0;
+    tabcontroller.animation!.addListener(() {
+      final value = tabcontroller.animation!.value.round();
+      if (value != CurrentPage && mounted) {
+        changePage(value);
+      }
+    });
+    // TODO: implement initState
+    super.initState();
+  }
+
+  void changePage(int nextPage) {
+    setState(() {
+      CurrentPage = nextPage;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -102,7 +145,9 @@ class _HomeState extends State<Home> {
                             child: Text("each other",
                                 style: Theme.of(context).textTheme.headline1),
                           ),
-                          SizedBox(height: 15,),
+                          SizedBox(
+                            height: 15,
+                          ),
                           RichText(
                               textAlign: TextAlign.center,
                               text: TextSpan(children: [
@@ -116,16 +161,45 @@ class _HomeState extends State<Home> {
                                     style:
                                         Theme.of(context).textTheme.bodyText1)
                               ])),
-                          SizedBox(height: 30,),
+                          SizedBox(
+                            height: 30,
+                          ),
                           TextButton(
                             style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(Theme.of(context).colorScheme.onSecondaryContainer),
+                                backgroundColor: MaterialStateProperty.all(
+                                    Theme.of(context)
+                                        .colorScheme
+                                        .onSecondaryContainer),
                                 padding: MaterialStateProperty.all(
                                     EdgeInsets.symmetric(
-                                        vertical:10, horizontal: 20))),
+                                        vertical: 10, horizontal: 20))),
                             onPressed: () {
-                              Navigator.of(context).push(
-                                  MaterialPageRoute(builder: (ctx) => Main()));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (ctx) => BottomBar(
+                                        end: 2,
+                                        start: 10,
+                                        selectedColor: Theme.of(context)
+                                            .colorScheme
+                                            .onTertiary,
+                                        unselectedColor: Theme.of(context)
+                                            .colorScheme
+                                            .onBackground,
+                                        currentPage: CurrentPage,
+                                        bottomtabcontroller: tabcontroller,
+                                        barcolor: Theme.of(context)
+                                            .colorScheme
+                                            .onPrimary,
+                                        child: TabBarView(
+                                            controller: tabcontroller,
+                                             physics: PageScrollPhysics(),
+                                            dragStartBehavior:
+                                                DragStartBehavior.down,
+                                            children: [
+                                              Chat(),
+                                              Main(),
+                                              Account()
+                                            ]),
+                                      )));
                             },
                             child: Text(
                               "Connect",
@@ -153,9 +227,6 @@ class BackgroundClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     var path = Path();
-    var controlPoint1 = Offset(50, size.height + 50);
-    var controlPoint2 = Offset(size.width - 50, size.height + 100);
-    var endPoint = Offset(size.width, size.height + 150);
     path.moveTo(0, 0);
     path.lineTo(0, size.height);
     path.lineTo(size.width, size.height);
