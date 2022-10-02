@@ -13,15 +13,15 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> with TickerProviderStateMixin {
-  late int _currentPage; 
-  late TabController maincontroller;
+  late int _currentPage;
+  late ScrollController horizontalcontroller = ScrollController();
+  late ScrollController verticalcontroller = ScrollController();
   late TabController controller;
-  late final ScrollController _controller =
+  late final ScrollController Scrollcontroller =
       InheritedDataProvider.of(context).InheritedScrollcontroller;
 
   void initState() {
     _currentPage = 0;
-    maincontroller = TabController(length: 3,vsync: this);
     controller = TabController(length: 3, vsync: this);
     controller.addListener(() {
       final value = controller.animation!.value.round();
@@ -42,7 +42,6 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    _controller.dispose();
     controller.dispose();
     // TODO: implement dispose
     super.dispose();
@@ -94,98 +93,113 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.onBackground,
-      body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        ClipPath(
-            clipper: Clipper(),
-            child: Container(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topRight,
-                      end: Alignment.bottomLeft,
-                      colors: [
-                    Theme.of(context).colorScheme.onPrimary,
-                    Theme.of(context).colorScheme.onSecondary
-                  ])),
-              width: size.width,
-              height: size.height * 0.35,
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: RichText(
-                          text: TextSpan(children: [
-                            TextSpan(
-                                text: "Hi, ",
-                                style: Theme.of(context).textTheme.headline1),
-                            TextSpan(
-                                text: "User",
-                                style: TextStyle(
-                                    fontFamily: font,
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onSecondaryContainer))
-                          ]),
-                        )),
-                    DefaultTabController(
-                        length: 3,
-                        child: Container(
-                          width: size.width * 0.9,
-                          child: TabBar(
-                            controller: maincontroller,
-                            onTap: (value) {
-                              setState(() {
-                                controller.index = value;
-                              });
-                            },
-                            indicatorSize: TabBarIndicatorSize.label,
-                            indicatorColor:
-                                Theme.of(context).colorScheme.onTertiary,
-                            indicatorWeight: 5,
-                            tabs: [
-                              TabItem(0, "Education", controller.index),
-                              TabItem(1, "Mental Health", controller.index),
-                              TabItem(2, "Business", controller.index)
-                            ],
-                          ),
-                        ))
-                  ]),
-            )),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 10, left: 20),
-          child: Text(
-            "Daily Blogs",
-            style: Theme.of(context).textTheme.headline2,
+      body: SingleChildScrollView(
+        controller: Scrollcontroller,
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          ClipPath(
+              clipper: Clipper(),
+              child: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: [
+                      Theme.of(context).colorScheme.onPrimary,
+                      Theme.of(context).colorScheme.onSecondary
+                    ])),
+                width: size.width,
+                height: size.height * 0.35,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: RichText(
+                            text: TextSpan(children: [
+                              TextSpan(
+                                  text: "Hi, ",
+                                  style: Theme.of(context).textTheme.headline1),
+                              TextSpan(
+                                  text: "User",
+                                  style: TextStyle(
+                                      fontFamily: font,
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSecondaryContainer))
+                            ]),
+                          )),
+                      DefaultTabController(
+                          length: 3,
+                          child: Container(
+                            width: size.width * 0.9,
+                            child: TabBar(
+                              controller: controller,
+                              onTap: (value) {
+                                setState(() {
+                                  controller.index = value;
+                                });
+                              },
+                              indicatorSize: TabBarIndicatorSize.label,
+                              indicatorColor:
+                                  Theme.of(context).colorScheme.onTertiary,
+                              indicatorWeight: 5,
+                              tabs: [
+                                TabItem(0, "Education", controller.index),
+                                TabItem(1, "Mental Health", controller.index),
+                                TabItem(2, "Business", controller.index)
+                              ],
+                            ),
+                          ))
+                    ]),
+              )),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10, left: 20),
+            child: Text(
+              "Daily Blogs",
+              style: Theme.of(context).textTheme.headline2,
+            ),
           ),
-        ),
-        Container(
-          margin: EdgeInsets.only(left: 20, right: 20),
-          height: size.height * 0.3,
-          child: ListView.builder(
-              shrinkWrap: true,
-              controller: _controller,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: ((context, index) {
-                return Container(
-                  margin: EdgeInsets.only(left: 5, right: 5),
-                  width: size.width * 0.6,
-                  child: Text(
-                    "Infographics of education and what to do",
-                    textAlign: TextAlign.justify,
-                    style: Theme.of(context).textTheme.headline3,
-                  ),
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          opacity: 0.7,
-                          image: AssetImage('lib/photos/some_photo.jpg')),
-                      borderRadius: BorderRadius.circular(20)),
-                );
-              })),
-        )
-      ]),
+          Container(
+            margin: EdgeInsets.only(left: 20, right: 20),
+            height: size.height * 0.3,
+            child: ListView.builder(
+                shrinkWrap: true,
+                controller: horizontalcontroller,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: ((context, index) {
+                  return Container(
+                    margin: EdgeInsets.only(left: 5, right: 5),
+                    width: size.width * 0.6,
+                    child: Text(
+                      "Infographics of education and what to do",
+                      textAlign: TextAlign.justify,
+                      style: Theme.of(context).textTheme.headline3,
+                    ),
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            opacity: 0.7,
+                            image: AssetImage('lib/photos/some_photo.jpg')),
+                        borderRadius: BorderRadius.circular(20)),
+                  );
+                })),
+          ),
+          Container(
+            width: size.width,
+            height: size.height,
+            child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                controller: verticalcontroller,
+                itemBuilder: ((context, index) {
+                  return Card(
+                    elevation: 5,
+                  );
+                })),
+          )
+        ]),
+      ),
     );
   }
 }

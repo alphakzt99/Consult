@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:consult_app/inheriteddataprovider.dart';
-import 'package:consult_app/main.dart';
+
 
 class BottomBar extends StatefulWidget {
   Widget child;
@@ -9,9 +9,9 @@ class BottomBar extends StatefulWidget {
   final double start;
   TabController bottomtabcontroller;
   int currentPage;
-  final Color barcolor;
-  final Color unselectedColor;
-  final Color selectedColor;
+  late Color barcolor;
+  late Color unselectedColor;
+  late Color selectedColor;
   BottomBar(
       {Key? key,
       required this.child,
@@ -118,16 +118,15 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                   ),
                   child: ClipOval(
                     child: Material(
-                        color: Theme.of(context).colorScheme.onPrimary,
                         child: Container(
-                          color: Theme.of(context).colorScheme.onPrimary,
+                          color: Theme.of(context).colorScheme.onTertiary,
                           width: 60,
                           height: 60,
                           child: Center(
                               child: IconButton(
                             icon: Icon(
                               Icons.arrow_upward,
-                              color: Theme.of(context).colorScheme.onBackground,
+                              color: Theme.of(context).colorScheme.onPrimary,
                             ),
                             onPressed: () {
                               bottomScrollcontroller
@@ -160,10 +159,9 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.6,
                       decoration: BoxDecoration(
-                          color: Theme.of(context).primaryColor,
                           borderRadius: BorderRadius.circular(500)),
                       child: Material(
-                          color: Theme.of(context).colorScheme.onBackground,
+                          color: widget.barcolor,
                           child: DefaultTabController(
                             length: 3,
                             initialIndex: 0,
