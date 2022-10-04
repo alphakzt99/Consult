@@ -251,6 +251,16 @@ List dict = [
   [
     ["University", "lib/photos/uni.jpg"],
     ["Scholarship", "lib/photos/scholar.jpg"],
+    ["Course Work", "lib/photos/coursework.jpg"],
+  ],
+  [
+    ["Mental Health", "lib/photos/mental.jpg"],
+    ["Medical Consultation", "lib/photos/medical.jpg"],
+    ["Pharmacy", "lib/photos/pharmacy.jpg"],
+  ],
+  [
+    ["Start Up", "lib/photos/startup.jpg"],
+    ["Innovation", "lib/photos/inno.jpg"],
     ["Job Opportunity", "lib/photos/job.jpg"],
   ],
 ];
