@@ -39,6 +39,12 @@ class _ConsultState extends State<Consult> {
             fontWeight: FontWeight.bold,
             color: Color.fromARGB(255, 234, 235, 237),
           ),
+          headline5: TextStyle(
+            fontFamily: font1,
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+            color: Colors.black
+          ),
           headline4: TextStyle(
               fontSize: 20,
               fontFamily: font,
@@ -58,6 +64,7 @@ class _ConsultState extends State<Consult> {
             fontFamily: "Roboto",
             fontSize: 12,
           ),
+        
           bodyText2: const TextStyle(
               fontFamily: "Roboto",
               fontWeight: FontWeight.bold,

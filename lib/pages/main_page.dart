@@ -189,21 +189,21 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
           Container(
             width: size.width,
             height: size.height * 0.4,
-            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: TabBarView(controller: controller, children: [
               TabCard(
                 controllerIndex: controller.index,
               ),
               TabCard(
-                controllerIndex: controller.index,
+                controllerIndex: controller.index + 1,
               ),
               TabCard(
-                controllerIndex: controller.index,
+                controllerIndex: controller.index + 2,
               )
             ]),
           ),
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
             width: size.width,
             height: size.height,
             child: ListView.builder(
@@ -276,41 +276,85 @@ class TabCard extends StatefulWidget {
 class _TabCardState extends State<TabCard> {
   @override
   Widget build(BuildContext context) {
- 
     return ListView.builder(
-        itemCount: 3,
+        itemCount: 4,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return Container(
+            margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 5),
             width: MediaQuery.of(context).size.width * 0.5,
-            height: MediaQuery.of(context).size.height * 0.4,
+            height: MediaQuery.of(context).size.height * 0.3,
             decoration: BoxDecoration(
                 border:
                     Border.all(color: Theme.of(context).colorScheme.onTertiary),
-                color: Theme.of(context).colorScheme.onBackground,
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(20)),
-            child: Column(children: [
-              Container(
-                width: MediaQuery.of(context).size.width * 0.4,
-                height: MediaQuery.of(context).size.height * 0.15,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    image:  DecorationImage(
-                        opacity: 0.9, image: AssetImage(widget.controllerIndex == 0
-                    ? dict[0][0][1].toString()
-                    : widget.controllerIndex == 1
-                        ? dict[1][1][1].toString()
-                        : dict[2][2][1].toString(),))),
-              ),
-              Text(
-                widget.controllerIndex == 0
-                    ? dict[0][0][0].toString()
-                    : widget.controllerIndex == 1
-                        ? dict[1][1][0].toString()
-                        : dict[2][2][0].toString(),
-                style: Theme.of(context).textTheme.headline2,
-              ),
-            ]),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 10, bottom: 10),
+                      width: MediaQuery.of(context).size.width * 0.45,
+                      height: MediaQuery.of(context).size.height * 0.15,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: DecorationImage(
+                              opacity: 0.9,
+                              image: AssetImage(
+                                widget.controllerIndex == 0
+                                    ? dict[0][1][1].toString()
+                                    : widget.controllerIndex == 1
+                                        ? dict[1][0][1].toString()
+                                        : dict[2][0][1].toString(),
+                              ))),
+                    ),
+                  ),
+                  Text(
+                    widget.controllerIndex == 0
+                        ? dict[0][1][0].toString()
+                        : widget.controllerIndex == 1
+                            ? dict[1][2][0].toString()
+                            : dict[2][0][0].toString(),
+                    style: Theme.of(context).textTheme.headline2,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  RichText(
+                      text: TextSpan(children: [
+                    TextSpan(
+                        text: "Rating ",
+                        style: Theme.of(context).textTheme.headline5),
+                    TextSpan(
+                        text: "   4.5",
+                        style: Theme.of(context).textTheme.headline3)
+                  ])),
+                  RichText(
+                      text: TextSpan(children: [
+                    TextSpan(
+                        text: "Clients ",
+                        style: Theme.of(context).textTheme.headline5),
+                    TextSpan(
+                        text: "   4500",
+                        style: Theme.of(context).textTheme.headline3)
+                  ])),
+                  SizedBox(height: 50,),
+                  TextButton(
+                      style: ButtonStyle(
+                          padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 10,horizontal: 20)),
+                          backgroundColor: MaterialStateProperty.all(
+                              Theme.of(context).colorScheme.onPrimary)),
+                      onPressed: () {},
+                      child: Text(
+                        "More",
+                        style: TextStyle(
+            fontFamily: font,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Color.fromARGB(255, 234, 235, 237)),
+                      ))
+                ]),
           );
         });
   }
