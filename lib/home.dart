@@ -77,23 +77,23 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     width: size.width,
                     height: size.height * 0.7,
                     child: Padding(
-                      padding: EdgeInsets.only(top: 130),
+                      padding:const EdgeInsets.only(top: 130),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(top: 10),
+                            padding:const EdgeInsets.only(top: 10),
                             child: Text(
                               "Let's connect with",
                               style: Theme.of(context).textTheme.headline1,
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(bottom: 10),
+                            padding: const EdgeInsets.only(bottom: 10),
                             child: Text("each other",
                                 style: Theme.of(context).textTheme.headline1),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15,
                           ),
                           RichText(
@@ -119,7 +119,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                         .colorScheme
                                         .onSecondaryContainer),
                                 padding: MaterialStateProperty.all(
-                                    EdgeInsets.symmetric(
+                                   const EdgeInsets.symmetric(
                                         vertical: 10, horizontal: 20))),
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(

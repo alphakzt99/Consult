@@ -39,6 +39,11 @@ class _ConsultState extends State<Consult> {
             fontWeight: FontWeight.bold,
             color: Color.fromARGB(255, 234, 235, 237),
           ),
+          headline4: TextStyle(
+              fontSize: 20,
+              fontFamily: font,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.onPrimary),
           headline2: TextStyle(
               fontSize: 20,
               fontFamily: font,
@@ -64,6 +69,3 @@ class _ConsultState extends State<Consult> {
     );
   }
 }
-
-
-

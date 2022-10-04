@@ -64,6 +64,19 @@ flutter:
     - lib/photos/consult.jpg
     - lib/photos/front_page.jpg
     - lib/photos/some_photo.jpg
+    - lib/photos/uni.jpg
+    - lib/photos/scholar.jpg
+    - lib/photos/job.jpg
+    - lib/photos/mental.jpg
+    - lib/photos/startup.jpg
+    - lib/photos/upgrade.jpg
+    - lib/photos/pharmacy.jpg
+    - lib/photos/medical.jpg
+    - lib/photos/inno.jpg
+    - lib/photos/idea.jpg
+    - lib/photos/fitness.jpg
+    - lib/photos/coursework.jpg
+    
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

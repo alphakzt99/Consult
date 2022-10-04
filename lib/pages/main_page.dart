@@ -163,7 +163,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(left: 20, right: 20),
+            margin: const EdgeInsets.only(left: 20, right: 20),
             height: size.height * 0.3,
             child: ListView.builder(
                 shrinkWrap: true,
@@ -173,27 +173,46 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                   return Container(
                     margin: EdgeInsets.only(left: 5, right: 5),
                     width: size.width * 0.6,
+                    decoration: BoxDecoration(
+                        image: const DecorationImage(
+                            opacity: 0.7,
+                            image: AssetImage('lib/photos/some_photo.jpg')),
+                        borderRadius: BorderRadius.circular(20)),
                     child: Text(
                       "Infographics of education and what to do",
                       textAlign: TextAlign.justify,
                       style: Theme.of(context).textTheme.headline3,
                     ),
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            opacity: 0.7,
-                            image: AssetImage('lib/photos/some_photo.jpg')),
-                        borderRadius: BorderRadius.circular(20)),
                   );
                 })),
           ),
           Container(
             width: size.width,
+            height: size.height * 0.4,
+            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: TabBarView(controller: controller, children: [
+              TabCard(
+                controllerIndex: controller.index,
+              ),
+              TabCard(
+                controllerIndex: controller.index,
+              ),
+              TabCard(
+                controllerIndex: controller.index,
+              )
+            ]),
+          ),
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            width: size.width,
             height: size.height,
             child: ListView.builder(
+                itemCount: 10,
                 scrollDirection: Axis.vertical,
                 controller: verticalcontroller,
                 itemBuilder: ((context, index) {
                   return Card(
+                    child: Text("Fk you"),
                     elevation: 5,
                   );
                 })),
@@ -225,5 +244,64 @@ class Clipper extends CustomClipper<Path> {
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
     // TODO: implement shouldReclip
     return false;
+  }
+}
+
+List dict = [
+  [
+    ["University", "lib/photos/uni.jpg"],
+    ["Scholarship", "lib/photos/scholar.jpg"],
+    ["Job Opportunity", "lib/photos/job.jpg"],
+  ],
+];
+
+class TabCard extends StatefulWidget {
+  late int controllerIndex;
+  TabCard({super.key, required this.controllerIndex});
+
+  @override
+  State<TabCard> createState() => _TabCardState();
+}
+
+class _TabCardState extends State<TabCard> {
+  @override
+  Widget build(BuildContext context) {
+ 
+    return ListView.builder(
+        itemCount: 3,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return Container(
+            width: MediaQuery.of(context).size.width * 0.5,
+            height: MediaQuery.of(context).size.height * 0.4,
+            decoration: BoxDecoration(
+                border:
+                    Border.all(color: Theme.of(context).colorScheme.onTertiary),
+                color: Theme.of(context).colorScheme.onBackground,
+                borderRadius: BorderRadius.circular(20)),
+            child: Column(children: [
+              Container(
+                width: MediaQuery.of(context).size.width * 0.4,
+                height: MediaQuery.of(context).size.height * 0.15,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    image:  DecorationImage(
+                        opacity: 0.9, image: AssetImage(widget.controllerIndex == 0
+                    ? dict[0][0][1].toString()
+                    : widget.controllerIndex == 1
+                        ? dict[1][1][1].toString()
+                        : dict[2][2][1].toString(),))),
+              ),
+              Text(
+                widget.controllerIndex == 0
+                    ? dict[0][0][0].toString()
+                    : widget.controllerIndex == 1
+                        ? dict[1][1][0].toString()
+                        : dict[2][2][0].toString(),
+                style: Theme.of(context).textTheme.headline2,
+              ),
+            ]),
+          );
+        });
   }
 }
