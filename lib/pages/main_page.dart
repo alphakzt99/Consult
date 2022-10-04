@@ -156,14 +156,14 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                     ]),
               )),
           Padding(
-            padding: const EdgeInsets.only(bottom: 10, left: 20),
+            padding: const EdgeInsets.only(bottom: 10, left: 15),
             child: Text(
               "Daily Blogs",
               style: Theme.of(context).textTheme.headline2,
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(left: 20, right: 20),
+            margin: const EdgeInsets.only(left: 10, right: 10),
             height: size.height * 0.3,
             child: ListView.builder(
                 shrinkWrap: true,
@@ -181,7 +181,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                     child: Text(
                       "Infographics of education and what to do",
                       textAlign: TextAlign.justify,
-                      style: Theme.of(context).textTheme.headline3,
+                      style: Theme.of(context).textTheme.headline2,
                     ),
                   );
                 })),
@@ -189,7 +189,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
           Container(
             width: size.width,
             height: size.height * 0.4,
-            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child: TabBarView(controller: controller, children: [
               TabCard(
                 controllerIndex: controller.index,
@@ -203,7 +203,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
             ]),
           ),
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
             width: size.width,
             height: size.height,
             child: ListView.builder(
@@ -212,9 +212,18 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                 controller: verticalcontroller,
                 itemBuilder: ((context, index) {
                   return Card(
-                    child: Text("Fk you"),
-                    elevation: 5,
-                  );
+                    child: Row(children: [
+                      Container(
+                        width: size.width*0.25,
+                        height: size.height * 0.1,
+                        margin: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                        image: DecorationImage(image: AssetImage("lib/photos/consult.jpg")),
+                        borderRadius: BorderRadius.circular(10)),),
+                      Text("Name")
+                    ],)
+                    )
+                    ;
                 })),
           )
         ]),
@@ -281,13 +290,15 @@ class _TabCardState extends State<TabCard> {
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return Container(
-            margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 5),
+            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
             width: MediaQuery.of(context).size.width * 0.5,
             height: MediaQuery.of(context).size.height * 0.25,
             decoration: BoxDecoration(
-                border:
-                    Border.all(color: Theme.of(context).colorScheme.onTertiary),
-                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(color: Colors.black12,offset: Offset(8,8),blurRadius: 5),
+                  
+                ],
+                color: Theme.of(context).backgroundColor,
                 borderRadius: BorderRadius.circular(20)),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
