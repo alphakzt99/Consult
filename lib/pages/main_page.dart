@@ -283,7 +283,7 @@ class _TabCardState extends State<TabCard> {
           return Container(
             margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 5),
             width: MediaQuery.of(context).size.width * 0.5,
-            height: MediaQuery.of(context).size.height * 0.3,
+            height: MediaQuery.of(context).size.height * 0.25,
             decoration: BoxDecoration(
                 border:
                     Border.all(color: Theme.of(context).colorScheme.onTertiary),
@@ -339,20 +339,19 @@ class _TabCardState extends State<TabCard> {
                         text: "   4500",
                         style: Theme.of(context).textTheme.headline3)
                   ])),
-                  SizedBox(height: 50,),
-                  TextButton(
-                      style: ButtonStyle(
-                          padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 10,horizontal: 20)),
-                          backgroundColor: MaterialStateProperty.all(
-                              Theme.of(context).colorScheme.onPrimary)),
+                  SizedBox(height: 20,),
+                  MaterialButton(
+                    elevation: 0,
+                    padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                      color: Theme.of(context).colorScheme.onPrimary,
                       onPressed: () {},
                       child: Text(
-                        "More",
+                        "Explore",
                         style: TextStyle(
-            fontFamily: font,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 234, 235, 237)),
+                            color: Theme.of(context).backgroundColor,
+                            fontFamily: font,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
                       ))
                 ]),
           );
