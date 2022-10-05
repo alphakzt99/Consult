@@ -120,7 +120,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                         .onSecondaryContainer),
                                 padding: MaterialStateProperty.all(
                                    const EdgeInsets.symmetric(
-                                        vertical: 10, horizontal: 20))),
+                                        vertical: 10, horizontal: 30))),
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (ctx) => BottomBar(
