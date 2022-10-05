@@ -164,26 +164,52 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
           ),
           Container(
             margin: const EdgeInsets.only(left: 10, right: 10),
-            height: size.height * 0.3,
+            height: size.height * 0.25,
+            width: size.width * 0.6,
             child: ListView.builder(
-                shrinkWrap: true,
+                itemCount: 4,
                 controller: horizontalcontroller,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: ((context, index) {
-                  return Container(
-                    margin: EdgeInsets.only(left: 5, right: 5),
-                    width: size.width * 0.6,
-                    decoration: BoxDecoration(
-                        image: const DecorationImage(
-                            opacity: 0.7,
-                            image: AssetImage('lib/photos/some_photo.jpg')),
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Text(
-                      "Infographics of education and what to do",
-                      textAlign: TextAlign.justify,
-                      style: Theme.of(context).textTheme.headline2,
+                  return Stack(children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 5, right: 5),
+                      width: size.width * 0.6,
+                      decoration: BoxDecoration(
+                          image: const DecorationImage(
+                              opacity: 0.8,
+                              image: AssetImage('lib/photos/some_photo.jpg')),
+                          borderRadius: BorderRadius.circular(20)),
                     ),
-                  );
+                    Positioned(
+                      bottom: 10,
+                      child: Container(
+                        margin: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
+                        width: size.width * 0.5,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          RichText(
+                            text: TextSpan(children: [
+                              TextSpan(
+                                  text: "Category   ",
+                                  style: Theme.of(context).textTheme.headline5),
+                              TextSpan(
+                                  text: "    Author",
+                                  style: Theme.of(context).textTheme.headline5)
+                            ]),
+                          ),
+                          Text(
+                            "Introduction on what to do and how to do",
+                            style: Theme.of(context).textTheme.headline4,
+                          )
+                        ],
+                      ),
+                      ),
+                    )
+                  ]);
                 })),
           ),
           Container(
@@ -212,18 +238,20 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                 controller: verticalcontroller,
                 itemBuilder: ((context, index) {
                   return Card(
-                    child: Row(children: [
+                      child: Row(
+                    children: [
                       Container(
-                        width: size.width*0.25,
+                        width: size.width * 0.25,
                         height: size.height * 0.1,
                         margin: EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                        image: DecorationImage(image: AssetImage("lib/photos/consult.jpg")),
-                        borderRadius: BorderRadius.circular(10)),),
+                            image: DecorationImage(
+                                image: AssetImage("lib/photos/consult.jpg")),
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
                       Text("Name")
-                    ],)
-                    )
-                    ;
+                    ],
+                  ));
                 })),
           )
         ]),
@@ -295,8 +323,10 @@ class _TabCardState extends State<TabCard> {
             height: MediaQuery.of(context).size.height * 0.25,
             decoration: BoxDecoration(
                 boxShadow: [
-                  BoxShadow(color: Colors.black12,offset: Offset(8,8),blurRadius: 5),
-                  
+                  BoxShadow(
+                      color: Colors.black12,
+                      offset: Offset(8, 8),
+                      blurRadius: 5),
                 ],
                 color: Theme.of(context).backgroundColor,
                 borderRadius: BorderRadius.circular(20)),
@@ -350,10 +380,13 @@ class _TabCardState extends State<TabCard> {
                         text: "   4500",
                         style: Theme.of(context).textTheme.headline3)
                   ])),
-                  SizedBox(height: 20,),
+                  SizedBox(
+                    height: 20,
+                  ),
                   MaterialButton(
-                    elevation: 0,
-                    padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                      elevation: 0,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                       color: Theme.of(context).colorScheme.onPrimary,
                       onPressed: () {},
                       child: Text(

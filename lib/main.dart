@@ -24,6 +24,7 @@ class _ConsultState extends State<Consult> {
       theme: ThemeData(
         backgroundColor: Colors.white,
         colorScheme: const ColorScheme.light(
+            background: Colors.black,
             onPrimary: Color(0xFF014D69),
             onPrimaryContainer: Colors.black12,
             onBackground: Color.fromARGB(255, 234, 235, 237),
@@ -41,34 +42,35 @@ class _ConsultState extends State<Consult> {
           ),
           headline5: TextStyle(
             fontFamily: font1,
-            fontSize: 12,
+            fontSize: 14,
             fontWeight: FontWeight.bold,
-            color: Colors.black
+            color: const Color(0xFFD38F5E)
           ),
           headline4: TextStyle(
-              fontSize: 20,
+              fontSize: 16,
               fontFamily: font,
               fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.onPrimary),
+              color: Colors.black),
           headline2: TextStyle(
-              fontSize: 20,
+              fontSize: 24,
               fontFamily: font,
               fontWeight: FontWeight.bold,
               color: const Color(0xFFD38F5E)),
           headline3: const TextStyle(
               fontFamily: "Roboto",
-              fontSize: 12,
-              color: const Color(0xFFD38F5E)),
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              color: Colors.white),
           bodyText1: const TextStyle(
             color: Colors.white54,
             fontFamily: "Roboto",
-            fontSize: 12,
+            fontSize: 14,
           ),
         
           bodyText2: const TextStyle(
               fontFamily: "Roboto",
               fontWeight: FontWeight.bold,
-              fontSize: 12,
+              fontSize: 14,
               color: Color.fromARGB(255, 234, 235, 237)),
         ),
       ),
