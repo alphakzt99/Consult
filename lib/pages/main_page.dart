@@ -1,3 +1,4 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/cil.dart';
@@ -97,7 +98,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
         controller: Scrollcontroller,
         child: Column(
             mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ClipPath(
                   clipper: Clipper(),
@@ -162,17 +163,32 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                         ]),
                   )),
               Padding(
-                padding: const EdgeInsets.only(bottom: 10, left: 15),
-                child: Text(
-                  "Daily Blogs",
-                  style: Theme.of(context).textTheme.headline2,
-                ),
-              ),
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Daily Blogs",
+                        style: Theme.of(context).textTheme.headline2,
+                      ),
+                      IconButton(
+                          splashRadius: 20,
+                          splashColor:
+                              Theme.of(context).colorScheme.onPrimaryContainer,
+                          padding: EdgeInsets.all(0),
+                          onPressed: () {},
+                          icon: Icon(
+                            FluentIcons.arrow_circle_right_32_regular,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSecondaryContainer,
+                          ))
+                    ],
+                  )),
               Flexible(
                   child: Container(
-                width: size.width * 0.9,
+                width: size.width * 0.95,
                 height: size.height * 0.3,
-                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                 child: ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
@@ -182,7 +198,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                     return Container(
                       width: size.width * 0.6,
                       height: size.height * 0.3,
-                      margin: EdgeInsets.only(right: 10),
+                      margin: const EdgeInsets.only(right: 10),
                       child: Stack(
                         children: [
                           Positioned(
@@ -207,25 +223,27 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                                   borderRadius: BorderRadius.circular(10)),
                               width: size.width * 0.55,
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                RichText(
-                                    text: TextSpan(children: [
-                                  TextSpan(
-                                      text: "Category  ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline5),
-                                  TextSpan(
-                                      text: "Author",
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    RichText(
+                                        text: TextSpan(children: [
+                                      TextSpan(
+                                          text: "Category  ",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline5),
+                                      TextSpan(
+                                          text: "Author",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline5)
+                                    ])),
+                                    Text(
+                                      "Information on what to do and how to do",
                                       style:
-                                          Theme.of(context).textTheme.headline5)
-                                ])),
-                                Text(
-                                  "Information on what to do and how to do",
-                                  style: Theme.of(context).textTheme.headline4,
-                                )
-                              ]),
+                                          Theme.of(context).textTheme.headline4,
+                                    )
+                                  ]),
                             ),
                           )
                         ],
@@ -236,10 +254,10 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
               )),
               Flexible(
                 child: Container(
-                  width: size.width * 0.9,
+                  width: size.width * 0.95,
                   height: size.height * 0.4,
                   margin:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
                   child: TabBarView(
                       physics: const NeverScrollableScrollPhysics(),
                       controller: controller,
@@ -256,103 +274,47 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                       ]),
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                width: size.width,
-                height: size.height,
-                child: ListView.builder(
-                    itemCount: 10,
-                    scrollDirection: Axis.vertical,
-                    controller: verticalcontroller,
-                    itemBuilder: ((context, index) {
-                      return Card(
-                          child: Row(
-                        children: [
-                          Container(
-                            width: size.width * 0.25,
-                            height: size.height * 0.15,
-                            margin: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image:
-                                        AssetImage("lib/photos/consult.jpg")),
-                                borderRadius: BorderRadius.circular(10)),
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              RichText(
-                                  text: TextSpan(children: [
-                                TextSpan(
-                                    text: "Name",
-                                    style:
-                                        Theme.of(context).textTheme.headline4),
-                                TextSpan(
-                                    text: "        Category",
-                                    style:
-                                        Theme.of(context).textTheme.headline4)
-                              ])),
-                              SizedBox(height: 20,),
-                              Row(
-                                children: [
-                                  TextButton(
-                                      style: ButtonStyle(
-                                          padding: MaterialStateProperty.all(
-                                              EdgeInsets.symmetric(
-                                                  horizontal: 15,
-                                                  vertical: 10)),
-                                          backgroundColor:
-                                              MaterialStateProperty.all(
-                                                  Theme.of(context)
-                                                      .colorScheme
-                                                      .onPrimary),
-                                          shape: MaterialStateProperty.all(
-                                              RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10)))),
-                                      onPressed: () {},
-                                      child: Text(
-                                        "Book",
-                                        style: TextStyle(
-                                            color: Theme.of(context)
-                                                .backgroundColor,
-                                            fontFamily: font,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold),
-                                      )),
-                                  TextButton(
-                                      style: ButtonStyle(
-                                          padding: MaterialStateProperty.all(
-                                              EdgeInsets.symmetric(
-                                                  horizontal: 15,
-                                                  vertical: 10)),
-                                          backgroundColor:
-                                              MaterialStateProperty.all(
-                                                  Theme.of(context)
-                                                      .backgroundColor),
-                                          shape: MaterialStateProperty.all(
-                                              RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10)))),
-                                      onPressed: () {},
-                                      child: Text(
-                                        "Message",
-                                        style: TextStyle(
-                                            color: Theme.of(context)
-                                                .colorScheme.background,
-                                            fontFamily: font,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold),
-                                      )),
-                                ],
-                              ),
-                            ],
-                          )
-                        ],
-                      ));
-                    })),
+              Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "General",
+                        style: Theme.of(context).textTheme.headline2,
+                      ),
+                      IconButton(
+                          splashRadius: 20,
+                          splashColor:
+                              Theme.of(context).colorScheme.onPrimaryContainer,
+                          padding: EdgeInsets.all(0),
+                          onPressed: () {},
+                          icon: Icon(
+                            FluentIcons.arrow_circle_right_32_regular,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSecondaryContainer,
+                          ))
+                    ],
+                  )),
+              Flexible(
+                child: Container(
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                    width: size.width,
+                    height: size.height*2,
+                    child: Column(
+                      children: [
+                        GeneralCard(),
+                        GeneralCard(),
+                        GeneralCard(),
+                        GeneralCard(),
+                        GeneralCard(),
+                        GeneralCard(),
+                        GeneralCard(),
+                        GeneralCard(),
+                      ],
+                    )),
               )
             ]),
       ),
@@ -402,6 +364,88 @@ List dict = [
   ],
 ];
 
+class GeneralCard extends StatefulWidget {
+  const GeneralCard({super.key});
+
+  @override
+  State<GeneralCard> createState() => _GeneralCardState();
+}
+
+class _GeneralCardState extends State<GeneralCard> {
+  @override
+  Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    return Card(
+        child: Row(
+      children: [
+        Container(
+          width: size.width * 0.25,
+          height: size.height * 0.15,
+          margin: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+              image:
+                  DecorationImage(image: AssetImage("lib/photos/consult.jpg")),
+              borderRadius: BorderRadius.circular(10)),
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            RichText(
+                text: TextSpan(children: [
+              TextSpan(
+                  text: "Name", style: Theme.of(context).textTheme.headline4),
+              TextSpan(
+                  text: "        Category",
+                  style: Theme.of(context).textTheme.headline4)
+            ])),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              children: [
+                TextButton(
+                    style: ButtonStyle(
+                        padding: MaterialStateProperty.all(
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 10)),
+                        backgroundColor: MaterialStateProperty.all(
+                            Theme.of(context).colorScheme.onPrimary),
+                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)))),
+                    onPressed: () {},
+                    child: Text(
+                      "Book",
+                      style: TextStyle(
+                          color: Theme.of(context).backgroundColor,
+                          fontFamily: font,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    )),
+                TextButton(
+                    style: ButtonStyle(
+                        padding: MaterialStateProperty.all(
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 10)),
+                        backgroundColor: MaterialStateProperty.all(
+                            Theme.of(context).backgroundColor),
+                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)))),
+                    onPressed: () {},
+                    child: Text(
+                      "Message",
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.background,
+                          fontFamily: font,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    )),
+              ],
+            ),
+          ],
+        )
+      ],
+    ));
+  }
+}
+
 class TabCard extends StatefulWidget {
   late int controllerIndex;
   TabCard({super.key, required this.controllerIndex});
@@ -425,7 +469,7 @@ class _TabCardState extends State<TabCard> {
                 boxShadow: [
                   BoxShadow(
                       color: Colors.black12,
-                      offset: Offset(0,0),
+                      offset: Offset(0, 0),
                       blurRadius: 5),
                 ],
                 color: Theme.of(context).backgroundColor,
@@ -485,6 +529,7 @@ class _TabCardState extends State<TabCard> {
                   ),
                   TextButton(
                       style: ButtonStyle(
+                          elevation: MaterialStateProperty.all(5),
                           padding: MaterialStateProperty.all(
                               EdgeInsets.symmetric(
                                   horizontal: 30, vertical: 10)),
