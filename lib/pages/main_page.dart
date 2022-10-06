@@ -92,169 +92,269 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
     }
 
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.onBackground,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(
         controller: Scrollcontroller,
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          ClipPath(
-              clipper: Clipper(),
-              child: Container(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: [
-                      Theme.of(context).colorScheme.onPrimary,
-                      Theme.of(context).colorScheme.onSecondary
-                    ])),
-                width: size.width,
-                height: size.height * 0.35,
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                          padding: const EdgeInsets.only(bottom: 10),
-                          child: RichText(
-                            text: TextSpan(children: [
-                              TextSpan(
-                                  text: "Hi, ",
-                                  style: Theme.of(context).textTheme.headline1),
-                              TextSpan(
-                                  text: "User",
-                                  style: TextStyle(
-                                      fontFamily: font,
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onSecondaryContainer))
-                            ]),
-                          )),
-                      DefaultTabController(
-                          length: 3,
-                          child: Container(
-                            width: size.width * 0.9,
-                            child: TabBar(
-                              controller: controller,
-                              onTap: (value) {
-                                setState(() {
-                                  controller.index = value;
-                                });
-                              },
-                              indicatorSize: TabBarIndicatorSize.label,
-                              indicatorColor:
-                                  Theme.of(context).colorScheme.onTertiary,
-                              indicatorWeight: 5,
-                              tabs: [
-                                TabItem(0, "Education", controller.index),
-                                TabItem(1, "Mental Health", controller.index),
-                                TabItem(2, "Business", controller.index)
-                              ],
-                            ),
-                          ))
-                    ]),
-              )),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 10, left: 15),
-            child: Text(
-              "Daily Blogs",
-              style: Theme.of(context).textTheme.headline2,
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(left: 10, right: 10),
-            height: size.height * 0.25,
-            width: size.width * 0.6,
-            child: ListView.builder(
-                itemCount: 4,
-                controller: horizontalcontroller,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: ((context, index) {
-                  return Stack(children: [
-                    Container(
-                      margin: EdgeInsets.only(left: 5, right: 5),
-                      width: size.width * 0.6,
-                      decoration: BoxDecoration(
-                          image: const DecorationImage(
-                              opacity: 0.8,
-                              image: AssetImage('lib/photos/some_photo.jpg')),
-                          borderRadius: BorderRadius.circular(20)),
-                    ),
-                    Positioned(
-                      bottom: 10,
-                      child: Container(
-                        margin: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
-                        width: size.width * 0.5,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+        child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipPath(
+                  clipper: Clipper(),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                            colors: [
+                          Theme.of(context).colorScheme.onPrimary,
+                          Theme.of(context).colorScheme.onSecondary
+                        ])),
+                    width: size.width,
+                    height: size.height * 0.35,
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          RichText(
-                            text: TextSpan(children: [
-                              TextSpan(
-                                  text: "Category   ",
-                                  style: Theme.of(context).textTheme.headline5),
-                              TextSpan(
-                                  text: "    Author",
-                                  style: Theme.of(context).textTheme.headline5)
-                            ]),
+                          Padding(
+                              padding: const EdgeInsets.only(bottom: 10),
+                              child: RichText(
+                                text: TextSpan(children: [
+                                  TextSpan(
+                                      text: "Hi, ",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline1),
+                                  TextSpan(
+                                      text: "User",
+                                      style: TextStyle(
+                                          fontFamily: font,
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.bold,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onSecondaryContainer))
+                                ]),
+                              )),
+                          DefaultTabController(
+                              length: 3,
+                              child: Container(
+                                width: size.width * 0.95,
+                                child: TabBar(
+                                  controller: controller,
+                                  onTap: (value) {
+                                    setState(() {
+                                      controller.index = value;
+                                    });
+                                  },
+                                  indicatorSize: TabBarIndicatorSize.label,
+                                  indicatorColor:
+                                      Theme.of(context).colorScheme.onTertiary,
+                                  indicatorWeight: 5,
+                                  tabs: [
+                                    TabItem(0, "Education", controller.index),
+                                    TabItem(
+                                        1, "Mental Health", controller.index),
+                                    TabItem(2, "Business", controller.index)
+                                  ],
+                                ),
+                              ))
+                        ]),
+                  )),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10, left: 15),
+                child: Text(
+                  "Daily Blogs",
+                  style: Theme.of(context).textTheme.headline2,
+                ),
+              ),
+              Flexible(
+                  child: Container(
+                width: size.width * 0.9,
+                height: size.height * 0.3,
+                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  controller: horizontalcontroller,
+                  itemCount: 4,
+                  itemBuilder: ((context, index) {
+                    return Container(
+                      width: size.width * 0.6,
+                      height: size.height * 0.3,
+                      margin: EdgeInsets.only(right: 10),
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            top: 0,
+                            child: Container(
+                              width: size.width * 0.6,
+                              height: size.height * 0.3,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  image: const DecorationImage(
+                                      image: AssetImage(
+                                          "lib/photos/some_photo.jpg"))),
+                            ),
                           ),
-                          Text(
-                            "Introduction on what to do and how to do",
-                            style: Theme.of(context).textTheme.headline4,
+                          Positioned(
+                            bottom: 5,
+                            child: Container(
+                              padding: const EdgeInsets.all(10),
+                              margin: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                  color: Theme.of(context).backgroundColor,
+                                  borderRadius: BorderRadius.circular(10)),
+                              width: size.width * 0.55,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                RichText(
+                                    text: TextSpan(children: [
+                                  TextSpan(
+                                      text: "Category  ",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline5),
+                                  TextSpan(
+                                      text: "Author",
+                                      style:
+                                          Theme.of(context).textTheme.headline5)
+                                ])),
+                                Text(
+                                  "Information on what to do and how to do",
+                                  style: Theme.of(context).textTheme.headline4,
+                                )
+                              ]),
+                            ),
                           )
                         ],
                       ),
-                      ),
-                    )
-                  ]);
-                })),
-          ),
-          Container(
-            width: size.width,
-            height: size.height * 0.4,
-            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            child: TabBarView(controller: controller, children: [
-              TabCard(
-                controllerIndex: controller.index,
+                    );
+                  }),
+                ),
+              )),
+              Flexible(
+                child: Container(
+                  width: size.width * 0.9,
+                  height: size.height * 0.4,
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: TabBarView(
+                      physics: const NeverScrollableScrollPhysics(),
+                      controller: controller,
+                      children: [
+                        TabCard(
+                          controllerIndex: controller.index,
+                        ),
+                        TabCard(
+                          controllerIndex: controller.index + 1,
+                        ),
+                        TabCard(
+                          controllerIndex: controller.index + 2,
+                        )
+                      ]),
+                ),
               ),
-              TabCard(
-                controllerIndex: controller.index + 1,
-              ),
-              TabCard(
-                controllerIndex: controller.index + 2,
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                width: size.width,
+                height: size.height,
+                child: ListView.builder(
+                    itemCount: 10,
+                    scrollDirection: Axis.vertical,
+                    controller: verticalcontroller,
+                    itemBuilder: ((context, index) {
+                      return Card(
+                          child: Row(
+                        children: [
+                          Container(
+                            width: size.width * 0.25,
+                            height: size.height * 0.15,
+                            margin: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image:
+                                        AssetImage("lib/photos/consult.jpg")),
+                                borderRadius: BorderRadius.circular(10)),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              RichText(
+                                  text: TextSpan(children: [
+                                TextSpan(
+                                    text: "Name",
+                                    style:
+                                        Theme.of(context).textTheme.headline4),
+                                TextSpan(
+                                    text: "        Category",
+                                    style:
+                                        Theme.of(context).textTheme.headline4)
+                              ])),
+                              SizedBox(height: 20,),
+                              Row(
+                                children: [
+                                  TextButton(
+                                      style: ButtonStyle(
+                                          padding: MaterialStateProperty.all(
+                                              EdgeInsets.symmetric(
+                                                  horizontal: 15,
+                                                  vertical: 10)),
+                                          backgroundColor:
+                                              MaterialStateProperty.all(
+                                                  Theme.of(context)
+                                                      .colorScheme
+                                                      .onPrimary),
+                                          shape: MaterialStateProperty.all(
+                                              RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10)))),
+                                      onPressed: () {},
+                                      child: Text(
+                                        "Book",
+                                        style: TextStyle(
+                                            color: Theme.of(context)
+                                                .backgroundColor,
+                                            fontFamily: font,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      )),
+                                  TextButton(
+                                      style: ButtonStyle(
+                                          padding: MaterialStateProperty.all(
+                                              EdgeInsets.symmetric(
+                                                  horizontal: 15,
+                                                  vertical: 10)),
+                                          backgroundColor:
+                                              MaterialStateProperty.all(
+                                                  Theme.of(context)
+                                                      .backgroundColor),
+                                          shape: MaterialStateProperty.all(
+                                              RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10)))),
+                                      onPressed: () {},
+                                      child: Text(
+                                        "Message",
+                                        style: TextStyle(
+                                            color: Theme.of(context)
+                                                .colorScheme.background,
+                                            fontFamily: font,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      )),
+                                ],
+                              ),
+                            ],
+                          )
+                        ],
+                      ));
+                    })),
               )
             ]),
-          ),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-            width: size.width,
-            height: size.height,
-            child: ListView.builder(
-                itemCount: 10,
-                scrollDirection: Axis.vertical,
-                controller: verticalcontroller,
-                itemBuilder: ((context, index) {
-                  return Card(
-                      child: Row(
-                    children: [
-                      Container(
-                        width: size.width * 0.25,
-                        height: size.height * 0.1,
-                        margin: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage("lib/photos/consult.jpg")),
-                            borderRadius: BorderRadius.circular(10)),
-                      ),
-                      Text("Name")
-                    ],
-                  ));
-                })),
-          )
-        ]),
       ),
     );
   }
@@ -320,12 +420,12 @@ class _TabCardState extends State<TabCard> {
           return Container(
             margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
             width: MediaQuery.of(context).size.width * 0.5,
-            height: MediaQuery.of(context).size.height * 0.25,
+            height: MediaQuery.of(context).size.height * 0.22,
             decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
                       color: Colors.black12,
-                      offset: Offset(8, 8),
+                      offset: Offset(0,0),
                       blurRadius: 5),
                 ],
                 color: Theme.of(context).backgroundColor,
@@ -366,28 +466,33 @@ class _TabCardState extends State<TabCard> {
                       text: TextSpan(children: [
                     TextSpan(
                         text: "Rating ",
-                        style: Theme.of(context).textTheme.headline5),
+                        style: Theme.of(context).textTheme.headline4),
                     TextSpan(
                         text: "   4.5",
-                        style: Theme.of(context).textTheme.headline3)
+                        style: Theme.of(context).textTheme.headline5)
                   ])),
                   RichText(
                       text: TextSpan(children: [
                     TextSpan(
                         text: "Clients ",
-                        style: Theme.of(context).textTheme.headline5),
+                        style: Theme.of(context).textTheme.headline4),
                     TextSpan(
                         text: "   4500",
-                        style: Theme.of(context).textTheme.headline3)
+                        style: Theme.of(context).textTheme.headline5)
                   ])),
-                  SizedBox(
-                    height: 20,
+                  const SizedBox(
+                    height: 10,
                   ),
-                  MaterialButton(
-                      elevation: 0,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                      color: Theme.of(context).colorScheme.onPrimary,
+                  TextButton(
+                      style: ButtonStyle(
+                          padding: MaterialStateProperty.all(
+                              EdgeInsets.symmetric(
+                                  horizontal: 30, vertical: 10)),
+                          backgroundColor: MaterialStateProperty.all(
+                              Theme.of(context).colorScheme.onPrimary),
+                          shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)))),
                       onPressed: () {},
                       child: Text(
                         "Explore",
