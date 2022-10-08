@@ -87,7 +87,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
           Text(
             text,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyText2,
+            style: Theme.of(context).textTheme.headline6,
           ),
         ]),
       );
