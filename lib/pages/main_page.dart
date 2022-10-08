@@ -1,3 +1,4 @@
+import 'package:consult_app/details/blogs.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
@@ -176,7 +177,10 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                           splashColor:
                               Theme.of(context).colorScheme.onPrimaryContainer,
                           padding: EdgeInsets.all(0),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).push(
+                                MaterialPageRoute(builder: (ctx) => Blogs()));
+                          },
                           icon: Icon(
                             FluentIcons.arrow_circle_right_32_regular,
                             color: Theme.of(context)
@@ -302,7 +306,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                     margin:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                     width: size.width,
-                    height: size.height*2,
+                    height: size.height * 2,
                     child: Column(
                       children: [
                         GeneralCard(),
