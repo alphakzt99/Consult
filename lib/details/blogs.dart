@@ -26,7 +26,7 @@ class _BlogsState extends State<Blogs> with TickerProviderStateMixin {
     var size = MediaQuery.of(context).size;
     bool onPressed = false;
     return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.onPrimary,
+        backgroundColor: Theme.of(context).primaryColorLight,
         appBar: AppBar(
           elevation: 0,
           leading: IconButton(
@@ -66,14 +66,14 @@ class _BlogsState extends State<Blogs> with TickerProviderStateMixin {
                             month: "Nov",
                             color: Theme.of(context).colorScheme.onPrimary,
                             nextColor:
-                                Theme.of(context).colorScheme.onSecondary),
+                                Theme.of(context).primaryColorLight),
                         CurvedListItem(
                             size: size,
                             image: "lib/photos/avatar.jpg",
                             name: "Ryan Gosling",
                             likeNumber: "2389",
                             month: "Oct",
-                            color: Theme.of(context).colorScheme.onSecondary,
+                            color: Theme.of(context).primaryColorLight,
                             nextColor: Theme.of(context).colorScheme.onPrimary),
                         CurvedListItem(
                             size: size,
@@ -83,15 +83,15 @@ class _BlogsState extends State<Blogs> with TickerProviderStateMixin {
                             month: "Jun",
                             color: Theme.of(context).colorScheme.onPrimary,
                             nextColor:
-                                Theme.of(context).colorScheme.onTertiary),
+                                Theme.of(context).primaryColor),
                         CurvedListItem(
                             size: size,
                             image: "lib/photos/avatar.jpg",
                             name: "Bryan Robson",
                             likeNumber: "34534",
                             month: "Apr",
-                            color: Theme.of(context).colorScheme.onTertiary,
-                            nextColor: Theme.of(context).colorScheme.onPrimary),
+                            color: Theme.of(context).primaryColor,
+                            nextColor: Theme.of(context).primaryColorLight),
                         SizedBox(height: 8),
                         TextButton(
                             onPressed: () {},
@@ -115,14 +115,14 @@ class _BlogsState extends State<Blogs> with TickerProviderStateMixin {
                             month: "Nov",
                             color: Theme.of(context).colorScheme.onPrimary,
                             nextColor:
-                                Theme.of(context).colorScheme.onSecondary),
+                                Theme.of(context).primaryColorLight),
                         CurvedListItem(
                             size: size,
                             image: "lib/photos/avatar.jpg",
                             name: "Ryan Gosling",
                             likeNumber: "2389",
                             month: "Oct",
-                            color: Theme.of(context).colorScheme.onSecondary,
+                            color: Theme.of(context).primaryColorLight,
                             nextColor: Theme.of(context).colorScheme.onPrimary),
                         CurvedListItem(
                             size: size,
@@ -132,16 +132,16 @@ class _BlogsState extends State<Blogs> with TickerProviderStateMixin {
                             month: "Jun",
                             color: Theme.of(context).colorScheme.onPrimary,
                             nextColor:
-                                Theme.of(context).colorScheme.onTertiary),
+                                Theme.of(context).primaryColor),
                         CurvedListItem(
                             size: size,
                             image: "lib/photos/avatar.jpg",
                             name: "Bryan Robson",
                             likeNumber: "34534",
                             month: "Apr",
-                            color: Theme.of(context).colorScheme.onTertiary,
-                            nextColor: Theme.of(context).colorScheme.onPrimary),
-                          SizedBox(height: 8),
+                            color: Theme.of(context).primaryColor,
+                            nextColor: Theme.of(context).primaryColorLight),
+                        SizedBox(height: 8),
                         TextButton(
                             onPressed: () {},
                             child: Text(
@@ -164,14 +164,14 @@ class _BlogsState extends State<Blogs> with TickerProviderStateMixin {
                             month: "Nov",
                             color: Theme.of(context).colorScheme.onPrimary,
                             nextColor:
-                                Theme.of(context).colorScheme.onSecondary),
+                                Theme.of(context).primaryColorLight),
                         CurvedListItem(
                             size: size,
                             image: "lib/photos/avatar.jpg",
                             name: "Ryan Gosling",
                             likeNumber: "2389",
                             month: "Oct",
-                            color: Theme.of(context).colorScheme.onSecondary,
+                            color: Theme.of(context).primaryColorLight,
                             nextColor: Theme.of(context).colorScheme.onPrimary),
                         CurvedListItem(
                             size: size,
@@ -181,16 +181,16 @@ class _BlogsState extends State<Blogs> with TickerProviderStateMixin {
                             month: "Jun",
                             color: Theme.of(context).colorScheme.onPrimary,
                             nextColor:
-                                Theme.of(context).colorScheme.onTertiary),
+                                Theme.of(context).primaryColor),
                         CurvedListItem(
                             size: size,
                             image: "lib/photos/avatar.jpg",
                             name: "Bryan Robson",
                             likeNumber: "34534",
                             month: "Apr",
-                            color: Theme.of(context).colorScheme.onTertiary,
-                            nextColor: Theme.of(context).colorScheme.onPrimary),
-                          SizedBox(height: 8),
+                            color: Theme.of(context).primaryColor,
+                            nextColor: Theme.of(context).primaryColorLight),
+                        SizedBox(height: 8),
                         TextButton(
                             onPressed: () {},
                             child: Text(
@@ -213,14 +213,14 @@ class _BlogsState extends State<Blogs> with TickerProviderStateMixin {
                             month: "Nov",
                             color: Theme.of(context).colorScheme.onPrimary,
                             nextColor:
-                                Theme.of(context).colorScheme.onSecondary),
+                                Theme.of(context).primaryColorLight),
                         CurvedListItem(
                             size: size,
                             image: "lib/photos/avatar.jpg",
                             name: "Ryan Gosling",
                             likeNumber: "2389",
                             month: "Oct",
-                            color: Theme.of(context).colorScheme.onSecondary,
+                            color: Theme.of(context).primaryColorLight,
                             nextColor: Theme.of(context).colorScheme.onPrimary),
                         CurvedListItem(
                             size: size,
@@ -230,16 +230,16 @@ class _BlogsState extends State<Blogs> with TickerProviderStateMixin {
                             month: "Jun",
                             color: Theme.of(context).colorScheme.onPrimary,
                             nextColor:
-                                Theme.of(context).colorScheme.onTertiary),
+                                Theme.of(context).primaryColor),
                         CurvedListItem(
                             size: size,
                             image: "lib/photos/avatar.jpg",
                             name: "Bryan Robson",
                             likeNumber: "34534",
                             month: "Apr",
-                            color: Theme.of(context).colorScheme.onTertiary,
-                            nextColor: Theme.of(context).colorScheme.onPrimary),
-                            SizedBox(height: 8),
+                            color: Theme.of(context).primaryColor,
+                            nextColor: Theme.of(context).primaryColorLight),
+                        SizedBox(height: 8),
                         TextButton(
                             onPressed: () {},
                             child: Text(

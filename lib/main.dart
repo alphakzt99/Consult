@@ -22,6 +22,9 @@ class _ConsultState extends State<Consult> {
       debugShowCheckedModeBanner: false,
       title: "Consult_App",
       theme: ThemeData(
+        primaryColor: Color(0xFF664236),
+        primaryColorDark: Color(0xFF3C4E5C),
+        primaryColorLight: Color(0xFFD1B79C),
         backgroundColor: Colors.white,
         colorScheme: const ColorScheme.light(
             background: Colors.black,
