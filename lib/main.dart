@@ -22,6 +22,9 @@ class _ConsultState extends State<Consult> {
       debugShowCheckedModeBanner: false,
       title: "Consult_App",
       theme: ThemeData(
+        primaryColor: Color(0xFF664236),
+        primaryColorDark: Color(0xFF3C4E5C),
+        primaryColorLight: Color(0xFFD1B79C),
         backgroundColor: Colors.white,
         colorScheme: const ColorScheme.light(
             background: Colors.black,
@@ -66,10 +69,8 @@ class _ConsultState extends State<Consult> {
             fontFamily: "Roboto",
             fontSize: 14,
           ),
-         
           bodyText2: const TextStyle(
               fontFamily: "Roboto",
-              fontWeight: FontWeight.bold,
               fontSize: 14,
               color: Color.fromARGB(255, 234, 235, 237)),
         ),
