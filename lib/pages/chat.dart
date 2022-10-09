@@ -1,5 +1,7 @@
+import 'package:consult_app/main.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_swipe_action_cell/flutter_swipe_action_cell.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:iconify_flutter/icons/wi.dart';
 
@@ -70,7 +72,7 @@ class _ChatState extends State<Chat> {
         ),
         Flexible(
           child: GlassContainer(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(30), topRight: Radius.circular(30)),
             height: size.height,
@@ -100,36 +102,110 @@ class _ChatState extends State<Chat> {
                 itemCount: 10,
                 scrollDirection: Axis.vertical,
                 itemBuilder: ((context, index) {
-                  return Container(
-                    width: size.width * 0.8,
-                    height: size.height * 0.1,
-                    child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CircleAvatar(
-                            radius: 25,
-                            backgroundImage:
-                                AssetImage("lib/photos/avatar.jpg"),
-                          ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Kaung Zaw Thant",
-                                style: Theme.of(context).textTheme.headline3,
-                              ),
-                              SizedBox(height: 5,),
-                              Text(
-                                "You sent an attachment",
-                                style: Theme.of(context).textTheme.bodyText2,
-                              )
+                  return SwipeActionCell(
+                    trailingActions: [
+                      SwipeAction(
+                                  backgroundRadius: 20,
+                                  color: Theme.of(context).primaryColorDark,
+                                  content: Container(
+                                    width: 50,
+                                    height: 50,
+                                    child: Icon(
+                                      FluentIcons.delete_20_regular,
+                                      color: Theme.of(context).backgroundColor,
+                                    ),
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(25)),
+                                  ),
+                                  nestedAction: SwipeNestedAction(
+                                      content: Container(
+                                          decoration: BoxDecoration(
+                                              color: Theme.of(context)
+                                                  .primaryColorDark),
+                                          width: size.width * 0.2,
+                                          height: size.height * 0.12,
+                                          child: OverflowBox(
+                                            maxWidth: double.infinity,
+                                            child: OutlinedButton(
+                                                style: ButtonStyle(
+                                                    side: MaterialStateProperty
+                                                        .all(BorderSide(
+                                                            color: Colors
+                                                                .transparent))),
+                                                onPressed: () {
+                                                  chatHeads.removeAt(index);
+                                                  setState(() {});
+                                                },
+                                                child: Row(
+                                                  children: [
+                                                    Icon(
+                                                      FluentIcons.delete_20_regular,
+                                                      color: Theme.of(context)
+                                                          .backgroundColor,
+                                                    ),
+                                                    Text(
+                                                      " Delete",
+                                                      style: TextStyle(
+                                                          color: Theme.of(
+                                                                  context)
+                                                              .backgroundColor,
+                                                          fontFamily: font,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 20),
+                                                    )
+                                                  ],
+                                                )),
+                                          ))),
+                                  onTap: (CompletionHandler handler) async {
+                                    await handler(true);
+                                    chatHeads.removeAt(index);
+                                    setState(() {});
+                                  }),
                             ],
-                          )
-                        ]),
+                    key: ValueKey(index),
+                    child: Container(
+                      width: size.width * 0.8,
+                      height: size.height * 0.1,
+                      color: Colors.transparent,
+                      child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CircleAvatar(
+                              radius: 25,
+                              backgroundImage:
+                                  AssetImage("lib/photos/avatar.jpg"),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Kaung Zaw Thant",
+                                  style: Theme.of(context).textTheme.headline3,
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                RichText(
+                                    text: TextSpan(children: [
+                                  TextSpan(
+                                      text: "You sent an attachment",
+                                      style:
+                                          Theme.of(context).textTheme.bodyText2),
+                                  TextSpan(
+                                      text: "  6h",
+                                      style:
+                                          Theme.of(context).textTheme.bodyText2)
+                                ]))
+                              ],
+                            )
+                          ]),
+                    ),
                   );
                 })),
           ),
