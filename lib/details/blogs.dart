@@ -1,6 +1,6 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:vertical_tab_bar_view/vertical_tab_bar_view.dart';
+
 
 import '../main.dart';
 
@@ -308,7 +308,7 @@ class _BlogsState extends State<Blogs> with TickerProviderStateMixin {
                             child: TabBar(
                                 controller: tabController,
                                 isScrollable: true,
-                                indicatorWeight: 0.1,
+                                indicatorWeight: 0.01,
                                 indicatorColor:
                                     Theme.of(context).backgroundColor,
                                 tabs: [
@@ -385,7 +385,7 @@ class CurvedListItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CircleAvatar(
-                        radius: 15,
+                        radius: 20,
                         foregroundImage: AssetImage(
                           image,
                         ),
@@ -468,12 +468,13 @@ class TabBarItem extends StatelessWidget {
             child: Container(
               width: size.width * 0.4,
               height: size.height * 0.2,
-              margin: EdgeInsets.only(top: 10, bottom: 10),
+              margin: const EdgeInsets.only(top: 10, bottom: 10),
               decoration: BoxDecoration(
+                
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
                       fit: BoxFit.fill,
-                      opacity: 0.8,
+                      opacity: 1,
                       filterQuality: FilterQuality.medium,
                       image: AssetImage(image))),
             ),

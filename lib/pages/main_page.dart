@@ -1,6 +1,7 @@
 import 'package:consult_app/details/blogs.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:glass_kit/glass_kit.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/cil.dart';
 import 'package:remixicon/remixicon.dart';
@@ -87,7 +88,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
           Text(
             text,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyText2,
+            style: Theme.of(context).textTheme.headline6,
           ),
         ]),
       );
@@ -465,19 +466,31 @@ class _TabCardState extends State<TabCard> {
         itemCount: 4,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return Container(
+          return GlassContainer(
+            borderRadius: BorderRadius.circular(20),
             margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
             width: MediaQuery.of(context).size.width * 0.5,
-            height: MediaQuery.of(context).size.height * 0.22,
-            decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.black12,
-                      offset: Offset(0, 0),
-                      blurRadius: 5),
-                ],
-                color: Theme.of(context).backgroundColor,
-                borderRadius: BorderRadius.circular(20)),
+            height: MediaQuery.of(context).size.height * 0.35,
+            gradient: LinearGradient(
+              colors: [
+                Colors.white.withOpacity(0.40),
+                Colors.white.withOpacity(0.10),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderGradient: LinearGradient(
+              colors: [
+                Colors.white.withOpacity(0.60),
+                Colors.white.withOpacity(0.10),
+                Theme.of(context).backgroundColor.withOpacity(0.05),
+                Theme.of(context).backgroundColor.withOpacity(0.60),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              stops: [0.0, 0.39, 0.40, 1.0],
+            ),
+            blur: 20,
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
