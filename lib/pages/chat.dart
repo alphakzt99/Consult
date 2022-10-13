@@ -35,37 +35,41 @@ class _ChatState extends State<Chat> {
         width: size.width * 0.8,
         height: size.height * 0.1,
         child: Center(
-          child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-            CircleAvatar(
-              radius: 25,
-              backgroundImage: AssetImage("lib/photos/avatar.jpg"),
-            ),
-            SizedBox(
-              width: 20,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  "Kaung Zaw Thant",
-                  style: Theme.of(context).textTheme.headline3,
+                CircleAvatar(
+                  radius: 25,
+                  backgroundImage: AssetImage("lib/photos/avatar.jpg"),
                 ),
-                SizedBox(
-                  height: 5,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Kaung Zaw Thant",
+                      style: Theme.of(context).textTheme.headline3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    RichText(
+                        text: TextSpan(children: [
+                      TextSpan(
+                          text: "You sent an attachment",
+                          style: Theme.of(context).textTheme.bodyText2),
+                      TextSpan(
+                          text: " . 8:39 p.m.",
+                          style: Theme.of(context).textTheme.bodyText2)
+                    ]))
+                  ],
                 ),
-                RichText(
-                    text: TextSpan(children: [
-                  TextSpan(
-                      text: "You sent an attachment",
-                      style: Theme.of(context).textTheme.bodyText2),
-                  TextSpan(
-                      text: "  6h",
-                      style: Theme.of(context).textTheme.bodyText2)
-                ]))
-              ],
-            )
-          ]),
+                Icon(
+                  Icons.check_circle_rounded,
+                  color: Theme.of(context).colorScheme.onBackground,
+                )
+              ]),
         ),
       );
     }
@@ -174,7 +178,6 @@ class _ChatState extends State<Chat> {
             ),
             blur: 20,
             child: ListView.builder(
-                shrinkWrap: true,
                 controller: controller,
                 itemCount: contents.length,
                 scrollDirection: Axis.vertical,
@@ -182,7 +185,11 @@ class _ChatState extends State<Chat> {
                   return SwipeActionCell(
                       trailingActions: [
                         SwipeAction(
-                            title: "Delete",
+                            icon: Icon(
+                                FluentIcons.delete_20_regular,
+                                color:
+                                    Theme.of(context).colorScheme.onBackground,
+                              ),
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: font,
@@ -190,24 +197,21 @@ class _ChatState extends State<Chat> {
                             backgroundRadius: 20,
                             color: Colors.transparent,
                             widthSpace: size.width * 0.3,
-                            content: IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                FluentIcons.delete_20_regular,
-                              ),
-                              color: Theme.of(context).colorScheme.onBackground,
-                            ),
+                           
                             onTap: (CompletionHandler handler) async {
                               await handler(true);
+                              contents.removeAt(index);
+                              setState(() {});
                               ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
+                                    elevation: 5,
                                       duration: const Duration(seconds: 5),
                                       backgroundColor:
-                                          Theme.of(context).backgroundColor,
+                                          Theme.of(context).primaryColorLight,
                                       action: SnackBarAction(
                                         textColor: Theme.of(context)
                                             .colorScheme
-                                            .onSecondaryContainer,
+                                            .onPrimary,
                                         label: "Undo",
                                         onPressed: () {},
                                       ),
@@ -220,9 +224,9 @@ class _ChatState extends State<Chat> {
                                         "Deleted One Conversation",
                                         style: TextStyle(
                                             fontSize: 18,
-                                            fontFamily: font,
+                                            fontFamily: "Roboto",
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.black),
+                                            color: Theme.of(context).primaryColor),
                                       )));
                             })
                       ],
