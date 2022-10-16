@@ -73,17 +73,22 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   child: ClipPath(
                 clipper: BackgroundClipper(),
                 child: Container(
+                    padding: EdgeInsets.only(right: 30),
                     color: Theme.of(context).colorScheme.onPrimary,
                     width: size.width,
                     height: size.height * 0.7,
                     child: Padding(
-                      padding:const EdgeInsets.only(top: 130),
+                      padding: const EdgeInsets.only(top: 150, left: 30),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          
+                          Text(
+                            "Get Started",
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
                           Padding(
-                            padding:const EdgeInsets.only(top: 10),
+                            padding: const EdgeInsets.only(top: 10),
                             child: Text(
                               "Let's connect with",
                               style: Theme.of(context).textTheme.headline1,
@@ -98,7 +103,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                             height: 15,
                           ),
                           RichText(
-                              textAlign: TextAlign.center,
+                              textAlign: TextAlign.start,
                               text: TextSpan(children: [
                                 TextSpan(
                                     text:
@@ -113,52 +118,66 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                           SizedBox(
                             height: 30,
                           ),
-                          TextButton(
-                            style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(
-                                    Theme.of(context)
-                                        .colorScheme
-                                        .onSecondaryContainer),
-                                padding: MaterialStateProperty.all(
-                                   const EdgeInsets.symmetric(
-                                        vertical: 10, horizontal: 30))),
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => BottomBar(
-                                        end: 2,
-                                        start: 10,
-                                        selectedColor: Theme.of(context)
-                                            .colorScheme
-                                            .onTertiary,
-                                        unselectedColor: Theme.of(context)
-                                            .colorScheme
-                                            .onBackground,
-                                        currentPage: CurrentPage,
-                                        bottomtabcontroller: tabcontroller,
-                                        barcolor: Theme.of(context)
-                                            .colorScheme
-                                            .onPrimary,
-                                        child: TabBarView(
-                                            controller: tabcontroller,
-                                            physics: PageScrollPhysics(),
-                                            dragStartBehavior:
-                                                DragStartBehavior.down,
-                                            children: [
-                                              Chat(),
-                                              Main(),
-                                              Account()
-                                            ]),
-                                      )));
-                            },
-                            child: Text(
-                              "Connect",
-                              style: TextStyle(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onBackground,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              MaterialButton(
+                                height: 50,
+                                padding: EdgeInsets.all(0),
+                                elevation: 0,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                color: Theme.of(context).colorScheme.onPrimary,
+                                onPressed: () {},
+                                child: Text(
+                                  "Sign up",
+                                  style: Theme.of(context).textTheme.headline3,
+                                ),
+                              ),
+                              MaterialButton(
+                                height: 50,
+                                color: Theme.of(context).colorScheme.onSecondaryContainer,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (ctx) => BottomBar(
+                                            end: 2,
+                                            start: 10,
+                                            selectedColor: Theme.of(context)
+                                                .colorScheme
+                                                .onTertiary,
+                                            unselectedColor: Theme.of(context)
+                                                .colorScheme
+                                                .onBackground,
+                                            currentPage: CurrentPage,
+                                            bottomtabcontroller: tabcontroller,
+                                            barcolor: Theme.of(context)
+                                                .colorScheme
+                                                .onPrimary,
+                                            child: TabBarView(
+                                                controller: tabcontroller,
+                                                physics: PageScrollPhysics(),
+                                                dragStartBehavior:
+                                                    DragStartBehavior.down,
+                                                children: [
+                                                  Chat(),
+                                                  Main(),
+                                                  Account()
+                                                ]),
+                                          )));
+                                },
+                                child: Text(
+                                  "Connect & Explore",
+                                  style: TextStyle(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onBackground,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
                           )
                         ],
                       ),
@@ -171,6 +190,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     );
   }
 }
+
 class BackgroundClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
