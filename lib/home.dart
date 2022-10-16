@@ -81,6 +81,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          
                           Padding(
                             padding:const EdgeInsets.only(top: 10),
                             child: Text(

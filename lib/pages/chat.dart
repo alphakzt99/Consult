@@ -92,8 +92,8 @@ class _ChatState extends State<Chat> {
       height: size.height,
       decoration: BoxDecoration(
           gradient: LinearGradient(colors: [
-        Theme.of(context).colorScheme.onPrimary,
-        Theme.of(context).colorScheme.onSecondary,
+        Theme.of(context).colorScheme.onSecondaryContainer,
+        Theme.of(context).primaryColor,
       ])),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         SizedBox(
@@ -108,7 +108,7 @@ class _ChatState extends State<Chat> {
         ),
         Container(
           width: size.width,
-          height: size.height * 0.15,
+          height: size.height * 0.14,
           child: ListView(
             padding: EdgeInsets.all(8),
             scrollDirection: Axis.horizontal,
@@ -116,35 +116,20 @@ class _ChatState extends State<Chat> {
             controller: hcontroller,
             children: [
               Container(
-                width: 60,
-                height: 100,
-                margin: EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    borderRadius: BorderRadius.circular(20)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    IconButton(
-                        style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(
-                                Theme.of(context).primaryColorLight),
-                            shape: MaterialStateProperty.all(CircleBorder())),
+                margin: EdgeInsets.only(bottom: 10,left: 10),
+                padding: EdgeInsets.only(top: 5,bottom: 10),
+                child: MaterialButton(
+                        minWidth: 30,
+                        height: 40,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                        color: Theme.of(context).colorScheme.onBackground,
                         onPressed: () {},
-                        icon: Icon(
-                          FluentIcons.search_20_filled,
-                          color: Theme.of(context).colorScheme.onTertiary,
-                        )),
-                    Text(
-                      "Search",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: font,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold),
-                    )
-                  ],
-                ),
+                        child: Icon(
+                          FluentIcons.search_20_regular,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                     
+                  ),
               ),
               ...chatHeads
             ],
@@ -186,10 +171,9 @@ class _ChatState extends State<Chat> {
                       trailingActions: [
                         SwipeAction(
                             icon: Icon(
-                                FluentIcons.delete_20_regular,
-                                color:
-                                    Theme.of(context).colorScheme.onBackground,
-                              ),
+                              FluentIcons.delete_20_regular,
+                              color: Theme.of(context).colorScheme.onBackground,
+                            ),
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: font,
@@ -197,14 +181,13 @@ class _ChatState extends State<Chat> {
                             backgroundRadius: 20,
                             color: Colors.transparent,
                             widthSpace: size.width * 0.3,
-                           
                             onTap: (CompletionHandler handler) async {
                               await handler(true);
                               contents.removeAt(index);
                               setState(() {});
                               ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    elevation: 5,
+                                      elevation: 5,
                                       duration: const Duration(seconds: 5),
                                       backgroundColor:
                                           Theme.of(context).primaryColorLight,
@@ -226,7 +209,8 @@ class _ChatState extends State<Chat> {
                                             fontSize: 18,
                                             fontFamily: "Roboto",
                                             fontWeight: FontWeight.bold,
-                                            color: Theme.of(context).primaryColor),
+                                            color:
+                                                Theme.of(context).primaryColor),
                                       )));
                             })
                       ],

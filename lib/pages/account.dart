@@ -1,3 +1,4 @@
+import 'package:consult_app/main.dart';
 import 'package:consult_app/pages/main_page.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/foundation.dart';
@@ -19,33 +20,71 @@ class _AccountState extends State<Account> {
     Widget grid(IconData icon, String name) {
       return Container(
         height: size.height * 0.05,
-        margin: EdgeInsets.symmetric(vertical: 10,horizontal: 0),
-        decoration: BoxDecoration(
-         
-            borderRadius: BorderRadius.circular(10)),
+        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
         child: Row(
           children: [
-            SizedBox(width: size.width * 0.07,),
-            Icon(
-              icon,
-              size: 30,
-              color: Theme.of(context).primaryColor,
+            SizedBox(
+              width: size.width * 0.05,
             ),
-            SizedBox(width: size.width * 0.1,),
-            Text(name,style: Theme.of(context).textTheme.headline3,)
+            Container(
+              width: 50,
+              height: 50,
+              decoration: BoxDecoration(
+                  border: Border.all(color: Theme.of(context).primaryColor),
+                  borderRadius: BorderRadius.circular(25),
+                  color: Colors.transparent),
+              child: Icon(
+                icon,
+                size: 30,
+                color: Theme.of(context).primaryColor,
+              ),
+            ),
+            SizedBox(
+              width: size.width * 0.05,
+            ),
+            Text(
+              name,
+              style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontFamily: "Roboto",
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
+            Icon(
+              Icons.arrow_right_outlined,
+              color: Theme.of(context).primaryColor,
+            )
           ],
         ),
-        
       );
     }
 
     List gridList = [
       grid(FluentIcons.person_accounts_20_regular, "My Profile"),
       grid(FluentIcons.settings_20_regular, "Settings"),
-      grid(Icons.notifications, "Notifications"),
       grid(FluentIcons.history_20_regular, "Transcation History"),
       grid(FluentIcons.question_20_regular, "FAQ"),
       grid(FluentIcons.door_20_regular, "Log Out"),
+      SizedBox(height: 20,),
+      MaterialButton(
+        height: 70,
+        minWidth: size.width * 0.5,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        color: Theme.of(context).colorScheme.onPrimary,
+        onPressed: () {},
+        child:
+            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          Icon(
+            FluentIcons.person_support_20_regular,
+            color: Theme.of(context).colorScheme.onBackground,
+          ),
+          Text(
+            "Contact the support center",
+            style: Theme.of(context).textTheme.headline3,
+          )
+        ]),
+      )
     ];
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColorLight,
@@ -128,19 +167,26 @@ class _AccountState extends State<Account> {
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              SizedBox(height: size.height * 0.05,),
+                              SizedBox(
+                                height: size.height * 0.07,
+                              ),
                               Text(
                                 "Profile",
-                                style: Theme.of(context).textTheme.headline1,
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    fontFamily: font,
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold),
                               ),
                               Container(
                                 padding: EdgeInsets.all(0),
                                 color: Colors.transparent,
                                 height: size.height * 0.6,
                                 child: ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: gridList.length,
-                                  itemBuilder: (context, index) => gridList[index]),
+                                    shrinkWrap: true,
+                                    itemCount: gridList.length,
+                                    itemBuilder: (context, index) =>
+                                        gridList[index]),
                               )
                             ]),
                       ),
