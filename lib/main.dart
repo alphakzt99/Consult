@@ -37,6 +37,7 @@ class _ConsultState extends State<Consult> {
             onTertiaryContainer: Colors.white54),
         fontFamily: font,
         textTheme: TextTheme(
+          
           headline1: TextStyle(
             fontSize: 30,
             fontFamily: font,
@@ -44,11 +45,10 @@ class _ConsultState extends State<Consult> {
             color: Color.fromARGB(255, 234, 235, 237),
           ),
           headline5: TextStyle(
-            fontFamily: font1,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-            color: const Color(0xFFD38F5E)
-          ),
+              fontFamily: font1,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: const Color(0xFFD38F5E)),
           headline4: TextStyle(
               fontSize: 14,
               fontFamily: font,
@@ -70,10 +70,10 @@ class _ConsultState extends State<Consult> {
             fontSize: 14,
           ),
           headline6: TextStyle(
-            fontFamily: font,
-            fontSize: 12,
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 234, 235, 237)),
+              fontFamily: font,
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 234, 235, 237)),
           bodyText2: const TextStyle(
               fontFamily: "Roboto",
               fontSize: 14,
