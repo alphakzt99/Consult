@@ -3,8 +3,6 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swipe_action_cell/flutter_swipe_action_cell.dart';
 import 'package:glass_kit/glass_kit.dart';
-import 'package:iconify_flutter/icons/fluent.dart';
-import 'package:iconify_flutter/icons/wi.dart';
 
 class Chat extends StatefulWidget {
   const Chat({super.key});
@@ -116,20 +114,20 @@ class _ChatState extends State<Chat> {
             controller: hcontroller,
             children: [
               Container(
-                margin: EdgeInsets.only(bottom: 10,left: 10),
-                padding: EdgeInsets.only(top: 5,bottom: 10),
+                margin: EdgeInsets.only(bottom: 10, left: 10),
+                padding: EdgeInsets.only(top: 5, bottom: 10),
                 child: MaterialButton(
-                        minWidth: 30,
-                        height: 40,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                        color: Theme.of(context).colorScheme.onBackground,
-                        onPressed: () {},
-                        child: Icon(
-                          FluentIcons.search_20_regular,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                     
+                  minWidth: 30,
+                  height: 40,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  color: Theme.of(context).colorScheme.onBackground,
+                  onPressed: () {},
+                  child: Icon(
+                    FluentIcons.search_20_regular,
+                    color: Theme.of(context).primaryColor,
                   ),
+                ),
               ),
               ...chatHeads
             ],

@@ -3,8 +3,7 @@ import 'package:consult_app/pages/signup.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:iconify_flutter/iconify_flutter.dart';
-import 'package:colorful_iconify_flutter/icons/flat_color_icons.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -178,8 +177,8 @@ class _LoginState extends State<Login> {
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Iconify(
-                              FlatColorIcons.google,
+                            Icon(
+                              FontAwesomeIcons.google,
                               color: Theme.of(context).backgroundColor,
                               size: 16,
                             ),

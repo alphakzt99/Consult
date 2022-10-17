@@ -37,12 +37,12 @@ packages:
     source: hosted
     version: "1.16.0"
   colorful_iconify_flutter:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: colorful_iconify_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.2"
+    version: "0.0.3"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -63,7 +63,7 @@ packages:
       name: fluentui_system_icons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.183"
+    version: "1.1.184"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -95,6 +95,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  font_awesome_flutter:
+    dependency: "direct main"
+    description:
+      name: font_awesome_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "10.2.1"
   glass_kit:
     dependency: "direct main"
     description:
@@ -108,7 +115,7 @@ packages:
       name: iconify_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.4"
+    version: "0.0.5"
   lints:
     dependency: transitive
     description:
@@ -242,4 +249,4 @@ packages:
     version: "6.1.0"
 sdks:
   dart: ">=2.17.6 <3.0.0"
-  flutter: ">=2.11.0-0.1.pre"
+  flutter: ">=3.0.0"

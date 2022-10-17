@@ -126,6 +126,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                               MaterialButton(
                                 height: 50,
                                 elevation: 0,
+                          
                                 color: Theme.of(context).colorScheme.onPrimary,
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
@@ -136,6 +137,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                   style: Theme.of(context).textTheme.headline3,
                                 ),
                               ),
+                              
                               MaterialButton(
                                 height: 50,
                                 color: Theme.of(context)
