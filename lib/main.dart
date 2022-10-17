@@ -22,6 +22,20 @@ class _ConsultState extends State<Consult> {
       debugShowCheckedModeBanner: false,
       title: "Consult_App",
       theme: ThemeData(
+        primaryTextTheme: TextTheme(
+            headline1: TextStyle(
+                color: Color.fromARGB(255, 234, 235, 237),
+                fontFamily: font,
+                fontSize: 30,
+                fontWeight: FontWeight.bold),
+            headline2: TextStyle(
+                color: Colors.black38, fontSize: 14, fontFamily: 'Roboto'),
+            headline3: TextStyle(
+                color: Color(0xFF014D69),
+                fontFamily: 'Roboto',
+                fontSize: 16,
+                fontWeight: FontWeight.bold),
+            headline4: TextStyle(color: Color(0xFF014D69),fontFamily: font,fontSize: 24,fontWeight: FontWeight.bold)),
         primaryColor: Color(0xFF664236),
         primaryColorDark: Color(0xFF3C4E5C),
         primaryColorLight: Color(0xFFD1B79C),
@@ -44,11 +58,10 @@ class _ConsultState extends State<Consult> {
             color: Color.fromARGB(255, 234, 235, 237),
           ),
           headline5: TextStyle(
-            fontFamily: font1,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-            color: const Color(0xFFD38F5E)
-          ),
+              fontFamily: font1,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: const Color(0xFFD38F5E)),
           headline4: TextStyle(
               fontSize: 14,
               fontFamily: font,
@@ -70,10 +83,10 @@ class _ConsultState extends State<Consult> {
             fontSize: 14,
           ),
           headline6: TextStyle(
-            fontFamily: font,
-            fontSize: 12,
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 234, 235, 237)),
+              fontFamily: font,
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 234, 235, 237)),
           bodyText2: const TextStyle(
               fontFamily: "Roboto",
               fontSize: 14,

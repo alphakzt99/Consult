@@ -1,4 +1,5 @@
 import 'package:consult_app/bottom_bar.dart';
+import 'package:consult_app/pages/Create.dart';
 import 'package:consult_app/pages/account.dart';
 import 'package:consult_app/pages/chat.dart';
 import 'package:consult_app/pages/main_page.dart';
@@ -119,26 +120,29 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                             height: 30,
                           ),
                           Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               MaterialButton(
                                 height: 50,
-                                padding: EdgeInsets.all(0),
                                 elevation: 0,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
                                 color: Theme.of(context).colorScheme.onPrimary,
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => Login()));
+                                },
                                 child: Text(
-                                  "Sign up",
+                                  "Login",
                                   style: Theme.of(context).textTheme.headline3,
                                 ),
                               ),
                               MaterialButton(
                                 height: 50,
-                                color: Theme.of(context).colorScheme.onSecondaryContainer,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSecondaryContainer,
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
+                                    borderRadius: BorderRadius.circular(5)),
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (ctx) => BottomBar(
