@@ -120,14 +120,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                             height: 30,
                           ),
                           Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               MaterialButton(
                                 height: 50,
-                                padding: EdgeInsets.all(0),
                                 elevation: 0,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
                                 color: Theme.of(context).colorScheme.onPrimary,
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
@@ -144,7 +142,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                     .colorScheme
                                     .onSecondaryContainer,
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
+                                    borderRadius: BorderRadius.circular(5)),
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (ctx) => BottomBar(

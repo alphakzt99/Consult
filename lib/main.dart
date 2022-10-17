@@ -22,6 +22,20 @@ class _ConsultState extends State<Consult> {
       debugShowCheckedModeBanner: false,
       title: "Consult_App",
       theme: ThemeData(
+        primaryTextTheme: TextTheme(
+            headline1: TextStyle(
+                color: Color.fromARGB(255, 234, 235, 237),
+                fontFamily: font,
+                fontSize: 30,
+                fontWeight: FontWeight.bold),
+            headline2: TextStyle(
+                color: Colors.black38, fontSize: 14, fontFamily: 'Roboto'),
+            headline3: TextStyle(
+                color: Color(0xFF014D69),
+                fontFamily: 'Roboto',
+                fontSize: 16,
+                fontWeight: FontWeight.bold),
+            headline4: TextStyle(color: Color(0xFF014D69),fontFamily: font,fontSize: 24,fontWeight: FontWeight.bold)),
         primaryColor: Color(0xFF664236),
         primaryColorDark: Color(0xFF3C4E5C),
         primaryColorLight: Color(0xFFD1B79C),
@@ -37,7 +51,6 @@ class _ConsultState extends State<Consult> {
             onTertiaryContainer: Colors.white54),
         fontFamily: font,
         textTheme: TextTheme(
-          
           headline1: TextStyle(
             fontSize: 30,
             fontFamily: font,
