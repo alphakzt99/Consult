@@ -12,9 +12,35 @@ class _SignUpState extends State<SignUp> {
   TextEditingController recontroller = TextEditingController();
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
+  bool tapped = false;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    Widget textfield(text,controller) {
+      return TextField(
+          controller: controller,
+          keyboardType: TextInputType.text,
+          cursorColor: Theme.of(context).colorScheme.background,
+          style: Theme.of(context).primaryTextTheme.headline3,
+          onTap: () {
+            tapped = true;
+            setState(() {});
+          },
+          decoration: tapped
+              ? InputDecoration(
+                  hintText: text,
+                  labelText: text,
+                  labelStyle: Theme.of(context).primaryTextTheme.headline3,
+                  hintStyle: Theme.of(context).primaryTextTheme.headline2,
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10)))
+              : InputDecoration(
+                  hintText: text,
+                  hintStyle: Theme.of(context).primaryTextTheme.headline2,
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10))));
+    }
+
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: Container(
@@ -34,43 +60,14 @@ class _SignUpState extends State<SignUp> {
                     text: "Sign Up Here",
                     style: Theme.of(context).primaryTextTheme.headline1),
               ])),
-              TextField(
-                controller: emailcontroller,
-                keyboardType: TextInputType.text,
-                cursorColor: Theme.of(context).colorScheme.background,
-                style: Theme.of(context).primaryTextTheme.headline3,
-                decoration: InputDecoration(
-                    hintText: "Email Address",
-                    hintStyle: Theme.of(context).primaryTextTheme.headline2,
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10))),
-              ),
-              TextField(
-                controller: passwordcontroller,
-                keyboardType: TextInputType.text,
-                cursorColor: Theme.of(context).colorScheme.background,
-                style: Theme.of(context).primaryTextTheme.headline3,
-                decoration: InputDecoration(
-                    hintText: "Password",
-                    hintStyle: Theme.of(context).primaryTextTheme.headline2,
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10))),
-              ),
-              TextField(
-                controller: recontroller,
-                keyboardType: TextInputType.text,
-                cursorColor: Theme.of(context).colorScheme.background,
-                style: Theme.of(context).primaryTextTheme.headline3,
-                decoration: InputDecoration(
-                    hintText: "Confrim Password",
-                    hintStyle: Theme.of(context).primaryTextTheme.headline2,
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10))),
-              ),
+              textfield("Email Address", emailcontroller),
+              textfield("Password", passwordcontroller),
+              textfield("Confrim Password", recontroller),
               MaterialButton(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
                 color: Theme.of(context).primaryColorLight,
-                minWidth: size.width ,
+                minWidth: size.width,
                 height: 50,
                 onPressed: () {},
                 child: Text(
@@ -81,7 +78,8 @@ class _SignUpState extends State<SignUp> {
                       fontSize: 20,
                       fontWeight: FontWeight.bold),
                 ),
-              )
+              ),
+              
             ]),
       ),
     );
