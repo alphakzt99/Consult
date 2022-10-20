@@ -15,6 +15,8 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   TextEditingController controller = TextEditingController();
   TextEditingController pwcontroller = TextEditingController();
+  bool tapped = false;
+  bool tapped1 = false;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -54,33 +56,79 @@ class _LoginState extends State<Login> {
                         height: 10,
                       ),
                       TextField(
+                        onTap: () {
+                          
+                          setState(() {
+                            tapped1 = true;
+                          });
+                        },
                         cursorHeight: 20,
                         style: Theme.of(context).primaryTextTheme.headline3,
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Theme.of(context).backgroundColor),
-                                borderRadius: BorderRadius.circular(10)),
-                            hintText: "Email Address",
-                            hintStyle:
-                                Theme.of(context).primaryTextTheme.headline2),
+                        decoration: tapped1
+                            ? InputDecoration(
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onTertiaryContainer),
+                                    borderRadius: BorderRadius.circular(10)),
+                                labelText: "Email Address",
+                                labelStyle: Theme.of(context)
+                                    .primaryTextTheme
+                                    .headline3,
+                                hintText: "Email Address",
+                                hintStyle: Theme.of(context)
+                                    .primaryTextTheme
+                                    .headline2)
+                            : InputDecoration(
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onTertiaryContainer),
+                                    borderRadius: BorderRadius.circular(10)),
+                                hintText: "Email Address",
+                                hintStyle: Theme.of(context)
+                                    .primaryTextTheme
+                                    .headline2),
                         controller: controller,
                         keyboardType: TextInputType.text,
                         cursorColor: Theme.of(context).colorScheme.background,
                       ),
                       TextField(
+                        onTap: () {
+                          tapped = true;
+                          setState(() {});
+                        },
                         cursorHeight: 20,
                         style: Theme.of(context).primaryTextTheme.headline3,
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onTertiaryContainer),
-                                borderRadius: BorderRadius.circular(10)),
-                            hintText: "Password",
-                            hintStyle:
-                                Theme.of(context).primaryTextTheme.headline2),
+                        decoration: tapped
+                            ? InputDecoration(
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onTertiaryContainer),
+                                    borderRadius: BorderRadius.circular(10)),
+                                labelText: "Password",
+                                labelStyle: Theme.of(context)
+                                    .primaryTextTheme
+                                    .headline3,
+                                hintText: "Password",
+                                hintStyle: Theme.of(context)
+                                    .primaryTextTheme
+                                    .headline2)
+                            : InputDecoration(
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onTertiaryContainer),
+                                    borderRadius: BorderRadius.circular(10)),
+                                hintText: "Password",
+                                hintStyle: Theme.of(context)
+                                    .primaryTextTheme
+                                    .headline2),
                         controller: pwcontroller,
                         keyboardType: TextInputType.text,
                         cursorColor: Theme.of(context).colorScheme.background,
@@ -201,8 +249,8 @@ class _LoginState extends State<Login> {
                               text: " Register",
                               recognizer: TapGestureRecognizer()
                                 ..onTap = (() => Navigator.of(context)
-                                        .push(MaterialPageRoute(builder: (ctx) { return
-                                      SignUp();
+                                        .push(MaterialPageRoute(builder: (ctx) {
+                                      return SignUp();
                                     }))),
                               style: TextStyle(
                                   color: Theme.of(context)
