@@ -140,6 +140,7 @@ class _LoginState extends State<Login> {
                             style: Theme.of(context).textTheme.headline4,
                           )),
                       MaterialButton(
+                        elevation: 0,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                         color: Theme.of(context).primaryColorLight,

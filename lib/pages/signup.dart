@@ -19,15 +19,17 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    Widget textfield(text, controller) {
+    Widget textfield(text, controller, tap) {
       return TextField(
           controller: controller,
           keyboardType: TextInputType.text,
           cursorColor: Theme.of(context).colorScheme.background,
           style: Theme.of(context).primaryTextTheme.headline3,
           onTap: () {
-            tapped = true;
-            setState(() {});
+            tap = true;
+            setState(() {
+              
+            });
           },
           decoration: tapped
               ? InputDecoration(
@@ -67,10 +69,11 @@ class _SignUpState extends State<SignUp> {
                       text: "Sign Up Here",
                       style: Theme.of(context).primaryTextTheme.headline1),
                 ])),
-                textfield("Email Address", emailcontroller),
-                textfield("Password", passwordcontroller),
-                textfield("Confrim Password", recontroller),
+                textfield("Email Address", emailcontroller, tapped),
+                textfield("Password", passwordcontroller, tapped1),
+                textfield("Confrim Password", recontroller, tapped2),
                 MaterialButton(
+                  elevation: 0,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
                   color: Theme.of(context).primaryColorLight,

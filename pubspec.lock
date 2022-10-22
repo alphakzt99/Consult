@@ -42,7 +42,7 @@ packages:
       name: colorful_iconify_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.3"
+    version: "0.0.2"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -63,7 +63,7 @@ packages:
       name: fluentui_system_icons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.184"
+    version: "1.1.183"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -115,7 +115,7 @@ packages:
       name: iconify_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.5"
+    version: "0.0.4"
   lints:
     dependency: transitive
     description:
@@ -249,4 +249,4 @@ packages:
     version: "6.1.0"
 sdks:
   dart: ">=2.17.6 <3.0.0"
-  flutter: ">=3.0.0"
+  flutter: ">=2.11.0-0.1.pre"

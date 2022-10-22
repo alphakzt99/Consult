@@ -168,7 +168,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                           color: widget.barcolor,
                           child: DefaultTabController(
                             length: 3,
-                            initialIndex: 1,
+                            initialIndex: widget.currentPage,
                             child: TabBar(
                               controller: tabController,
                               splashBorderRadius: BorderRadius.circular(20),

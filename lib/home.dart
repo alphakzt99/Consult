@@ -19,7 +19,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   void initState() {
     tabcontroller = TabController(length: 3, vsync: this);
-    CurrentPage = 0;
+    CurrentPage = 1;
     tabcontroller.animation!.addListener(() {
       final value = tabcontroller.animation!.value.round();
       if (value != CurrentPage && mounted) {
@@ -124,9 +124,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               MaterialButton(
+                                padding: EdgeInsets.all(0),
                                 height: 50,
                                 elevation: 0,
-                          
                                 color: Theme.of(context).colorScheme.onPrimary,
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
@@ -137,7 +137,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                   style: Theme.of(context).textTheme.headline3,
                                 ),
                               ),
-                              
                               MaterialButton(
                                 height: 50,
                                 color: Theme.of(context)
@@ -167,6 +166,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                                 dragStartBehavior:
                                                     DragStartBehavior.down,
                                                 children: [
+                                                  
                                                   Chat(),
                                                   Main(),
                                                   Account()
