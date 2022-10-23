@@ -242,6 +242,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                                     Positioned(
                                         bottom: 0,
                                         child: Container(
+                                          padding: const EdgeInsets.all(20),
                                           height: size.height * 0.7,
                                           width: size.width,
                                           decoration: BoxDecoration(
@@ -282,10 +283,10 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                                                       "Title",
                                                       style: Theme.of(context)
                                                           .primaryTextTheme
-                                                          .headline3,
+                                                          .headline1,
                                                     ),
                                                     Container(
-                                                      padding: EdgeInsets.all(10),
+                                                      padding: const EdgeInsets.all(5),
                                                       width: 40,
                                                       height: 20,
                                                       decoration: BoxDecoration(
@@ -300,11 +301,27 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                                                         "4.0",
                                                         style: Theme.of(context)
                                                             .textTheme
-                                                            .headline3,
+                                                            .headline6,
                                                       ),
                                                     )
                                                   ],
+                                                ),
+                                                Text('''Lorem Ipsum sakjlkd jalkdjalks ajdlkjfasklj
+                                                sjlksjdfl jsklfjsklfjkjd asjdflksjdfkj skjskldjfsklj
+                                                jkldsjkfjslkfjsdlkfj sjflskjlksjfk jdflksjfklsj ksjfklsj
+                                                jsklfjdklfjsdk''',style: Theme.of(context).textTheme.bodyText1,),
+                                                TextButton(
+                                                  style: ButtonStyle(
+                                                    backgroundColor: MaterialStateProperty.all(Theme.of(context).backgroundColor),
+                                                    padding: MaterialStateProperty.all(EdgeInsets.all(10))),
+                                                  onPressed: (){}, child: Text("Read More",style: Theme.of(context).textTheme.headline3,)),
+                                                Row(
+                                                  children: [
+                                                    Text("Author's Name", style:Theme.of(context).primaryTextTheme.headline3,),
+                                                    IconButton(onPressed: (){}, icon: Icon(FluentIcons.thumb_like_20_regular,color: Theme.of(context).primaryColor,))
+                                                  ],
                                                 )
+                                                
                                               ]),
                                         ))
                                   ]),
