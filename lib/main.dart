@@ -29,14 +29,20 @@ class _ConsultState extends State<Consult> {
                 fontSize: 30,
                 fontWeight: FontWeight.bold),
             headline2: TextStyle(
-              fontWeight: FontWeight.bold,
-                color: Colors.black38, fontSize: 14, fontFamily: 'Roboto'),
+                fontWeight: FontWeight.bold,
+                color: Colors.black38,
+                fontSize: 14,
+                fontFamily: 'Roboto'),
             headline3: TextStyle(
                 color: Color(0xFF014D69),
                 fontFamily: 'Roboto',
                 fontSize: 16,
                 fontWeight: FontWeight.bold),
-            headline4: TextStyle(color: Color(0xFF014D69),fontFamily: font,fontSize: 24,fontWeight: FontWeight.bold)),
+            headline4: TextStyle(
+                color: Color(0xFF014D69),
+                fontFamily: font,
+                fontSize: 24,
+                fontWeight: FontWeight.bold)),
         primaryColor: Color(0xFF664236),
         primaryColorDark: Color(0xFF3C4E5C),
         primaryColorLight: Color(0xFFD1B79C),
@@ -51,51 +57,50 @@ class _ConsultState extends State<Consult> {
             onSecondary: Color(0xFF0B87BA),
             onTertiaryContainer: Colors.white54),
         fontFamily: font,
-        textTheme: TextTheme(
-           headline6: TextStyle(
-              fontFamily: font,
-              fontSize: 12,
-              fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 234, 235, 237)),
+        textTheme: const TextTheme(
           headline1: TextStyle(
             fontSize: 30,
-            fontFamily: font,
+            fontFamily: "RobotoSlab",
             fontWeight: FontWeight.bold,
             color: Color.fromARGB(255, 234, 235, 237),
           ),
-          headline5: TextStyle(
-              fontFamily: font1,
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: const Color(0xFFD38F5E)),
-          headline4: TextStyle(
-              fontSize: 14,
-              fontFamily: font,
-              fontWeight: FontWeight.bold,
-              color: Colors.black),
           headline2: TextStyle(
               fontSize: 24,
-              fontFamily: font,
+              fontFamily: "RobotoSlab",
               fontWeight: FontWeight.bold,
-              color: const Color(0xFFD38F5E)),
-          headline3: const TextStyle(
+              color:  Color(0xFFD38F5E)),
+          headline3:  TextStyle(
               fontFamily: "Roboto",
               fontWeight: FontWeight.bold,
               fontSize: 20,
               color: Colors.white),
-          bodyText1: const TextStyle(
+          headline4: TextStyle(
+              fontSize: 14,
+              fontFamily: "RobotoSlab",
+              fontWeight: FontWeight.bold,
+              color: Colors.black),
+          headline5: TextStyle(
+              fontFamily: "Roboto",
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color:  Color(0xFFD38F5E)),
+          headline6: TextStyle(
+              fontFamily: "RobotoSlab",
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 234, 235, 237)),
+          bodyText1:  TextStyle(
             color: Colors.white54,
             fontFamily: "Roboto",
             fontSize: 14,
           ),
-         
-          bodyText2: const TextStyle(
+          bodyText2:  TextStyle(
               fontFamily: "Roboto",
               fontSize: 14,
               color: Color.fromARGB(255, 234, 235, 237)),
         ),
       ),
-      home: Home(),
+      home: const Home(),
     );
   }
 }

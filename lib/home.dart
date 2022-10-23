@@ -166,7 +166,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                                 dragStartBehavior:
                                                     DragStartBehavior.down,
                                                 children: [
-                                                  
                                                   Chat(),
                                                   Main(),
                                                   Account()

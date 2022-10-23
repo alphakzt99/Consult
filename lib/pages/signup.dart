@@ -13,37 +13,24 @@ class _SignUpState extends State<SignUp> {
   TextEditingController recontroller = TextEditingController();
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
-  bool tapped = false;
-  bool tapped1 = false;
-  bool tapped2 = false;
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    Widget textfield(text, controller, tap) {
+    Widget textfield(text, controller) {
       return TextField(
           controller: controller,
           keyboardType: TextInputType.text,
           cursorColor: Theme.of(context).colorScheme.background,
           style: Theme.of(context).primaryTextTheme.headline3,
           onTap: () {
-            tap = true;
-            setState(() {
-              
-            });
+            setState(() {});
           },
-          decoration: tapped
-              ? InputDecoration(
-                  hintText: text,
-                  labelText: text,
-                  labelStyle: Theme.of(context).primaryTextTheme.headline3,
-                  hintStyle: Theme.of(context).primaryTextTheme.headline2,
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10)))
-              : InputDecoration(
-                  hintText: text,
-                  hintStyle: Theme.of(context).primaryTextTheme.headline2,
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10))));
+          decoration: InputDecoration(
+              hintText: text,
+              hintStyle: Theme.of(context).primaryTextTheme.headline2,
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(10))));
     }
 
     return Scaffold(
@@ -69,9 +56,9 @@ class _SignUpState extends State<SignUp> {
                       text: "Sign Up Here",
                       style: Theme.of(context).primaryTextTheme.headline1),
                 ])),
-                textfield("Email Address", emailcontroller, tapped),
-                textfield("Password", passwordcontroller, tapped1),
-                textfield("Confrim Password", recontroller, tapped2),
+                textfield("Email Address", emailcontroller),
+                textfield("Password", passwordcontroller),
+                textfield("Confrim Password", recontroller),
                 MaterialButton(
                   elevation: 0,
                   shape: RoundedRectangleBorder(
