@@ -1,4 +1,5 @@
 import 'package:consult_app/details/blogs.dart';
+import 'package:consult_app/pages/blogpost.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
@@ -216,116 +217,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                               if (snapshot.hasError) {
                                 return Text(snapshot.hasError.toString());
                               } else {
-                                return AnimatedContainer(
-                                  color: Theme.of(context).backgroundColor,
-                                  margin:
-                                      EdgeInsets.only(top: size.height * 0.05),
-                                  curve: Curves.easeIn,
-                                  width: size.width,
-                                  height: size.height * 0.95,
-                                  duration: const Duration(
-                                    microseconds: 300,
-                                  ),
-                                  child: Stack(fit: StackFit.loose, children: [
-                                    Positioned(
-                                      top: 0,
-                                      child: Container(
-                                        width: size.width,
-                                        height: size.height * 0.3,
-                                        decoration: const BoxDecoration(
-                                            image: DecorationImage(
-                                                fit: BoxFit.fill,
-                                                image: AssetImage(
-                                                    "lib/photos/education.jpg"))),
-                                      ),
-                                    ),
-                                    Positioned(
-                                        bottom: 0,
-                                        child: Container(
-                                          padding: const EdgeInsets.all(20),
-                                          height: size.height * 0.7,
-                                          width: size.width,
-                                          decoration: BoxDecoration(
-                                              color: Theme.of(context)
-                                                  .backgroundColor,
-                                              borderRadius:
-                                                  const BorderRadius.only(
-                                                      topLeft:
-                                                          Radius.circular(20),
-                                                      topRight:
-                                                          Radius.circular(20))),
-                                          child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    Icon(
-                                                      FluentIcons
-                                                          .access_time_20_regular,
-                                                      color: Theme.of(context)
-                                                          .primaryColorDark,
-                                                    ),
-                                                    Text(
-                                                      "24 minutes ago",
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .headline4,
-                                                    )
-                                                  ],
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      "Title",
-                                                      style: Theme.of(context)
-                                                          .primaryTextTheme
-                                                          .headline1,
-                                                    ),
-                                                    Container(
-                                                      padding: const EdgeInsets.all(5),
-                                                      width: 40,
-                                                      height: 20,
-                                                      decoration: BoxDecoration(
-                                                          color:
-                                                              Theme.of(context)
-                                                                  .colorScheme
-                                                                  .onSecondary,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(5)),
-                                                      child: Text(
-                                                        "4.0",
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .headline6,
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                                Text('''Lorem Ipsum sakjlkd jalkdjalks ajdlkjfasklj
-                                                sjlksjdfl jsklfjsklfjkjd asjdflksjdfkj skjskldjfsklj
-                                                jkldsjkfjslkfjsdlkfj sjflskjlksjfk jdflksjfklsj ksjfklsj
-                                                jsklfjdklfjsdk''',style: Theme.of(context).textTheme.bodyText1,),
-                                                TextButton(
-                                                  style: ButtonStyle(
-                                                    backgroundColor: MaterialStateProperty.all(Theme.of(context).backgroundColor),
-                                                    padding: MaterialStateProperty.all(EdgeInsets.all(10))),
-                                                  onPressed: (){}, child: Text("Read More",style: Theme.of(context).textTheme.headline3,)),
-                                                Row(
-                                                  children: [
-                                                    Text("Author's Name", style:Theme.of(context).primaryTextTheme.headline3,),
-                                                    IconButton(onPressed: (){}, icon: Icon(FluentIcons.thumb_like_20_regular,color: Theme.of(context).primaryColor,))
-                                                  ],
-                                                )
-                                                
-                                              ]),
-                                        ))
-                                  ]),
-                                );
+                                return BlogPost();
                               }
                             })),
                       )),
