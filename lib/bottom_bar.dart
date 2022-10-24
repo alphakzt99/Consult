@@ -1,6 +1,9 @@
+
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:consult_app/inheriteddataprovider.dart';
+
 
 
 class BottomBar extends StatefulWidget {
@@ -109,6 +112,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
               child: widget.child),
           Positioned(
               bottom: widget.start,
+              right: 10,
               child: AnimatedContainer(
                   width: isOnTop == true ? 0 : 60,
                   height: isOnTop == true ? 0 : 60,
@@ -164,7 +168,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                           color: widget.barcolor,
                           child: DefaultTabController(
                             length: 3,
-                            initialIndex: 0,
+                            initialIndex: widget.currentPage,
                             child: TabBar(
                               controller: tabController,
                               splashBorderRadius: BorderRadius.circular(20),
@@ -196,7 +200,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                                   child: Padding(
                                     padding: const EdgeInsets.only(top: 8.0),
                                     child: Icon(
-                                      Icons.add,
+                                      FluentIcons.chat_multiple_20_regular,
                                       color: widget.unselectedColor,
                                     ),
                                   ),
@@ -206,7 +210,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                                   child: Padding(
                                     padding: const EdgeInsets.only(top: 8.0),
                                     child: Icon(
-                                      Icons.search,
+                                      FluentIcons.home_20_regular,
                                       color: widget.unselectedColor,
                                     ),
                                   ),
@@ -216,7 +220,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                                   height: 45,
                                   child: Padding(
                                     padding: const EdgeInsets.only(top: 8.0),
-                                    child: Icon(Icons.verified_user,
+                                    child: Icon(FluentIcons.person_accounts_20_regular,
                                         color: widget.unselectedColor),
                                   ),
                                 ),
