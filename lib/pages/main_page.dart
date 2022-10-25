@@ -1,5 +1,5 @@
 import 'package:consult_app/details/blogs.dart';
-import 'package:consult_app/pages/blogpost.dart';
+import 'package:consult_app/pages/blog/blogpost.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
