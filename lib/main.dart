@@ -44,8 +44,8 @@ class _ConsultState extends State<Consult> {
                 fontSize: 24,
                 fontWeight: FontWeight.bold)),
         primaryColor: Color(0xFF664236),
-        primaryColorDark: Color(0xFF3C4E5C),
-        primaryColorLight: Color(0xFFD1B79C),
+        primaryColorDark: const Color(0xFF3C4E5C),
+        primaryColorLight: const Color(0xFFD1B79C),
         backgroundColor: Colors.white,
         colorScheme: const ColorScheme.light(
             background: Colors.black,

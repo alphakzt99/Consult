@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/cil.dart';
+import 'package:iconify_flutter/icons/wi.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:consult_app/main.dart';
 import 'package:consult_app/inheriteddataprovider.dart';
@@ -301,7 +302,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                           controllerIndex: controller.index + 1,
                         ),
                         TabCard(
-                          controllerIndex: controller.index + 2,
+                          controllerIndex: controller.index + 2  ,
                         )
                       ]),
                 ),
@@ -382,7 +383,7 @@ List dict = [
   [
     ["University", "lib/photos/uni.jpg"],
     ["Scholarship", "lib/photos/scholar.jpg"],
-    ["Course Work", "lib/photos/coursework.jpg"],
+    ["Coursework", "lib/photos/coursework.jpg"],
   ],
   [
     ["Mental Health", "lib/photos/mental.jpg"],
@@ -512,22 +513,27 @@ class _TabCardState extends State<TabCard> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+   
     return ListView.builder(
-        itemCount: 4,
+        itemCount: dict.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (ctx) => CategoryPage()));
+              
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (ctx) => CategoryPage(
+                        controllerIndex: widget.controllerIndex,
+                        dict: dict,
+                        cateIndex: index,
+                      )));
             },
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 5,vertical: 0),
+              margin: EdgeInsets.symmetric(horizontal: 5, vertical: 0),
               child: DecoratedBoxTransition(
-                position: DecorationPosition.foreground,
                 decoration: decorationTween.animate(_controller),
                 child: Container(
-                  width: MediaQuery.of(context).size.width * 0.5,
+                  width: MediaQuery.of(context).size.width * 0.7,
                   height: MediaQuery.of(context).size.height * 0.35,
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -545,20 +551,54 @@ class _TabCardState extends State<TabCard> with TickerProviderStateMixin {
                                 image: DecorationImage(
                                     opacity: 0.9,
                                     image: AssetImage(
-                                      widget.controllerIndex == 0
-                                          ? dict[0][1][1].toString()
-                                          : widget.controllerIndex == 1
-                                              ? dict[1][0][1].toString()
-                                              : dict[2][0][1].toString(),
+                                      widget.controllerIndex == 0 && index == 0
+                    ? dict[0][0][1].toString()
+                    : widget.controllerIndex == 0 && index == 1
+                        ? dict[0][1][1].toString()
+                        : widget.controllerIndex == 0 && index == 2
+                            ? dict[0][2][1].toString()
+                            : widget.controllerIndex == 1 &&
+                                    index == 0
+                                ? dict[1][0][1].toString()
+                                : widget.controllerIndex == 1 &&
+                                        index == 1
+                                    ? dict[1][1][1].toString()
+                                    : widget.controllerIndex == 1 &&
+                                            index == 2
+                                        ? dict[1][2][1].toString()
+                                        : widget.controllerIndex == 2 &&
+                                                index == 0
+                                            ? dict[2][0][1].toString()
+                                            : widget.controllerIndex == 2 &&
+                                                    index == 1
+                                                ? dict[2][1][1].toString()
+                                                : dict[2][2][1].toString(),
                                     ))),
                           ),
                         ),
                         Text(
-                          widget.controllerIndex == 0
-                              ? dict[0][1][0].toString()
-                              : widget.controllerIndex == 1
-                                  ? dict[1][2][0].toString()
-                                  : dict[2][0][0].toString(),
+                         widget.controllerIndex == 0 && index == 0
+                    ? dict[0][0][0].toString()
+                    : widget.controllerIndex == 0 && index == 1
+                        ? dict[0][1][0].toString()
+                        : widget.controllerIndex == 0 && index == 2
+                            ? dict[0][2][0].toString()
+                            : widget.controllerIndex == 1 &&
+                                    index == 0
+                                ? dict[1][0][0].toString()
+                                : widget.controllerIndex == 1 &&
+                                        index == 1
+                                    ? dict[1][1][0].toString()
+                                    : widget.controllerIndex == 1 &&
+                                            index == 2
+                                        ? dict[1][2][0].toString()
+                                        : widget.controllerIndex == 2 &&
+                                                index == 0
+                                            ? dict[2][0][0].toString()
+                                            : widget.controllerIndex == 2 &&
+                                                    index == 1
+                                                ? dict[2][1][0].toString()
+                                                : dict[2][2][0].toString(),
                           style: Theme.of(context).textTheme.headline2,
                         ),
                         SizedBox(
