@@ -1,4 +1,5 @@
 import 'package:consult_app/details/blogs.dart';
+import 'package:consult_app/pages/CategoryPage.dart';
 import 'package:consult_app/pages/blog/blogpost.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> with TickerProviderStateMixin {
+  bool tapped = false;
   late int _currentPage;
   late ScrollController horizontalcontroller = ScrollController();
   late ScrollController verticalcontroller = ScrollController();
@@ -47,6 +49,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
   @override
   void dispose() {
     controller.dispose();
+
     // TODO: implement dispose
     super.dispose();
   }
@@ -85,7 +88,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
             height: 50,
             decoration: BoxDecoration(
                 gradient: RadialGradient(colors: [
-                  Theme.of(context).colorScheme.onBackground,
+                  Colors.white,
                   Colors.white54,
                 ]),
                 borderRadius: BorderRadius.circular(25)),
@@ -483,112 +486,130 @@ class TabCard extends StatefulWidget {
   State<TabCard> createState() => _TabCardState();
 }
 
-class _TabCardState extends State<TabCard> {
+class _TabCardState extends State<TabCard> with TickerProviderStateMixin {
+  final DecorationTween decorationTween = DecorationTween(
+      begin: BoxDecoration(
+          border: Border.all(
+            width: 2,
+            color: Color(0xFF0B87BA),
+          ),
+          borderRadius: BorderRadius.circular(20)),
+      end: BoxDecoration(
+          border: Border.all(
+            width: 2,
+            color: Color(0xFFD1B79C),
+          ),
+          borderRadius: BorderRadius.circular(20)));
+  late final AnimationController _controller =
+      AnimationController(vsync: this, duration: Duration(seconds: 3))
+        ..repeat(reverse: true);
+  @override
+  void dispose() {
+    _controller.dispose();
+    // TODO: implement dispose
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
         itemCount: 4,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return GlassContainer(
-            borderRadius: BorderRadius.circular(20),
-            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-            width: MediaQuery.of(context).size.width * 0.5,
-            height: MediaQuery.of(context).size.height * 0.35,
-            gradient: LinearGradient(
-              colors: [
-                Colors.white.withOpacity(0.40),
-                Colors.white.withOpacity(0.10),
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
+          return GestureDetector(
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (ctx) => CategoryPage()));
+            },
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 5,vertical: 0),
+              child: DecoratedBoxTransition(
+                position: DecorationPosition.foreground,
+                decoration: decorationTween.animate(_controller),
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  height: MediaQuery.of(context).size.height * 0.35,
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Center(
+                          child: Container(
+                            margin: const EdgeInsets.only(
+                              top: 10,
+                              bottom: 10,
+                            ),
+                            width: MediaQuery.of(context).size.width * 0.45,
+                            height: MediaQuery.of(context).size.height * 0.15,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                image: DecorationImage(
+                                    opacity: 0.9,
+                                    image: AssetImage(
+                                      widget.controllerIndex == 0
+                                          ? dict[0][1][1].toString()
+                                          : widget.controllerIndex == 1
+                                              ? dict[1][0][1].toString()
+                                              : dict[2][0][1].toString(),
+                                    ))),
+                          ),
+                        ),
+                        Text(
+                          widget.controllerIndex == 0
+                              ? dict[0][1][0].toString()
+                              : widget.controllerIndex == 1
+                                  ? dict[1][2][0].toString()
+                                  : dict[2][0][0].toString(),
+                          style: Theme.of(context).textTheme.headline2,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        RichText(
+                            text: TextSpan(children: [
+                          TextSpan(
+                              text: "Rating ",
+                              style: Theme.of(context).textTheme.headline4),
+                          TextSpan(
+                              text: "   4.5",
+                              style: Theme.of(context).textTheme.headline5)
+                        ])),
+                        RichText(
+                            text: TextSpan(children: [
+                          TextSpan(
+                              text: "Clients ",
+                              style: Theme.of(context).textTheme.headline4),
+                          TextSpan(
+                              text: "   4500",
+                              style: Theme.of(context).textTheme.headline5)
+                        ])),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextButton(
+                            style: ButtonStyle(
+                                elevation: MaterialStateProperty.all(0),
+                                padding: MaterialStateProperty.all(
+                                    EdgeInsets.symmetric(
+                                        horizontal: 30, vertical: 10)),
+                                backgroundColor: MaterialStateProperty.all(
+                                    Theme.of(context).colorScheme.onPrimary),
+                                shape: MaterialStateProperty.all(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)))),
+                            onPressed: () {},
+                            child: Text(
+                              "Explore",
+                              style: TextStyle(
+                                  color: Theme.of(context).backgroundColor,
+                                  fontFamily: font,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ))
+                      ]),
+                ),
+              ),
             ),
-            borderGradient: LinearGradient(
-              colors: [
-                Colors.white.withOpacity(0.60),
-                Colors.white.withOpacity(0.10),
-                Theme.of(context).backgroundColor.withOpacity(0.05),
-                Theme.of(context).backgroundColor.withOpacity(0.60),
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              stops: [0.0, 0.39, 0.40, 1.0],
-            ),
-            blur: 20,
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Center(
-                    child: Container(
-                      margin: const EdgeInsets.only(top: 10, bottom: 10),
-                      width: MediaQuery.of(context).size.width * 0.45,
-                      height: MediaQuery.of(context).size.height * 0.15,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          image: DecorationImage(
-                              opacity: 0.9,
-                              image: AssetImage(
-                                widget.controllerIndex == 0
-                                    ? dict[0][1][1].toString()
-                                    : widget.controllerIndex == 1
-                                        ? dict[1][0][1].toString()
-                                        : dict[2][0][1].toString(),
-                              ))),
-                    ),
-                  ),
-                  Text(
-                    widget.controllerIndex == 0
-                        ? dict[0][1][0].toString()
-                        : widget.controllerIndex == 1
-                            ? dict[1][2][0].toString()
-                            : dict[2][0][0].toString(),
-                    style: Theme.of(context).textTheme.headline2,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  RichText(
-                      text: TextSpan(children: [
-                    TextSpan(
-                        text: "Rating ",
-                        style: Theme.of(context).textTheme.headline4),
-                    TextSpan(
-                        text: "   4.5",
-                        style: Theme.of(context).textTheme.headline5)
-                  ])),
-                  RichText(
-                      text: TextSpan(children: [
-                    TextSpan(
-                        text: "Clients ",
-                        style: Theme.of(context).textTheme.headline4),
-                    TextSpan(
-                        text: "   4500",
-                        style: Theme.of(context).textTheme.headline5)
-                  ])),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  TextButton(
-                      style: ButtonStyle(
-                          elevation: MaterialStateProperty.all(5),
-                          padding: MaterialStateProperty.all(
-                              EdgeInsets.symmetric(
-                                  horizontal: 30, vertical: 10)),
-                          backgroundColor: MaterialStateProperty.all(
-                              Theme.of(context).colorScheme.onPrimary),
-                          shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)))),
-                      onPressed: () {},
-                      child: Text(
-                        "Explore",
-                        style: TextStyle(
-                            color: Theme.of(context).backgroundColor,
-                            fontFamily: font,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ))
-                ]),
           );
         });
   }
