@@ -24,7 +24,7 @@ class _BlogPostState extends State<BlogPost> {
     ScrollController controller = ScrollController();
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
       floatingActionButton: FloatingActionButton(
         mini: true,
         backgroundColor: Theme.of(context).backgroundColor,
@@ -54,16 +54,24 @@ class _BlogPostState extends State<BlogPost> {
                           image: DecorationImage(
                               fit: BoxFit.fill,
                               image: AssetImage("lib/photos/education.jpg"))),
-                      child: IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: Icon(
-                              FluentIcons.arrow_circle_left_48_filled,
-                              size: 48,
-                              color: Theme.of(context).backgroundColor,
-                            )),
-                      
+                      child:Padding(
+                      padding: const EdgeInsets.only(top: 40),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: Icon(
+                                FluentIcons.arrow_circle_left_48_filled,
+                                size: 48,
+                                color: Theme.of(context).backgroundColor,
+                              )),
+                        ],
+                      ),
+                    ),
                     ),
                   ),
                   Positioned(
@@ -93,41 +101,22 @@ class _BlogPostState extends State<BlogPost> {
                             fit: BoxFit.fill,
                             image: AssetImage("lib/photos/education.jpg"))),
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 40.0),
+                      padding: const EdgeInsets.only(top: 40),
                       child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            IconButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                icon: Icon(
-                                  FluentIcons.arrow_circle_left_48_filled,
-                                  size: 32,
-                                  color: Theme.of(context).backgroundColor,
-                                )),
-                            IconButton(
-                                padding: EdgeInsets.all(10),
-                                splashRadius: 50,
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: Icon(
+                                FluentIcons.arrow_circle_left_48_filled,
+                                size: 48,
                                 color: Theme.of(context).backgroundColor,
-                                onPressed: () {
-                                  selected = true;
-                                  setState(() {});
-                                },
-                                isSelected: selected,
-                                selectedIcon: Icon(
-                                  FluentIcons.heart_32_filled,
-                                  color: Theme.of(context).backgroundColor,
-                                ),
-                                icon: Icon(
-                                  FluentIcons.heart_32_regular,
-                                  size: 24,
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onBackground,
-                                )),
-                          ]),
+                              )),
+                        ],
+                      ),
                     ),
                   ),
                 ),

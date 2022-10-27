@@ -16,10 +16,15 @@ class CategoryPage extends StatefulWidget {
   State<CategoryPage> createState() => _CategoryPageState();
 }
 
-class _CategoryPageState extends State<CategoryPage> {
+class _CategoryPageState extends State<CategoryPage>
+    with TickerProviderStateMixin {
+  late TabController tabController = TabController(length: 4, vsync: this);
   ScrollController _controller = ScrollController();
+
+
   @override
   void dispose() {
+    tabController.dispose();
     // TODO: implement dispose
     _controller.dispose();
     super.dispose();
@@ -27,6 +32,7 @@ class _CategoryPageState extends State<CategoryPage> {
 
   @override
   Widget build(BuildContext context) {
+    bool selected = false; 
     var size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
@@ -54,26 +60,84 @@ class _CategoryPageState extends State<CategoryPage> {
         ),
         body: SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             color: Theme.of(context).backgroundColor,
             width: size.width,
             height: size.height,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-              Text("Explore",style: Theme.of(context).textTheme.headline2,),
-              Text("Consultants",style: Theme.of(context).primaryTextTheme.headline1,),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(
+                "Explore",
+                style: Theme.of(context).textTheme.headline2,
+              ),
+              Text(
+                "Consultants",
+                style: Theme.of(context).primaryTextTheme.headline1,
+              ),
               Container(
                 margin: EdgeInsets.only(bottom: 20),
                 width: size.width * 0.3,
                 height: 10,
-                color: Theme.of(context).colorScheme.onSecondaryContainer,),
+                color: Theme.of(context).colorScheme.onSecondaryContainer,
+              ),
               DefaultTabController(
-                length: 6,
+                length: 4,
                 initialIndex: 0,
-                child: TabBar(tabs: [
+                child: TabBar(
+                  labelStyle: Theme.of(context).primaryTextTheme.bodyText2,
+                  unselectedLabelStyle: TextStyle(
+                    fontSize: 16,fontWeight: FontWeight.bold,fontFamily: "Roboto",color: Colors.white
+                  ),
+                  labelColor: Theme.of(context).backgroundColor,
+                  unselectedLabelColor: Theme.of(context).colorScheme.onPrimary,
+                    indicatorWeight: 0.1,
+                    indicator:
+                        BoxDecoration(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                          borderRadius: BorderRadius.circular(10)),
+                    controller: tabController,
+                    isScrollable: true,
+                    tabs: [
+                      Tab(
+                        text: "All",
+                      ),
+                      Tab(
+                        text: "Education",
+                      ),
+                      Tab(
+                        text: "Mental Health",
+                      ),
+                      Tab(
+                        text: "Business",
+                      )
+                    ]),
+              ),
+              TabBarView(
+                controller: tabController,
+                children: [
+                  Card(
+                    child: Row(children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: size.width * 0.3,
+                            height: size.height * 0.1,
+                            decoration: BoxDecoration(
                   
-                ]),
+                              borderRadius: BorderRadius.circular(10),
+                              image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: AssetImage("lib/photos/avatar.jpg"))),),
+                            Row(children: [
+                              
+                            ],)
+                        ],
+                      )
+                    ]),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                  )
+                ],
               ),
               Text(
                 widget.controllerIndex == 0 && widget.cateIndex == 0
