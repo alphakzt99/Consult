@@ -38,14 +38,26 @@ class _ConsultState extends State<Consult> {
                 fontFamily: 'Roboto',
                 fontSize: 16,
                 fontWeight: FontWeight.bold),
+            headline5: TextStyle(
+                color: Color(0xFFD38F5E),
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                fontFamily: font),
+               
             headline4: TextStyle(
                 color: Color(0xFF014D69),
                 fontFamily: font,
                 fontSize: 24,
-                fontWeight: FontWeight.bold)),
+                fontWeight: FontWeight.bold),
+                bodyText2: TextStyle(
+              fontFamily: "Roboto",
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF014D69),),),
+             
         primaryColor: Color(0xFF664236),
-        primaryColorDark: Color(0xFF3C4E5C),
-        primaryColorLight: Color(0xFFD1B79C),
+        primaryColorDark: const Color(0xFF3C4E5C),
+        primaryColorLight: const Color(0xFFD1B79C),
         backgroundColor: Colors.white,
         colorScheme: const ColorScheme.light(
             background: Colors.black,
@@ -68,8 +80,8 @@ class _ConsultState extends State<Consult> {
               fontSize: 24,
               fontFamily: "RobotoSlab",
               fontWeight: FontWeight.bold,
-              color:  Color(0xFFD38F5E)),
-          headline3:  TextStyle(
+              color: Color(0xFFD38F5E)),
+          headline3: TextStyle(
               fontFamily: "Roboto",
               fontWeight: FontWeight.bold,
               fontSize: 20,
@@ -83,18 +95,18 @@ class _ConsultState extends State<Consult> {
               fontFamily: "Roboto",
               fontSize: 14,
               fontWeight: FontWeight.bold,
-              color:  Color(0xFFD38F5E)),
+              color: Color(0xFFD38F5E)),
           headline6: TextStyle(
               fontFamily: "RobotoSlab",
               fontSize: 12,
               fontWeight: FontWeight.bold,
               color: Color.fromARGB(255, 234, 235, 237)),
-          bodyText1:  TextStyle(
+          bodyText1: TextStyle(
             color: Colors.white54,
             fontFamily: "Roboto",
             fontSize: 14,
           ),
-          bodyText2:  TextStyle(
+          bodyText2: TextStyle(
               fontFamily: "Roboto",
               fontSize: 14,
               color: Color.fromARGB(255, 234, 235, 237)),
