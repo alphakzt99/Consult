@@ -17,49 +17,66 @@ class CategoryPage extends StatefulWidget {
 }
 
 class _CategoryPageState extends State<CategoryPage> {
+  ScrollController _controller = ScrollController();
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Theme.of(context).colorScheme.onPrimary,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            FluentIcons.arrow_circle_left_20_filled,
-            size: 24,
-            color: Theme.of(context).backgroundColor,
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Theme.of(context).backgroundColor,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              FluentIcons.arrow_circle_left_20_filled,
+              size: 32,
+              color: Theme.of(context).colorScheme.onPrimary,
+            ),
           ),
+          actions: [
+            IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  FluentIcons.search_20_regular,
+                  size: 32,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ))
+          ],
         ),
-        actions: [
-          IconButton(
-              onPressed: () {},
-              icon: Icon(
-                FluentIcons.search_20_regular,
-                color: Theme.of(context).backgroundColor,
-              ))
-        ],
-      ),
-      body: Column(
-        children: [
-          ClipPath(
-            clipper: Clipper(),
-            child: Container(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                    Theme.of(context).colorScheme.onPrimary,
-                    Theme.of(context).colorScheme.onSecondary
-                  ])),
-              width: size.width,
-              height: size.height * 0.35,
-              child: Column(children: [
-                Text(widget.controllerIndex == 0 && widget.cateIndex == 0
+        body: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+            color: Theme.of(context).backgroundColor,
+            width: size.width,
+            height: size.height,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+              Text("Explore",style: Theme.of(context).textTheme.headline2,),
+              Text("Consultants",style: Theme.of(context).primaryTextTheme.headline1,),
+              Container(
+                margin: EdgeInsets.only(bottom: 20),
+                width: size.width * 0.3,
+                height: 10,
+                color: Theme.of(context).colorScheme.onSecondaryContainer,),
+              DefaultTabController(
+                length: 6,
+                initialIndex: 0,
+                child: TabBar(tabs: [
+                  
+                ]),
+              ),
+              Text(
+                widget.controllerIndex == 0 && widget.cateIndex == 0
                     ? dict[0][0][0].toString()
                     : widget.controllerIndex == 0 && widget.cateIndex == 1
                         ? dict[0][1][0].toString()
@@ -80,36 +97,11 @@ class _CategoryPageState extends State<CategoryPage> {
                                             : widget.controllerIndex == 2 &&
                                                     widget.cateIndex == 1
                                                 ? dict[2][1][0]
-                                                : dict[2][2][0].toString())
-              ]),
-            ),
+                                                : dict[2][2][0].toString(),
+                style: Theme.of(context).textTheme.headline5,
+              )
+            ]),
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class Clipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    Path path0 = Path();
-    path0.moveTo(0, 0);
-    path0.cubicTo(0, 140, 0, 140, 0, 190);
-    path0.quadraticBezierTo(0, 240, 140, 240);
-    path0.quadraticBezierTo(
-        size.width / 2, size.height - 40, size.width * 3 / 4, size.height - 40);
-    path0.quadraticBezierTo(
-        size.width, size.height - 40, size.width, size.height);
-    path0.lineTo(size.width, 0);
-    path0.quadraticBezierTo(size.width - 50, 0, 0, 0);
-    path0.close();
-    return path0;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    // TODO: implement shouldReclip
-    return false;
+        ));
   }
 }

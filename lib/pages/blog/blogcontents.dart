@@ -47,19 +47,7 @@ class contents extends StatelessWidget {
               "Title",
               style: Theme.of(context).primaryTextTheme.headline1,
             ),
-            Container(
-              padding: const EdgeInsets.all(5),
-              width: 30,
-              height: 25,
-              decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  borderRadius: BorderRadius.circular(5)),
-              child: Text(
-                "4.0",
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headline6,
-              ),
-            )
+            
           ],
         ),
         SizedBox(
