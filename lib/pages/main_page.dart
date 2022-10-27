@@ -285,30 +285,53 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                   }),
                 ),
               )),
+              Padding(
+                  padding: const EdgeInsets.only(top:20,left: 15, right: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Categories",
+                        style: Theme.of(context).textTheme.headline2,
+                      ),
+                      IconButton(
+                          splashRadius: 20,
+                          splashColor:
+                              Theme.of(context).colorScheme.onPrimaryContainer,
+                          padding: EdgeInsets.all(0),
+                          onPressed: () {
+                            Navigator.of(context).push(
+                                MaterialPageRoute(builder: (ctx) => Blogs()));
+                          },
+                          icon: Icon(
+                            FluentIcons.arrow_circle_right_32_regular,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSecondaryContainer,
+                          ))
+                    ],
+                  )),
               Flexible(
                 child: Container(
                   width: size.width * 0.95,
                   height: size.height * 0.4,
                   margin:
                       const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-                  child: TabBarView(
-                      physics: const NeverScrollableScrollPhysics(),
-                      controller: controller,
-                      children: [
-                        TabCard(
-                          controllerIndex: controller.index,
-                        ),
-                        TabCard(
-                          controllerIndex: controller.index + 1,
-                        ),
-                        TabCard(
-                          controllerIndex: controller.index + 2  ,
-                        )
-                      ]),
+                  child: TabBarView(controller: controller, children: [
+                    TabCard(
+                      controllerIndex: 0,
+                    ),
+                    TabCard(
+                      controllerIndex: 1,
+                    ),
+                    TabCard(
+                      controllerIndex: 2,
+                    )
+                  ]),
                 ),
               ),
               Padding(
-                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  padding: const EdgeInsets.only(top:20,left: 15, right: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -513,14 +536,14 @@ class _TabCardState extends State<TabCard> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-   
+    var size = MediaQuery.of(context).size;
     return ListView.builder(
+        shrinkWrap: true,
         itemCount: dict.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (ctx) => CategoryPage(
                         controllerIndex: widget.controllerIndex,
@@ -533,120 +556,123 @@ class _TabCardState extends State<TabCard> with TickerProviderStateMixin {
               child: DecoratedBoxTransition(
                 decoration: decorationTween.animate(_controller),
                 child: Container(
-                  width: MediaQuery.of(context).size.width * 0.7,
-                  height: MediaQuery.of(context).size.height * 0.35,
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Center(
-                          child: Container(
-                            margin: const EdgeInsets.only(
-                              top: 10,
-                              bottom: 10,
+                  width:
+                      dict[widget.controllerIndex][index][0].toString().length >
+                              15
+                          ? MediaQuery.of(context).size.width * 0.6
+                          : MediaQuery.of(context).size.width * 0.55,
+                  child: Stack(children: [
+                    Positioned(
+                      top: 0,
+                      child: Center(
+                        child: Container(
+                          margin: const EdgeInsets.all(10),
+                          width: MediaQuery.of(context).size.width * 0.5,
+                          height: MediaQuery.of(context).size.height * 0.2,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                widget.controllerIndex == 0 && index == 0
+                                    ? dict[0][0][1].toString()
+                                    : widget.controllerIndex == 0 && index == 1
+                                        ? dict[0][1][1].toString()
+                                        : widget.controllerIndex == 0 &&
+                                                index == 2
+                                            ? dict[0][2][1].toString()
+                                            : widget.controllerIndex == 1 &&
+                                                    index == 0
+                                                ? dict[1][0][1].toString()
+                                                : widget.controllerIndex == 1 &&
+                                                        index == 1
+                                                    ? dict[1][1][1].toString()
+                                                    : widget.controllerIndex ==
+                                                                1 &&
+                                                            index == 2
+                                                        ? dict[1][2][1]
+                                                            .toString()
+                                                        : widget.controllerIndex ==
+                                                                    2 &&
+                                                                index == 0
+                                                            ? dict[2][0][1]
+                                                                .toString()
+                                                            : widget.controllerIndex ==
+                                                                        2 &&
+                                                                    index == 1
+                                                                ? dict[2][1][1]
+                                                                    .toString()
+                                                                : dict[2][2][1]
+                                                                    .toString(),
+                              ))),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      child: Container(
+                        padding: EdgeInsets.all(20),
+                        width: dict[widget.controllerIndex][index][0]
+                                    .toString()
+                                    .length >
+                                15
+                            ? MediaQuery.of(context).size.width * 0.6
+                            : MediaQuery.of(context).size.width * 0.55,
+                        height: size.height * 0.2,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor,
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(20),
+                                bottomRight: Radius.circular(20))),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(
+                              widget.controllerIndex == 0 && index == 0
+                                  ? dict[0][0][0].toString()
+                                  : widget.controllerIndex == 0 && index == 1
+                                      ? dict[0][1][0].toString()
+                                      : widget.controllerIndex == 0 &&
+                                              index == 2
+                                          ? dict[0][2][0].toString()
+                                          : widget.controllerIndex == 1 &&
+                                                  index == 0
+                                              ? dict[1][0][0].toString()
+                                              : widget.controllerIndex == 1 &&
+                                                      index == 1
+                                                  ? dict[1][1][0].toString()
+                                                  : widget.controllerIndex ==
+                                                              1 &&
+                                                          index == 2
+                                                      ? dict[1][2][0].toString()
+                                                      : widget.controllerIndex ==
+                                                                  2 &&
+                                                              index == 0
+                                                          ? dict[2][0][0]
+                                                              .toString()
+                                                          : widget.controllerIndex ==
+                                                                      2 &&
+                                                                  index == 1
+                                                              ? dict[2][1][0]
+                                                                  .toString()
+                                                              : dict[2][2][0]
+                                                                  .toString(),
+                              style: Theme.of(context).textTheme.headline3,
                             ),
-                            width: MediaQuery.of(context).size.width * 0.45,
-                            height: MediaQuery.of(context).size.height * 0.15,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                image: DecorationImage(
-                                    opacity: 0.9,
-                                    image: AssetImage(
-                                      widget.controllerIndex == 0 && index == 0
-                    ? dict[0][0][1].toString()
-                    : widget.controllerIndex == 0 && index == 1
-                        ? dict[0][1][1].toString()
-                        : widget.controllerIndex == 0 && index == 2
-                            ? dict[0][2][1].toString()
-                            : widget.controllerIndex == 1 &&
-                                    index == 0
-                                ? dict[1][0][1].toString()
-                                : widget.controllerIndex == 1 &&
-                                        index == 1
-                                    ? dict[1][1][1].toString()
-                                    : widget.controllerIndex == 1 &&
-                                            index == 2
-                                        ? dict[1][2][1].toString()
-                                        : widget.controllerIndex == 2 &&
-                                                index == 0
-                                            ? dict[2][0][1].toString()
-                                            : widget.controllerIndex == 2 &&
-                                                    index == 1
-                                                ? dict[2][1][1].toString()
-                                                : dict[2][2][1].toString(),
-                                    ))),
-                          ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "Seek Advice. Seek Adventure. Seek Discomfort",
+                              style: Theme.of(context).textTheme.bodyText2,
+                            ),
+                            SizedBox(height:10),
+                            Icon(FluentIcons.arrow_circle_right_32_filled,color: Theme.of(context).backgroundColor)
+                          ],
                         ),
-                        Text(
-                         widget.controllerIndex == 0 && index == 0
-                    ? dict[0][0][0].toString()
-                    : widget.controllerIndex == 0 && index == 1
-                        ? dict[0][1][0].toString()
-                        : widget.controllerIndex == 0 && index == 2
-                            ? dict[0][2][0].toString()
-                            : widget.controllerIndex == 1 &&
-                                    index == 0
-                                ? dict[1][0][0].toString()
-                                : widget.controllerIndex == 1 &&
-                                        index == 1
-                                    ? dict[1][1][0].toString()
-                                    : widget.controllerIndex == 1 &&
-                                            index == 2
-                                        ? dict[1][2][0].toString()
-                                        : widget.controllerIndex == 2 &&
-                                                index == 0
-                                            ? dict[2][0][0].toString()
-                                            : widget.controllerIndex == 2 &&
-                                                    index == 1
-                                                ? dict[2][1][0].toString()
-                                                : dict[2][2][0].toString(),
-                          style: Theme.of(context).textTheme.headline2,
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        RichText(
-                            text: TextSpan(children: [
-                          TextSpan(
-                              text: "Rating ",
-                              style: Theme.of(context).textTheme.headline4),
-                          TextSpan(
-                              text: "   4.5",
-                              style: Theme.of(context).textTheme.headline5)
-                        ])),
-                        RichText(
-                            text: TextSpan(children: [
-                          TextSpan(
-                              text: "Clients ",
-                              style: Theme.of(context).textTheme.headline4),
-                          TextSpan(
-                              text: "   4500",
-                              style: Theme.of(context).textTheme.headline5)
-                        ])),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        TextButton(
-                            style: ButtonStyle(
-                                elevation: MaterialStateProperty.all(0),
-                                padding: MaterialStateProperty.all(
-                                    EdgeInsets.symmetric(
-                                        horizontal: 30, vertical: 10)),
-                                backgroundColor: MaterialStateProperty.all(
-                                    Theme.of(context).colorScheme.onPrimary),
-                                shape: MaterialStateProperty.all(
-                                    RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10)))),
-                            onPressed: () {},
-                            child: Text(
-                              "Explore",
-                              style: TextStyle(
-                                  color: Theme.of(context).backgroundColor,
-                                  fontFamily: font,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ))
-                      ]),
+                      ),
+                    ),
+                  ]),
                 ),
               ),
             ),
