@@ -5,6 +5,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
+import 'package:iconify_flutter/icons/ant_design.dart';
 import 'package:iconify_flutter/icons/cil.dart';
 import 'package:iconify_flutter/icons/wi.dart';
 import 'package:remixicon/remixicon.dart';
@@ -286,7 +287,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                 ),
               )),
               Padding(
-                  padding: const EdgeInsets.only(top:20,left: 15, right: 15),
+                  padding: const EdgeInsets.only(top: 20, left: 15, right: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -331,7 +332,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                 ),
               ),
               Padding(
-                  padding: const EdgeInsets.only(top:20,left: 15, right: 15),
+                  padding: const EdgeInsets.only(top: 20, left: 15, right: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -368,7 +369,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                         GeneralCard(),
                         GeneralCard(),
                         GeneralCard(),
-                        GeneralCard(),
+                       
                       ],
                     )),
               )
@@ -432,73 +433,121 @@ class _GeneralCardState extends State<GeneralCard> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Card(
-        child: Row(
-      children: [
-        Container(
-          width: size.width * 0.25,
-          height: size.height * 0.15,
-          margin: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-              image:
-                  DecorationImage(image: AssetImage("lib/photos/consult.jpg")),
-              borderRadius: BorderRadius.circular(10)),
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            RichText(
-                text: TextSpan(children: [
-              TextSpan(
-                  text: "Name", style: Theme.of(context).textTheme.headline4),
-              TextSpan(
-                  text: "        Category",
-                  style: Theme.of(context).textTheme.headline4)
-            ])),
-            SizedBox(
-              height: 20,
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Row(children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: size.width * 0.3,
+                height: size.height * 0.15,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: AssetImage("lib/photos/avatar.jpg"))),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              RichText(
+                text: TextSpan(
+                    style: Theme.of(context).textTheme.headline4,
+                    children: [
+                      TextSpan(text: 'Rating'),
+                      TextSpan(text: '             \$18')
+                    ]),
+              ),
+              RichText(
+                  text: TextSpan(
+                      style: Theme.of(context).primaryTextTheme.headline2,
+                      children: [
+                    TextSpan(text: "25 "),
+                    TextSpan(text: "reviews"),
+                    TextSpan(text: "    per hr")
+                  ]))
+            ],
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+              top: 10,
+              left: 10,
             ),
-            Row(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TextButton(
-                    style: ButtonStyle(
-                        padding: MaterialStateProperty.all(
-                            EdgeInsets.symmetric(horizontal: 15, vertical: 10)),
-                        backgroundColor: MaterialStateProperty.all(
-                            Theme.of(context).colorScheme.onPrimary),
-                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)))),
-                    onPressed: () {},
-                    child: Text(
-                      "Book",
-                      style: TextStyle(
-                          color: Theme.of(context).backgroundColor,
-                          fontFamily: font,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                    )),
-                TextButton(
-                    style: ButtonStyle(
-                        padding: MaterialStateProperty.all(
-                            EdgeInsets.symmetric(horizontal: 15, vertical: 10)),
-                        backgroundColor: MaterialStateProperty.all(
-                            Theme.of(context).backgroundColor),
-                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)))),
-                    onPressed: () {},
-                    child: Text(
-                      "Message",
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.background,
-                          fontFamily: font,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                    )),
+                Row(
+                  children: [
+                    Text(
+                      "Consultant",
+                      style: Theme.of(context).primaryTextTheme.headline4,
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Iconify(
+                      AntDesign.safety_certificate_outlined,
+                      color: Colors.greenAccent,
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "314 clients",
+                  style: Theme.of(context).textTheme.headline4,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                RichText(
+                    text: TextSpan(
+                        style: Theme.of(context).textTheme.headline5,
+                        children: [
+                      TextSpan(text: "Category"),
+                      TextSpan(text: "      Field")
+                    ])),
+                SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  children: [
+                    MaterialButton(
+                      elevation: 0,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      onPressed: () {},
+                      child: Text(
+                        "Book",
+                        style: Theme.of(context).primaryTextTheme.bodyText1,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    MaterialButton(
+                      elevation: 0,
+                      color: Theme.of(context).colorScheme.onSecondaryContainer,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      onPressed: () {},
+                      child: Text(
+                        "Message",
+                        style: Theme.of(context).primaryTextTheme.bodyText1,
+                      ),
+                    )
+                  ],
+                )
               ],
             ),
-          ],
-        )
-      ],
-    ));
+          )
+        ]),
+      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    );
   }
 }
 
@@ -666,8 +715,9 @@ class _TabCardState extends State<TabCard> with TickerProviderStateMixin {
                               "Seek Advice. Seek Adventure. Seek Discomfort",
                               style: Theme.of(context).textTheme.bodyText2,
                             ),
-                            SizedBox(height:10),
-                            Icon(FluentIcons.arrow_circle_right_32_filled,color: Theme.of(context).backgroundColor)
+                            SizedBox(height: 10),
+                            Icon(FluentIcons.arrow_circle_right_32_filled,
+                                color: Theme.of(context).backgroundColor)
                           ],
                         ),
                       ),
