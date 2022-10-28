@@ -1,5 +1,5 @@
 import 'package:consult_app/details/blogs.dart';
-import 'package:consult_app/pages/CategoryPage.dart';
+import 'package:consult_app/pages/blog/CategoryPage.dart';
 import 'package:consult_app/pages/blog/blogpost.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
@@ -153,7 +153,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                           DefaultTabController(
                               length: 3,
                               child: Container(
-                                width: size.width * 0.95,
+                                width: size.width * 0.8,
                                 child: TabBar(
                                   controller: controller,
                                   onTap: (value) {
@@ -168,7 +168,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                                   tabs: [
                                     TabItem(0, "Education", controller.index),
                                     TabItem(
-                                        1, "Mental Health", controller.index),
+                                        1, "Health", controller.index),
                                     TabItem(2, "Business", controller.index)
                                   ],
                                 ),
@@ -302,7 +302,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                           padding: EdgeInsets.all(0),
                           onPressed: () {
                             Navigator.of(context).push(
-                                MaterialPageRoute(builder: (ctx) => Blogs()));
+                                MaterialPageRoute(builder: (ctx) => CategoryPage(controllerIndex: 1 ,dict: dict,cateIndex: 1,)));
                           },
                           icon: Icon(
                             FluentIcons.arrow_circle_right_32_regular,
