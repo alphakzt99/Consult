@@ -23,38 +23,43 @@ class _ConsultState extends State<Consult> {
       title: "Consult_App",
       theme: ThemeData(
         primaryTextTheme: TextTheme(
-            headline1: TextStyle(
-                color: Color(0xFF014D69),
-                fontFamily: font,
-                fontSize: 30,
-                fontWeight: FontWeight.bold),
-            headline2: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.black38,
-                fontSize: 14,
-                fontFamily: 'Roboto'),
-            headline3: TextStyle(
-                color: Color(0xFF014D69),
-                fontFamily: 'Roboto',
-                fontSize: 16,
-                fontWeight: FontWeight.bold),
-            headline5: TextStyle(
-                color: Color(0xFFD38F5E),
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                fontFamily: font),
-               
-            headline4: TextStyle(
-                color: Color(0xFF014D69),
-                fontFamily: font,
-                fontSize: 24,
-                fontWeight: FontWeight.bold),
-                bodyText2: TextStyle(
-              fontFamily: "Roboto",
+          headline1: TextStyle(
+              color: Color(0xFF014D69),
+              fontFamily: font,
+              fontSize: 30,
+              fontWeight: FontWeight.bold),
+          headline2: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.black38,
+              fontSize: 14,
+              fontFamily: 'Roboto'),
+          headline3: TextStyle(
+              color: Color(0xFF014D69),
+              fontFamily: 'Roboto',
+              fontSize: 16,
+              fontWeight: FontWeight.bold),
+          headline5: TextStyle(
+              color: Color(0xFFD38F5E),
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF014D69),),),
-             
+              fontFamily: font),
+          bodyText1: TextStyle(
+              color: Colors.white,
+              fontFamily: 'Roboto',
+              fontSize: 14,
+              fontWeight: FontWeight.bold),
+          headline4: TextStyle(
+              color: Color(0xFF014D69),
+              fontFamily: font,
+              fontSize: 24,
+              fontWeight: FontWeight.bold),
+          bodyText2: TextStyle(
+            fontFamily: "Roboto",
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF014D69),
+          ),
+        ),
         primaryColor: Color(0xFF664236),
         primaryColorDark: const Color(0xFF3C4E5C),
         primaryColorLight: const Color(0xFFD1B79C),
