@@ -90,8 +90,8 @@ class _ChatState extends State<Chat> {
       height: size.height,
       decoration: BoxDecoration(
           gradient: LinearGradient(colors: [
-        Theme.of(context).colorScheme.onSecondaryContainer,
-        Theme.of(context).primaryColor,
+        Theme.of(context).colorScheme.onPrimary,
+        Theme.of(context).colorScheme.onSecondary,
       ])),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         SizedBox(

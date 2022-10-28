@@ -86,7 +86,7 @@ class _AccountState extends State<Account> {
       )
     ];
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColorLight,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Container(
         width: size.width,
         height: size.height,
@@ -137,7 +137,7 @@ class _AccountState extends State<Account> {
                         width: size.width * 0.95,
                         gradient: LinearGradient(
                           colors: [
-                            Colors.white.withOpacity(0.40),
+                            Colors.white54.withOpacity(0.40),
                             Colors.white.withOpacity(0.10),
                           ],
                           begin: Alignment.topLeft,
@@ -146,16 +146,16 @@ class _AccountState extends State<Account> {
                         borderGradient: LinearGradient(
                           colors: [
                             Theme.of(context)
-                                .primaryColorLight
+                                .primaryColor
                                 .withOpacity(0.60),
                             Theme.of(context)
-                                .primaryColorLight
+                                .primaryColor
                                 .withOpacity(0.10),
                             Theme.of(context)
                                 .primaryColorLight
                                 .withOpacity(0.05),
                             Theme.of(context)
-                                .primaryColorLight
+                                .primaryColor
                                 .withOpacity(0.60),
                           ],
                           begin: Alignment.topLeft,

@@ -41,6 +41,7 @@ dependencies:
   glass_kit: ^2.0.1
   flutter_swipe_action_cell: ^3.0.4
   font_awesome_flutter: ^10.2.1
+  filter_list: ^1.0.2
 
 dev_dependencies:
   flutter_test:

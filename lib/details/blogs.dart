@@ -34,7 +34,7 @@ class _BlogsState extends State<Blogs> with TickerProviderStateMixin {
                 Navigator.pop(context);
               },
               icon: Icon(
-                FluentIcons.arrow_left_20_regular,
+                FluentIcons.arrow_circle_left_32_filled,
                 color: Theme.of(context).colorScheme.onPrimary,
               )),
           backgroundColor: Theme.of(context).backgroundColor,
@@ -277,18 +277,13 @@ class _BlogsState extends State<Blogs> with TickerProviderStateMixin {
                                       fontSize: 30,
                                       fontWeight: FontWeight.bold)),
                               IconButton(
-                                  style: ButtonStyle(
-                                      shape: MaterialStateProperty.all(
-                                          RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(20)))),
+                                  splashColor: Theme.of(context).colorScheme.onPrimary,
+                                 splashRadius: 100,
                                   onPressed: () {
-                                    setState(() {
-                                      onPressed = true;
-                                    });
+                                   
                                   },
                                   icon: Icon(
-                                    FluentIcons.search_20_regular,
+                                    FluentIcons.search_32_regular,
                                     color:
                                         Theme.of(context).colorScheme.onPrimary,
                                   ))
@@ -370,6 +365,7 @@ class CurvedListItem extends StatelessWidget {
           height: size.height * 0.3,
           padding: EdgeInsets.only(left: 32, right: 32),
           decoration: BoxDecoration(
+            border: Border.all(color: Colors.transparent),
               color: color,
               borderRadius: BorderRadius.only(bottomLeft: Radius.circular(80))),
           child: Column(
