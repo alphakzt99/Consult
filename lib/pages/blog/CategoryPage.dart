@@ -1,8 +1,11 @@
+import 'package:consult_app/main.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/ant_design.dart';
 import 'package:iconify_flutter/icons/fluent.dart';
+
+import '../../admin and consultant/consultantDetails.dart';
 
 class CategoryPage extends StatefulWidget {
   late final int controllerIndex;
@@ -21,7 +24,7 @@ class CategoryPage extends StatefulWidget {
 class _CategoryPageState extends State<CategoryPage>
     with TickerProviderStateMixin {
   late TabController tabController = TabController(length: 4, vsync: this);
-  ScrollController _controller = ScrollController();
+  final ScrollController _controller = ScrollController();
   ScrollController controller = ScrollController();
 
   @override
@@ -52,149 +55,152 @@ class _CategoryPageState extends State<CategoryPage>
                   SliverPadding(
                     padding: EdgeInsets.all(10),
                     sliver: SliverFixedExtentList(
-                        itemExtent: size.height * 0.26,
+                        itemExtent: size.height * 0.255,
                         delegate: SliverChildBuilderDelegate(childCount: 4,
                             (context, index) {
-                          return Card(
-                            child: Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: Row(children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width: size.width * 0.3,
-                                      height: size.height * 0.15,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          image: DecorationImage(
-                                              fit: BoxFit.fill,
-                                              image: AssetImage(
-                                                  "lib/photos/avatar.jpg"))),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    RichText(
-                                      text: TextSpan(
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline4,
-                                          children: [
-                                            TextSpan(text: 'Rating'),
-                                            TextSpan(text: '             \$18')
-                                          ]),
-                                    ),
-                                    RichText(
-                                        text: TextSpan(
-                                            style: Theme.of(context)
-                                                .primaryTextTheme
-                                                .headline2,
-                                            children: [
-                                          TextSpan(text: "25 "),
-                                          TextSpan(text: "reviews"),
-                                          TextSpan(text: "    per hr")
-                                        ]))
-                                  ],
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                    top: 10,
-                                    left: 10,
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                          return GestureDetector(
+                            onTap: ()=> Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>Consultant())),
+                            child: Card(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Row(children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Row(
-                                        children: [
-                                          Text(
-                                            "Consultant",
-                                            style: Theme.of(context)
-                                                .primaryTextTheme
-                                                .headline4,
-                                          ),
-                                          SizedBox(
-                                            width: 20,
-                                          ),
-                                          Iconify(
-                                            AntDesign
-                                                .safety_certificate_outlined,
-                                            color: Colors.greenAccent,
-                                          )
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        "314 clients",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline4,
+                                      Container(
+                                        width: size.width * 0.3,
+                                        height: size.height * 0.15,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            image: DecorationImage(
+                                                fit: BoxFit.fill,
+                                                image: AssetImage(
+                                                    "lib/photos/avatar.jpg"))),
                                       ),
                                       SizedBox(
                                         height: 10,
                                       ),
                                       RichText(
+                                        text: TextSpan(
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline4,
+                                            children: [
+                                              TextSpan(text: 'Rating'),
+                                              TextSpan(text: '             \$18')
+                                            ]),
+                                      ),
+                                      RichText(
                                           text: TextSpan(
                                               style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline5,
+                                                  .primaryTextTheme
+                                                  .headline2,
                                               children: [
-                                            TextSpan(text: "Category"),
-                                            TextSpan(text: "      Field")
-                                          ])),
-                                      SizedBox(
-                                        height: 30,
-                                      ),
-                                      Row(
-                                        children: [
-                                          MaterialButton(
-                                            elevation: 0,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .onPrimary,
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(20)),
-                                            onPressed: () {},
-                                            child: Text(
-                                              "Book",
-                                              style: Theme.of(context)
-                                                  .primaryTextTheme
-                                                  .bodyText1,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          MaterialButton(
-                                            elevation: 0,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .onSecondaryContainer,
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(20)),
-                                            onPressed: () {},
-                                            child: Text(
-                                              "Message",
-                                              style: Theme.of(context)
-                                                  .primaryTextTheme
-                                                  .bodyText1,
-                                            ),
-                                          )
-                                        ],
-                                      )
+                                            TextSpan(text: "25 "),
+                                            TextSpan(text: "reviews"),
+                                            TextSpan(text: "    per hr")
+                                          ]))
                                     ],
                                   ),
-                                )
-                              ]),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                      top: 10,
+                                      left: 10,
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              "Consultant",
+                                              style: Theme.of(context)
+                                                  .primaryTextTheme
+                                                  .headline4,
+                                            ),
+                                            SizedBox(
+                                              width: 20,
+                                            ),
+                                            Iconify(
+                                              AntDesign
+                                                  .safety_certificate_outlined,
+                                              color: Colors.greenAccent,
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          "314 clients",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline4,
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        RichText(
+                                            text: TextSpan(
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline5,
+                                                children: [
+                                              TextSpan(text: "Category"),
+                                              TextSpan(text: "      Field")
+                                            ])),
+                                        SizedBox(
+                                          height: 30,
+                                        ),
+                                        Row(
+                                          children: [
+                                            MaterialButton(
+                                              elevation: 0,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .onPrimary,
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20)),
+                                              onPressed: () {},
+                                              child: Text(
+                                                "Book",
+                                                style: Theme.of(context)
+                                                    .primaryTextTheme
+                                                    .bodyText1,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            MaterialButton(
+                                              elevation: 0,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .onSecondaryContainer,
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20)),
+                                              onPressed: () {},
+                                              child: Text(
+                                                "Message",
+                                                style: Theme.of(context)
+                                                    .primaryTextTheme
+                                                    .bodyText1,
+                                              ),
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                ]),
+                              ),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
                             ),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
                           );
                         })),
                   )
