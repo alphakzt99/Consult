@@ -67,9 +67,10 @@ class _AccountState extends State<Account> {
       grid(FluentIcons.door_20_regular, "Log Out"),
       SizedBox(height: 20,),
       MaterialButton(
+        elevation: 0,
         height: 70,
         minWidth: size.width * 0.5,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         color: Theme.of(context).colorScheme.onPrimary,
         onPressed: () {},
         child:

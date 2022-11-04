@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:consult_app/details/blogs.dart';
 import 'package:consult_app/pages/blog/CategoryPage.dart';
 import 'package:consult_app/pages/blog/blogpost.dart';
@@ -11,6 +12,9 @@ import 'package:iconify_flutter/icons/wi.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:consult_app/main.dart';
 import 'package:consult_app/inheriteddataprovider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+int _current = 0;
 
 class Main extends StatefulWidget {
   Main({Key? key}) : super(key: key);
@@ -167,8 +171,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                                   indicatorWeight: 5,
                                   tabs: [
                                     TabItem(0, "Education", controller.index),
-                                    TabItem(
-                                        1, "Health", controller.index),
+                                    TabItem(1, "Health", controller.index),
                                     TabItem(2, "Business", controller.index)
                                   ],
                                 ),
@@ -301,8 +304,12 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                               Theme.of(context).colorScheme.onPrimaryContainer,
                           padding: EdgeInsets.all(0),
                           onPressed: () {
-                            Navigator.of(context).push(
-                                MaterialPageRoute(builder: (ctx) => CategoryPage(controllerIndex: 1 ,dict: dict,cateIndex: 1,)));
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (ctx) => CategoryPage(
+                                      controllerIndex: 1,
+                                      dict: dict,
+                                      cateIndex: 1,
+                                    )));
                           },
                           icon: Icon(
                             FluentIcons.arrow_circle_right_32_regular,
@@ -315,7 +322,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
               Flexible(
                 child: Container(
                   width: size.width * 0.95,
-                  height: size.height * 0.4,
+                  height: size.height * 0.48,
                   margin:
                       const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
                   child: TabBarView(controller: controller, children: [
@@ -369,7 +376,6 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                         GeneralCard(),
                         GeneralCard(),
                         GeneralCard(),
-                       
                       ],
                     )),
               )
@@ -513,8 +519,10 @@ class _GeneralCardState extends State<GeneralCard> {
                   height: 30,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     MaterialButton(
+                      minWidth: 100,
                       elevation: 0,
                       color: Theme.of(context).colorScheme.onPrimary,
                       shape: RoundedRectangleBorder(
@@ -529,6 +537,7 @@ class _GeneralCardState extends State<GeneralCard> {
                       width: 10,
                     ),
                     MaterialButton(
+                      minWidth: 100,
                       elevation: 0,
                       color: Theme.of(context).colorScheme.onSecondaryContainer,
                       shape: RoundedRectangleBorder(
@@ -576,6 +585,7 @@ class _TabCardState extends State<TabCard> with TickerProviderStateMixin {
   late final AnimationController _controller =
       AnimationController(vsync: this, duration: Duration(seconds: 3))
         ..repeat(reverse: true);
+  CarouselController Ccontroller = CarouselController();
   @override
   void dispose() {
     _controller.dispose();
@@ -586,147 +596,183 @@ class _TabCardState extends State<TabCard> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return ListView.builder(
-        shrinkWrap: true,
-        itemCount: dict.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (ctx) => CategoryPage(
-                        controllerIndex: widget.controllerIndex,
-                        dict: dict,
-                        cateIndex: index,
-                      )));
-            },
-            child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 5, vertical: 0),
-              child: DecoratedBoxTransition(
-                decoration: decorationTween.animate(_controller),
+    return Column(
+      children: [
+        CarouselSlider.builder(
+            carouselController: Ccontroller,
+            itemCount: dict.length,
+            options: CarouselOptions(
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    _current = index;
+                  });
+                },
+                
+                enlargeCenterPage: true,
+                enableInfiniteScroll: true,
+                height: size.height * 0.4,
+                viewportFraction: 0.65,
+                initialPage: 0,
+                scrollDirection: Axis.horizontal,
+                reverse: true),
+            itemBuilder: ((context, index, realIndex) {
+              return GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (ctx) => CategoryPage(
+                            controllerIndex: widget.controllerIndex,
+                            dict: dict,
+                            cateIndex: index,
+                          )));
+                },
                 child: Container(
-                  width:
-                      dict[widget.controllerIndex][index][0].toString().length >
+                  child: DecoratedBoxTransition(
+                    decoration: decorationTween.animate(_controller),
+                    child: Container(
+                      width: dict[widget.controllerIndex][index][0]
+                                  .toString()
+                                  .length >
                               15
                           ? MediaQuery.of(context).size.width * 0.6
                           : MediaQuery.of(context).size.width * 0.55,
-                  child: Stack(children: [
-                    Positioned(
-                      top: 0,
-                      child: Center(
-                        child: Container(
-                          margin: const EdgeInsets.all(10),
-                          width: MediaQuery.of(context).size.width * 0.5,
-                          height: MediaQuery.of(context).size.height * 0.2,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                widget.controllerIndex == 0 && index == 0
-                                    ? dict[0][0][1].toString()
-                                    : widget.controllerIndex == 0 && index == 1
-                                        ? dict[0][1][1].toString()
+                      child: Stack(children: [
+                        Positioned(
+                          top: 0,
+                          child: Center(
+                            child: Container(
+                              margin: const EdgeInsets.all(10),
+                              width: MediaQuery.of(context).size.width * 0.5,
+                              height: MediaQuery.of(context).size.height * 0.2,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                    widget.controllerIndex == 0 && index == 0
+                                        ? dict[0][0][1].toString()
                                         : widget.controllerIndex == 0 &&
-                                                index == 2
-                                            ? dict[0][2][1].toString()
-                                            : widget.controllerIndex == 1 &&
-                                                    index == 0
-                                                ? dict[1][0][1].toString()
+                                                index == 1
+                                            ? dict[0][1][1].toString()
+                                            : widget.controllerIndex == 0 &&
+                                                    index == 2
+                                                ? dict[0][2][1].toString()
                                                 : widget.controllerIndex == 1 &&
-                                                        index == 1
-                                                    ? dict[1][1][1].toString()
+                                                        index == 0
+                                                    ? dict[1][0][1].toString()
                                                     : widget.controllerIndex ==
                                                                 1 &&
-                                                            index == 2
-                                                        ? dict[1][2][1]
+                                                            index == 1
+                                                        ? dict[1][1][1]
                                                             .toString()
                                                         : widget.controllerIndex ==
-                                                                    2 &&
-                                                                index == 0
-                                                            ? dict[2][0][1]
+                                                                    1 &&
+                                                                index == 2
+                                                            ? dict[1][2][1]
                                                                 .toString()
                                                             : widget.controllerIndex ==
                                                                         2 &&
-                                                                    index == 1
-                                                                ? dict[2][1][1]
+                                                                    index == 0
+                                                                ? dict[2][0][1]
                                                                     .toString()
-                                                                : dict[2][2][1]
-                                                                    .toString(),
-                              ))),
+                                                                : widget.controllerIndex ==
+                                                                            2 &&
+                                                                        index ==
+                                                                            1
+                                                                    ? dict[2][1]
+                                                                            [1]
+                                                                        .toString()
+                                                                    : dict[2][2]
+                                                                            [1]
+                                                                        .toString(),
+                                  ))),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      child: Container(
-                        padding: EdgeInsets.all(20),
-                        width: dict[widget.controllerIndex][index][0]
-                                    .toString()
-                                    .length >
-                                15
-                            ? MediaQuery.of(context).size.width * 0.6
-                            : MediaQuery.of(context).size.width * 0.55,
-                        height: size.height * 0.2,
-                        decoration: BoxDecoration(
-                            color: Theme.of(context).primaryColor,
-                            borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(20),
-                                bottomRight: Radius.circular(20))),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              widget.controllerIndex == 0 && index == 0
-                                  ? dict[0][0][0].toString()
-                                  : widget.controllerIndex == 0 && index == 1
-                                      ? dict[0][1][0].toString()
+                        Positioned(
+                          bottom: 0,
+                          child: Container(
+                            padding: EdgeInsets.all(20),
+                            width: dict[widget.controllerIndex][index][0]
+                                        .toString()
+                                        .length >
+                                    15
+                                ? MediaQuery.of(context).size.width * 0.6
+                                : MediaQuery.of(context).size.width * 0.55,
+                            height: size.height * 0.2,
+                            decoration: BoxDecoration(
+                                color: Theme.of(context).primaryColor,
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(20),
+                                    bottomRight: Radius.circular(20))),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  widget.controllerIndex == 0 && index == 0
+                                      ? dict[0][0][0].toString()
                                       : widget.controllerIndex == 0 &&
-                                              index == 2
-                                          ? dict[0][2][0].toString()
-                                          : widget.controllerIndex == 1 &&
-                                                  index == 0
-                                              ? dict[1][0][0].toString()
+                                              index == 1
+                                          ? dict[0][1][0].toString()
+                                          : widget.controllerIndex == 0 &&
+                                                  index == 2
+                                              ? dict[0][2][0].toString()
                                               : widget.controllerIndex == 1 &&
-                                                      index == 1
-                                                  ? dict[1][1][0].toString()
+                                                      index == 0
+                                                  ? dict[1][0][0].toString()
                                                   : widget.controllerIndex ==
                                                               1 &&
-                                                          index == 2
-                                                      ? dict[1][2][0].toString()
+                                                          index == 1
+                                                      ? dict[1][1][0].toString()
                                                       : widget.controllerIndex ==
-                                                                  2 &&
-                                                              index == 0
-                                                          ? dict[2][0][0]
+                                                                  1 &&
+                                                              index == 2
+                                                          ? dict[1][2][0]
                                                               .toString()
                                                           : widget.controllerIndex ==
                                                                       2 &&
-                                                                  index == 1
-                                                              ? dict[2][1][0]
+                                                                  index == 0
+                                                              ? dict[2][0][0]
                                                                   .toString()
-                                                              : dict[2][2][0]
-                                                                  .toString(),
-                              style: Theme.of(context).textTheme.headline3,
+                                                              : widget.controllerIndex ==
+                                                                          2 &&
+                                                                      index == 1
+                                                                  ? dict[2][1]
+                                                                          [0]
+                                                                      .toString()
+                                                                  : dict[2][2]
+                                                                          [0]
+                                                                      .toString(),
+                                  style: Theme.of(context).textTheme.headline3,
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "Seek Advice. Seek Adventure. Seek Discomfort",
+                                  style: Theme.of(context).textTheme.bodyText2,
+                                ),
+                                SizedBox(height: 10),
+                                Icon(FluentIcons.arrow_circle_right_32_filled,
+                                    color: Theme.of(context).backgroundColor)
+                              ],
                             ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              "Seek Advice. Seek Adventure. Seek Discomfort",
-                              style: Theme.of(context).textTheme.bodyText2,
-                            ),
-                            SizedBox(height: 10),
-                            Icon(FluentIcons.arrow_circle_right_32_filled,
-                                color: Theme.of(context).backgroundColor)
-                          ],
+                          ),
                         ),
-                      ),
+                      ]),
                     ),
-                  ]),
+                  ),
                 ),
-              ),
-            ),
-          );
-        });
+              );
+            })),
+        SizedBox(height: 20),
+        AnimatedSmoothIndicator(
+          activeIndex: _current,
+          count: dict.length,
+          effect: ExpandingDotsEffect(
+              activeDotColor: Theme.of(context).colorScheme.onPrimary,
+              dotColor: Theme.of(context).colorScheme.onSecondaryContainer),
+        ),
+      ],
+    );
   }
 }
