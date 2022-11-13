@@ -1,14 +1,15 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:consult_app/admin%20and%20consultant/consultantDetails.dart';
 import 'package:consult_app/details/blogs.dart';
 import 'package:consult_app/pages/blog/CategoryPage.dart';
 import 'package:consult_app/pages/blog/blogpost.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:glass_kit/glass_kit.dart';
+
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/ant_design.dart';
 import 'package:iconify_flutter/icons/cil.dart';
-import 'package:iconify_flutter/icons/wi.dart';
+
 import 'package:remixicon/remixicon.dart';
 import 'package:consult_app/main.dart';
 import 'package:consult_app/inheriteddataprovider.dart';
@@ -88,12 +89,12 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
       return Container(
         child: Column(children: [
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-            padding: EdgeInsets.all(10),
+            margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+            padding: const EdgeInsets.all(10),
             width: 50,
             height: 50,
             decoration: BoxDecoration(
-                gradient: RadialGradient(colors: [
+                gradient: const RadialGradient(colors: [
                   Colors.white,
                   Colors.white54,
                 ]),
@@ -191,7 +192,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                           splashRadius: 20,
                           splashColor:
                               Theme.of(context).colorScheme.onPrimaryContainer,
-                          padding: EdgeInsets.all(0),
+                          padding: const EdgeInsets.all(0),
                           onPressed: () {
                             Navigator.of(context).push(
                                 MaterialPageRoute(builder: (ctx) => Blogs()));
@@ -225,7 +226,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                               if (snapshot.hasError) {
                                 return Text(snapshot.hasError.toString());
                               } else {
-                                return BlogPost();
+                                return const BlogPost();
                               }
                             })),
                       )),
@@ -302,7 +303,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                           splashRadius: 20,
                           splashColor:
                               Theme.of(context).colorScheme.onPrimaryContainer,
-                          padding: EdgeInsets.all(0),
+                          padding: const EdgeInsets.all(0),
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (ctx) => CategoryPage(
@@ -351,7 +352,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                           splashRadius: 20,
                           splashColor:
                               Theme.of(context).colorScheme.onPrimaryContainer,
-                          padding: EdgeInsets.all(0),
+                          padding: const EdgeInsets.all(0),
                           onPressed: () {},
                           icon: Icon(
                             FluentIcons.arrow_circle_right_32_regular,
@@ -368,7 +369,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                     width: size.width,
                     height: size.height * 2,
                     child: Column(
-                      children: [
+                      children: const [
                         GeneralCard(),
                         GeneralCard(),
                         GeneralCard(),
@@ -438,124 +439,129 @@ class _GeneralCardState extends State<GeneralCard> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Row(children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: size.width * 0.3,
-                height: size.height * 0.15,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    image: DecorationImage(
-                        fit: BoxFit.fill,
-                        image: AssetImage("lib/photos/avatar.jpg"))),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              RichText(
-                text: TextSpan(
-                    style: Theme.of(context).textTheme.headline4,
-                    children: [
-                      TextSpan(text: 'Rating'),
-                      TextSpan(text: '             \$18')
-                    ]),
-              ),
-              RichText(
-                  text: TextSpan(
-                      style: Theme.of(context).primaryTextTheme.headline2,
-                      children: [
-                    TextSpan(text: "25 "),
-                    TextSpan(text: "reviews"),
-                    TextSpan(text: "    per hr")
-                  ]))
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.only(
-              top: 10,
-              left: 10,
-            ),
-            child: Column(
+    return GestureDetector(
+      onTap: (){
+        Navigator.of(context).push(MaterialPageRoute(builder: ((context) => Consultant())));
+      },
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Row(children: [
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Text(
-                      "Consultant",
-                      style: Theme.of(context).primaryTextTheme.headline4,
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Iconify(
-                      AntDesign.safety_certificate_outlined,
-                      color: Colors.greenAccent,
-                    )
-                  ],
+                Container(
+                  width: size.width * 0.3,
+                  height: size.height * 0.15,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      image: const DecorationImage(
+                          fit: BoxFit.fill,
+                          image: AssetImage("lib/photos/avatar.jpg"))),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "314 clients",
-                  style: Theme.of(context).textTheme.headline4,
-                ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 RichText(
-                    text: TextSpan(
-                        style: Theme.of(context).textTheme.headline5,
-                        children: [
-                      TextSpan(text: "Category"),
-                      TextSpan(text: "      Field")
-                    ])),
-                SizedBox(
-                  height: 30,
+                  text: TextSpan(
+                      style: Theme.of(context).textTheme.headline4,
+                      children: [
+                        TextSpan(text: 'Rating'),
+                        TextSpan(text: '             \$18')
+                      ]),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MaterialButton(
-                      minWidth: 100,
-                      elevation: 0,
-                      color: Theme.of(context).colorScheme.onPrimary,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      onPressed: () {},
-                      child: Text(
-                        "Book",
-                        style: Theme.of(context).primaryTextTheme.bodyText1,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    MaterialButton(
-                      minWidth: 100,
-                      elevation: 0,
-                      color: Theme.of(context).colorScheme.onSecondaryContainer,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      onPressed: () {},
-                      child: Text(
-                        "Message",
-                        style: Theme.of(context).primaryTextTheme.bodyText1,
-                      ),
-                    )
-                  ],
-                )
+                RichText(
+                    text: TextSpan(
+                        style: Theme.of(context).primaryTextTheme.headline2,
+                        children: [
+                      TextSpan(text: "25 "),
+                      TextSpan(text: "reviews"),
+                      TextSpan(text: "    per hr")
+                    ]))
               ],
             ),
-          )
-        ]),
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 10,
+                left: 10,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        "Consultant",
+                        style: Theme.of(context).primaryTextTheme.headline4,
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      const Iconify(
+                        AntDesign.safety_certificate_outlined,
+                        color: Colors.greenAccent,
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "314 clients",
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  RichText(
+                      text: TextSpan(
+                          style: Theme.of(context).textTheme.headline5,
+                          children: const [
+                        TextSpan(text: "Category"),
+                        TextSpan(text: "      Field")
+                      ])),
+                 const SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      MaterialButton(
+                        minWidth: 100,
+                        elevation: 0,
+                        color: Theme.of(context).colorScheme.onPrimary,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        onPressed: () {},
+                        child: Text(
+                          "Book",
+                          style: Theme.of(context).primaryTextTheme.bodyText1,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      MaterialButton(
+                        minWidth: 100,
+                        elevation: 0,
+                        color: Theme.of(context).colorScheme.onSecondaryContainer,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        onPressed: () {},
+                        child: Text(
+                          "Message",
+                          style: Theme.of(context).primaryTextTheme.bodyText1,
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            )
+          ]),
+        ),
       ),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     );
   }
 }
@@ -607,7 +613,6 @@ class _TabCardState extends State<TabCard> with TickerProviderStateMixin {
                     _current = index;
                   });
                 },
-                
                 enlargeCenterPage: true,
                 enableInfiniteScroll: true,
                 height: size.height * 0.4,
@@ -700,7 +705,7 @@ class _TabCardState extends State<TabCard> with TickerProviderStateMixin {
                             height: size.height * 0.2,
                             decoration: BoxDecoration(
                                 color: Theme.of(context).primaryColor,
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                     bottomLeft: Radius.circular(20),
                                     bottomRight: Radius.circular(20))),
                             child: Column(
@@ -744,7 +749,7 @@ class _TabCardState extends State<TabCard> with TickerProviderStateMixin {
                                                                       .toString(),
                                   style: Theme.of(context).textTheme.headline3,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 Text(
@@ -764,7 +769,7 @@ class _TabCardState extends State<TabCard> with TickerProviderStateMixin {
                 ),
               );
             })),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         AnimatedSmoothIndicator(
           activeIndex: _current,
           count: dict.length,

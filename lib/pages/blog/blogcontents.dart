@@ -31,6 +31,7 @@ class contents extends StatelessWidget {
               FluentIcons.access_time_20_regular,
               color: Theme.of(context).primaryColorDark,
             ),
+            SizedBox(width: 10,),
             Text(
               "24 minutes ago",
               style: Theme.of(context).textTheme.headline4,
@@ -57,9 +58,11 @@ class contents extends StatelessWidget {
           height: inActive == true ? size.height * 0.6 : size.height * 0.2,
           width: size.width * 0.9,
           child: Text(
-            "Lorem Ipsum sakjlkd jalkdjalks ajdlkjfasklj asdfsdfsdf sdfasdfsdf sjlksjdfl dfasdfsdf jsklfjsklfjkjd asjdflksjdfkj skjskldjfsklj asfdfd sdfsdfsd jdlfkasjlfjs sdjlfjsalfj jdfjasljfsljf djlfkajslfj fljsdlkfjslkjf...",
+            "Lorem Ipsum sakjlkd jalkdjalks ajdlkjfasklj asdfsdfsdf sdfasdfsdf sjlksjdfl dfasdfsdf jsklfjsklfjkjd asjdflksjdfkj skjskldjfsklj asfdfd sdfsdfsd jdlfkasjlfjs sdjlfjsalfj jdfjasljfsljf djlfkajslfj fljsdlkfjslkjf",
             strutStyle: StrutStyle(height: 2),
             style: Theme.of(context).primaryTextTheme.headline2,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 7,
           ),
         ),
         SizedBox(
