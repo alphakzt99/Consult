@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:consult_app/admin%20and%20consultant/consultantDetails.dart';
 import 'package:consult_app/details/blogs.dart';
 import 'package:consult_app/pages/blog/CategoryPage.dart';
 import 'package:consult_app/pages/blog/blogpost.dart';
@@ -438,123 +439,128 @@ class _GeneralCardState extends State<GeneralCard> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Row(children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: size.width * 0.3,
-                height: size.height * 0.15,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    image: const DecorationImage(
-                        fit: BoxFit.fill,
-                        image: AssetImage("lib/photos/avatar.jpg"))),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              RichText(
-                text: TextSpan(
-                    style: Theme.of(context).textTheme.headline4,
-                    children: [
-                      TextSpan(text: 'Rating'),
-                      TextSpan(text: '             \$18')
-                    ]),
-              ),
-              RichText(
-                  text: TextSpan(
-                      style: Theme.of(context).primaryTextTheme.headline2,
-                      children: [
-                    TextSpan(text: "25 "),
-                    TextSpan(text: "reviews"),
-                    TextSpan(text: "    per hr")
-                  ]))
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              top: 10,
-              left: 10,
-            ),
-            child: Column(
+    return GestureDetector(
+      onTap: (){
+        Navigator.of(context).push(MaterialPageRoute(builder: ((context) => Consultant())));
+      },
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Row(children: [
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Text(
-                      "Consultant",
-                      style: Theme.of(context).primaryTextTheme.headline4,
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    const Iconify(
-                      AntDesign.safety_certificate_outlined,
-                      color: Colors.greenAccent,
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "314 clients",
-                  style: Theme.of(context).textTheme.headline4,
+                Container(
+                  width: size.width * 0.3,
+                  height: size.height * 0.15,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      image: const DecorationImage(
+                          fit: BoxFit.fill,
+                          image: AssetImage("lib/photos/avatar.jpg"))),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 RichText(
-                    text: TextSpan(
-                        style: Theme.of(context).textTheme.headline5,
-                        children: const [
-                      TextSpan(text: "Category"),
-                      TextSpan(text: "      Field")
-                    ])),
-               const SizedBox(
-                  height: 30,
+                  text: TextSpan(
+                      style: Theme.of(context).textTheme.headline4,
+                      children: [
+                        TextSpan(text: 'Rating'),
+                        TextSpan(text: '             \$18')
+                      ]),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MaterialButton(
-                      minWidth: 100,
-                      elevation: 0,
-                      color: Theme.of(context).colorScheme.onPrimary,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      onPressed: () {},
-                      child: Text(
-                        "Book",
-                        style: Theme.of(context).primaryTextTheme.bodyText1,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    MaterialButton(
-                      minWidth: 100,
-                      elevation: 0,
-                      color: Theme.of(context).colorScheme.onSecondaryContainer,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      onPressed: () {},
-                      child: Text(
-                        "Message",
-                        style: Theme.of(context).primaryTextTheme.bodyText1,
-                      ),
-                    )
-                  ],
-                )
+                RichText(
+                    text: TextSpan(
+                        style: Theme.of(context).primaryTextTheme.headline2,
+                        children: [
+                      TextSpan(text: "25 "),
+                      TextSpan(text: "reviews"),
+                      TextSpan(text: "    per hr")
+                    ]))
               ],
             ),
-          )
-        ]),
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 10,
+                left: 10,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        "Consultant",
+                        style: Theme.of(context).primaryTextTheme.headline4,
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      const Iconify(
+                        AntDesign.safety_certificate_outlined,
+                        color: Colors.greenAccent,
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "314 clients",
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  RichText(
+                      text: TextSpan(
+                          style: Theme.of(context).textTheme.headline5,
+                          children: const [
+                        TextSpan(text: "Category"),
+                        TextSpan(text: "      Field")
+                      ])),
+                 const SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      MaterialButton(
+                        minWidth: 100,
+                        elevation: 0,
+                        color: Theme.of(context).colorScheme.onPrimary,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        onPressed: () {},
+                        child: Text(
+                          "Book",
+                          style: Theme.of(context).primaryTextTheme.bodyText1,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      MaterialButton(
+                        minWidth: 100,
+                        elevation: 0,
+                        color: Theme.of(context).colorScheme.onSecondaryContainer,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        onPressed: () {},
+                        child: Text(
+                          "Message",
+                          style: Theme.of(context).primaryTextTheme.bodyText1,
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            )
+          ]),
+        ),
       ),
     );
   }

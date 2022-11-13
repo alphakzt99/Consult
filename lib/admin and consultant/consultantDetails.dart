@@ -1,7 +1,6 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Consultant extends StatefulWidget {
   const Consultant({super.key});
@@ -127,11 +126,13 @@ class _ConsultantState extends State<Consultant> {
                               height: 20,
                             ),
                             Text(
-                                          "She is a great consultant and helper which made me realize what I had been lacking in my life and way up,",
-                                          style: const TextStyle(
-                                              wordSpacing: 1.2,
-                                              overflow: TextOverflow.ellipsis),
-                                        ),
+                              "She is a great consultant and helper which made me realize what I had been lacking in my life and way up,",
+                              style: const TextStyle(
+                                  wordSpacing: 1.2,
+                                  overflow: TextOverflow.ellipsis),
+                              maxLines: 3,
+                          
+                            ),
                           ]),
                     ),
                   ),
@@ -184,6 +185,7 @@ class _ConsultantState extends State<Consultant> {
                                           style: const TextStyle(
                                               wordSpacing: 1.2,
                                               overflow: TextOverflow.ellipsis),
+                                              maxLines: 6,
                                         ),
                                         Row(
                                           mainAxisAlignment:
