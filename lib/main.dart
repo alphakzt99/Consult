@@ -24,40 +24,40 @@ class _ConsultState extends State<Consult> {
       theme: ThemeData(
         primaryTextTheme: TextTheme(
           headline1: TextStyle(
-              color: Color(0xFF014D69),
+              color: Colors.black,
               fontFamily: font,
               fontSize: 30,
               fontWeight: FontWeight.bold),
-          headline2: TextStyle(
+          headline2: const TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.black38,
               fontSize: 14,
               fontFamily: 'Roboto'),
-          headline3: TextStyle(
-              color: Color(0xFF014D69),
+          headline3: const TextStyle(
+              color: Colors.black,
               fontFamily: 'Roboto',
               fontSize: 16,
               fontWeight: FontWeight.bold),
           headline5: TextStyle(
-              color: Color(0xFFD38F5E),
+              color: Colors.black,
               fontSize: 16,
               fontWeight: FontWeight.bold,
               fontFamily: font),
-          bodyText1: TextStyle(
+          bodyText1: const TextStyle(
               color: Colors.white,
               fontFamily: 'Roboto',
               fontSize: 14,
               fontWeight: FontWeight.bold),
-          headline4: TextStyle(
-              color: Color(0xFF014D69),
-              fontFamily: font,
+          headline4: const TextStyle(
+              color: Colors.black,
+              fontFamily: "Roboto",
               fontSize: 24,
               fontWeight: FontWeight.bold),
-          bodyText2: TextStyle(
+          bodyText2: const TextStyle(
             fontFamily: "Roboto",
             fontSize: 16,
             fontWeight: FontWeight.bold,
-            color: Color(0xFF014D69),
+            color: Colors.black,
           ),
         ),
         primaryColor: Color(0xFF664236),
@@ -85,7 +85,7 @@ class _ConsultState extends State<Consult> {
               fontSize: 24,
               fontFamily: "RobotoSlab",
               fontWeight: FontWeight.bold,
-              color: Color(0xFFD38F5E)),
+              color: Colors.black),
           headline3: TextStyle(
               fontFamily: "Roboto",
               fontWeight: FontWeight.bold,
@@ -100,7 +100,7 @@ class _ConsultState extends State<Consult> {
               fontFamily: "Roboto",
               fontSize: 14,
               fontWeight: FontWeight.bold,
-              color: Color(0xFFD38F5E)),
+              color: Colors.black),
           headline6: TextStyle(
               fontFamily: "RobotoSlab",
               fontSize: 12,
