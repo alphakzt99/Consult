@@ -1,4 +1,5 @@
 import 'package:consult_app/main.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -34,12 +35,24 @@ class _SignUpState extends State<SignUp> {
     }
 
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Theme.of(context).backgroundColor,
+          leading: IconButton(
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+        icon: Icon(
+          FluentIcons.arrow_circle_left_32_regular,
+          color: Theme.of(context).colorScheme.onPrimary,
+        ),
+      )),
       backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.only(left: 40, right: 40, top: 20),
           width: size.width,
-          height: size.height,
+          height: size.height*0.9,
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
