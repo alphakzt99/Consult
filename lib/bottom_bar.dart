@@ -117,7 +117,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                   width: isOnTop == true ? 0 : 60,
                   height: isOnTop == true ? 0 : 60,
                   curve: Curves.easeIn,
-                  duration: Duration(
+                  duration: const Duration(
                     milliseconds: 200,
                   ),
                   child: ClipOval(
@@ -200,7 +200,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                                   child: Padding(
                                     padding: const EdgeInsets.only(top: 8.0),
                                     child: Icon(
-                                      FluentIcons.chat_multiple_20_regular,
+                                      FluentIcons.home_20_regular,
                                       color: widget.unselectedColor,
                                     ),
                                   ),
@@ -210,7 +210,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                                   child: Padding(
                                     padding: const EdgeInsets.only(top: 8.0),
                                     child: Icon(
-                                      FluentIcons.home_20_regular,
+                                      FluentIcons.chat_multiple_20_regular,
                                       color: widget.unselectedColor,
                                     ),
                                   ),

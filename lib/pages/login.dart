@@ -21,7 +21,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.onBackground,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -52,7 +52,7 @@ class _LoginState extends State<Login> {
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       TextField(
@@ -66,27 +66,17 @@ class _LoginState extends State<Login> {
                         style: Theme.of(context).primaryTextTheme.headline3,
                         decoration: tapped1
                             ? InputDecoration(
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .onTertiaryContainer),
-                                    borderRadius: BorderRadius.circular(10)),
+                                
                                 labelText: "Email Address",
                                 labelStyle: Theme.of(context)
                                     .primaryTextTheme
                                     .headline3,
-                                hintText: "Email Address",
+                                hintText: "someone@gmail.com",
                                 hintStyle: Theme.of(context)
                                     .primaryTextTheme
                                     .headline2)
                             : InputDecoration(
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .onTertiaryContainer),
-                                    borderRadius: BorderRadius.circular(10)),
+                             
                                 hintText: "Email Address",
                                 hintStyle: Theme.of(context)
                                     .primaryTextTheme
@@ -97,19 +87,16 @@ class _LoginState extends State<Login> {
                       ),
                       TextField(
                         onTap: () {
-                          tapped = true;
-                          setState(() {});
+                         
+                          setState(() {
+                             tapped = true;
+                          });
                         },
                         cursorHeight: 20,
                         style: Theme.of(context).primaryTextTheme.headline3,
                         decoration: tapped
                             ? InputDecoration(
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .onTertiaryContainer),
-                                    borderRadius: BorderRadius.circular(10)),
+                                
                                 labelText: "Password",
                                 labelStyle: Theme.of(context)
                                     .primaryTextTheme
@@ -119,12 +106,7 @@ class _LoginState extends State<Login> {
                                     .primaryTextTheme
                                     .headline2)
                             : InputDecoration(
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .onTertiaryContainer),
-                                    borderRadius: BorderRadius.circular(10)),
+                               
                                 hintText: "Password",
                                 hintStyle: Theme.of(context)
                                     .primaryTextTheme

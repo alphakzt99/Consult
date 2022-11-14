@@ -85,7 +85,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
         color: Theme.of(context).colorScheme.onPrimary,
       )
     ];
-    Widget TabItem(num, text, index) {
+    Widget TabItem(num, index) {
       return Container(
         child: Column(children: [
           Container(
@@ -101,11 +101,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                 borderRadius: BorderRadius.circular(25)),
             child: items[num],
           ),
-          Text(
-            text,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline6,
-          ),
+          
         ]),
       );
     }
@@ -171,9 +167,9 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                                       Theme.of(context).colorScheme.onTertiary,
                                   indicatorWeight: 5,
                                   tabs: [
-                                    TabItem(0, "Education", controller.index),
-                                    TabItem(1, "Health", controller.index),
-                                    TabItem(2, "Business", controller.index)
+                                    TabItem(0,  controller.index),
+                                    TabItem(1,  controller.index),
+                                    TabItem(2, controller.index)
                                   ],
                                 ),
                               ))
@@ -394,7 +390,7 @@ class Clipper extends CustomClipper<Path> {
     path0.cubicTo(0, 140, 0, 140, 0, 190);
     path0.quadraticBezierTo(0, 240, 140, 240);
     path0.quadraticBezierTo(
-        size.width / 2, size.height - 40, size.width * 3 / 4, size.height - 40);
+        size.width / 2, size.height - size.height*0.18, size.width * 3 / 4, size.height - size.height * 0.18);
     path0.quadraticBezierTo(
         size.width, size.height - 40, size.width, size.height);
     path0.lineTo(size.width, 0);
