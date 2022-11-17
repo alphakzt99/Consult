@@ -575,13 +575,13 @@ class _TabCardState extends State<TabCard> with TickerProviderStateMixin {
       begin: BoxDecoration(
           border: Border.all(
             width: 2,
-            color: Color(0xFF0B87BA),
+            color: const Color(0xFF0B87BA),
           ),
           borderRadius: BorderRadius.circular(20)),
       end: BoxDecoration(
           border: Border.all(
             width: 2,
-            color: Color(0xFFD1B79C),
+            color: const Color(0xFFD1B79C),
           ),
           borderRadius: BorderRadius.circular(20)));
   late final AnimationController _controller =
@@ -752,7 +752,7 @@ class _TabCardState extends State<TabCard> with TickerProviderStateMixin {
                                   "Seek Advice. Seek Adventure. Seek Discomfort",
                                   style: Theme.of(context).textTheme.bodyText2,
                                 ),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 Icon(FluentIcons.arrow_circle_right_32_filled,
                                     color: Theme.of(context).backgroundColor)
                               ],

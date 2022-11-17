@@ -10,6 +10,7 @@ class Consultant extends StatefulWidget {
 }
 
 class _ConsultantState extends State<Consultant> {
+  ScrollController controller = ScrollController();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -29,6 +30,7 @@ class _ConsultantState extends State<Consultant> {
             )),
       ),
       body: SingleChildScrollView(
+        controller: controller,
         child: Container(
           width: size.width,
           height: size.height * 1.35,
@@ -69,31 +71,44 @@ class _ConsultantState extends State<Consultant> {
                         )
                       ],
                     ),
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      width: size.width * 0.25,
-                      height: size.height * 0.05,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                            color: Theme.of(context).backgroundColor),
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.transparent,
-                      ),
-                      child: Row(children: [
-                        Icon(
-                          FluentIcons.data_bar_vertical_20_regular,
-                          color:
-                              Theme.of(context).colorScheme.secondaryContainer,
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          "Data",
-                          style: Theme.of(context).primaryTextTheme.headline5,
-                        )
-                      ]),
-                    )
+                    TextButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                                Theme.of(context).colorScheme.onPrimary)),
+                        onPressed: () {
+                          showModalBottomSheet(
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      topRight: Radius.circular(20))),
+                              context: context,
+                              builder: (context) => Container(
+                                    padding: const EdgeInsets.all(10),
+                                    width: size.width,
+                                    height: size.height,
+                                    child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Make an appointment",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline2,
+                                          )
+                                        ]),
+                                  ));
+                        },
+                        child: Text(
+                          "Book",
+                          style: Theme.of(context).textTheme.bodyText2,
+                        )),
+                    TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Message",
+                          style: Theme.of(context).primaryTextTheme.bodyText2,
+                        ))
                   ]),
             ),
             Container(
@@ -131,7 +146,6 @@ class _ConsultantState extends State<Consultant> {
                                   wordSpacing: 1.2,
                                   overflow: TextOverflow.ellipsis),
                               maxLines: 3,
-                          
                             ),
                           ]),
                     ),
@@ -185,7 +199,7 @@ class _ConsultantState extends State<Consultant> {
                                           style: const TextStyle(
                                               wordSpacing: 1.2,
                                               overflow: TextOverflow.ellipsis),
-                                              maxLines: 6,
+                                          maxLines: 6,
                                         ),
                                         Row(
                                           mainAxisAlignment:
