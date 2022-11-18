@@ -1,4 +1,7 @@
+
+
 import 'package:consult_app/main.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -13,38 +16,59 @@ class _SignUpState extends State<SignUp> {
   TextEditingController recontroller = TextEditingController();
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
-
+  bool pressed = false;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    Widget textfield(text, controller) {
+    Widget textfield(text,text1, controller) {
       return TextField(
           controller: controller,
           keyboardType: TextInputType.text,
           cursorColor: Theme.of(context).colorScheme.background,
           style: Theme.of(context).primaryTextTheme.headline3,
           onTap: () {
-            setState(() {});
+            setState(() {
+              pressed = true;
+            });
+            
           },
-          decoration: InputDecoration(
-              hintText: text,
-              hintStyle: Theme.of(context).primaryTextTheme.headline2,
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(10))));
+          decoration:pressed ? InputDecoration(
+            labelStyle: Theme.of(context).primaryTextTheme.headline3,
+            labelText: text,
+            hintText: text1,
+            hintStyle: Theme.of(context).primaryTextTheme.headline2,
+          ):InputDecoration(
+          
+            hintText: text,
+            hintStyle: Theme.of(context).primaryTextTheme.headline2,
+          )
+          );
     }
 
     return Scaffold(
+      appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Theme.of(context).backgroundColor,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: Icon(
+              FluentIcons.arrow_circle_left_32_regular,
+              color: Theme.of(context).colorScheme.onPrimary,
+            ),
+          )),
       backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.only(left: 40, right: 40, top: 20),
           width: size.width,
-          height: size.height,
+          height: size.height * 0.9,
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 RichText(
@@ -56,9 +80,9 @@ class _SignUpState extends State<SignUp> {
                       text: "Sign Up Here",
                       style: Theme.of(context).primaryTextTheme.headline1),
                 ])),
-                textfield("Email Address", emailcontroller),
-                textfield("Password", passwordcontroller),
-                textfield("Confrim Password", recontroller),
+                textfield("Email Address","someone@gmail.com" ,emailcontroller),
+                textfield("Password","Password", passwordcontroller),
+                textfield("Confrim Password","Pasword",recontroller),
                 MaterialButton(
                   elevation: 0,
                   shape: RoundedRectangleBorder(
@@ -132,7 +156,7 @@ class _SignUpState extends State<SignUp> {
                         )
                       ]),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
               ]),

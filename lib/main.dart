@@ -60,7 +60,7 @@ class _ConsultState extends State<Consult> {
             color: Colors.black,
           ),
         ),
-        primaryColor: Color(0xFF664236),
+        primaryColor: const Color(0xFF664236),
         primaryColorDark: const Color(0xFF3C4E5C),
         primaryColorLight: const Color(0xFFD1B79C),
         backgroundColor: Colors.white,
@@ -83,7 +83,7 @@ class _ConsultState extends State<Consult> {
           ),
           headline2: TextStyle(
               fontSize: 24,
-              fontFamily: "RobotoSlab",
+              fontFamily: "Roboto",
               fontWeight: FontWeight.bold,
               color: Colors.black),
           headline3: TextStyle(
@@ -113,11 +113,11 @@ class _ConsultState extends State<Consult> {
           ),
           bodyText2: TextStyle(
               fontFamily: "Roboto",
-              fontSize: 14,
+              fontSize: 16,
               color: Color.fromARGB(255, 234, 235, 237)),
         ),
       ),
-      home: const Home(),
+      home:  Home(),
     );
   }
 }

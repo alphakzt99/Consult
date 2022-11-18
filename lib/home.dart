@@ -1,5 +1,5 @@
 import 'package:consult_app/bottom_bar.dart';
-import 'package:consult_app/pages/Create.dart';
+import 'package:consult_app/pages/login.dart';
 import 'package:consult_app/pages/account.dart';
 import 'package:consult_app/pages/chat.dart';
 import 'package:consult_app/pages/main_page.dart';
@@ -119,30 +119,21 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                           SizedBox(
                             height: 30,
                           ),
-                          Row(
+                          Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              
                               MaterialButton(
-                                padding: EdgeInsets.all(0),
-                                height: 50,
-                                elevation: 0,
-                                color: Theme.of(context).colorScheme.onPrimary,
-                                onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => Login()));
-                                },
-                                child: Text(
-                                  "Login",
-                                  style: Theme.of(context).textTheme.headline3,
-                                ),
-                              ),
-                              MaterialButton(
+                                minWidth: size.width * 0.9,
                                 height: 50,
                                 color: Theme.of(context)
                                     .colorScheme
-                                    .onSecondaryContainer,
+                                    .onPrimary,
                                 shape: RoundedRectangleBorder(
+                                  side: BorderSide(
+                                    width: 3,
+                                    color: Theme.of(context).backgroundColor),
                                     borderRadius: BorderRadius.circular(5)),
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
@@ -166,20 +157,37 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                                 dragStartBehavior:
                                                     DragStartBehavior.down,
                                                 children: [
-                                                  Chat(),
                                                   Main(),
+                                                  Chat(),
                                                   Account()
                                                 ]),
                                           )));
                                 },
                                 child: Text(
-                                  "Connect & Explore",
+                                  "Explore",
                                   style: TextStyle(
+                                    fontFamily: "Roboto",
                                       color: Theme.of(context)
                                           .colorScheme
                                           .onBackground,
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                             const  SizedBox(height: 20,),
+                              MaterialButton(
+                                minWidth: size.width * 0.9,
+                                padding: const EdgeInsets.all(0),
+                                height: 50,
+                                elevation: 0,
+                                color: Theme.of(context).backgroundColor,
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => Login()));
+                                },
+                                child: Text(
+                                  "Get Started",
+                                  style: Theme.of(context).primaryTextTheme.bodyText2,
                                 ),
                               ),
                             ],

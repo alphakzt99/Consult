@@ -31,14 +31,14 @@ class contents extends StatelessWidget {
               FluentIcons.access_time_20_regular,
               color: Theme.of(context).primaryColorDark,
             ),
-            SizedBox(width: 10,),
+            const SizedBox(width: 10,),
             Text(
               "24 minutes ago",
               style: Theme.of(context).textTheme.headline4,
             )
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Row(

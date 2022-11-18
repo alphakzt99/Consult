@@ -25,13 +25,32 @@ class _BlogPostState extends State<BlogPost> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
-      floatingActionButton: FloatingActionButton(
-        mini: true,
-        backgroundColor: Theme.of(context).backgroundColor,
-        onPressed: () {},
-        child: Icon(
-          FluentIcons.heart_28_filled,
-          color: Theme.of(context).colorScheme.onPrimary,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(top: 15),
+        child: TextButton(
+          style: ButtonStyle(
+            
+            maximumSize: MaterialStateProperty.all(Size(size.width*0.3,size.height*0.05)),
+              shape: MaterialStateProperty.all(
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+              ),
+              backgroundColor: MaterialStateProperty.all(
+                Theme.of(context).backgroundColor,
+              )),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Icon(
+                FluentIcons.heart_24_regular,
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
+              Text(
+                "Bookmark",
+                style: Theme.of(context).primaryTextTheme.headline3,
+              )
+            ],
+          ),
+          onPressed: () {},
         ),
       ),
       body: pressed == true
@@ -54,24 +73,24 @@ class _BlogPostState extends State<BlogPost> {
                           image: DecorationImage(
                               fit: BoxFit.fill,
                               image: AssetImage("lib/photos/education.jpg"))),
-                      child:Padding(
-                      padding: const EdgeInsets.only(top: 40),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              icon: Icon(
-                                FluentIcons.arrow_circle_left_48_filled,
-                                size: 48,
-                                color: Theme.of(context).backgroundColor,
-                              )),
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 40),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            IconButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                icon: Icon(
+                                  FluentIcons.arrow_circle_left_48_filled,
+                                  size: 48,
+                                  color: Theme.of(context).backgroundColor,
+                                )),
+                          ],
+                        ),
                       ),
-                    ),
                     ),
                   ),
                   Positioned(
