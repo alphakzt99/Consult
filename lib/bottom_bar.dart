@@ -1,10 +1,7 @@
-
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:consult_app/inheriteddataprovider.dart';
-
-
 
 class BottomBar extends StatefulWidget {
   Widget child;
@@ -102,6 +99,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
@@ -123,36 +121,36 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                   child: ClipOval(
                     child: Material(
                         child: Container(
-                          color: Theme.of(context).colorScheme.onTertiary,
-                          width: 60,
-                          height: 60,
-                          child: Center(
-                              child: IconButton(
-                            icon: Icon(
-                              Icons.arrow_upward,
-                              color: Theme.of(context).colorScheme.onPrimary,
-                            ),
-                            onPressed: () {
-                              bottomScrollcontroller
-                                  .animateTo(
-                                      bottomScrollcontroller
-                                          .position.minScrollExtent,
-                                      duration: Duration(milliseconds: 200),
-                                      curve: Curves.easeIn)
-                                  .then(
-                                (value) {
-                                  if (mounted) {
-                                    setState(() {
-                                      isOnTop = true;
-                                      isScrollingDown = false;
-                                    });
-                                  }
-                                  showBottomBar();
-                                },
-                              );
+                      color: Theme.of(context).colorScheme.onTertiary,
+                      width: 60,
+                      height: 60,
+                      child: Center(
+                          child: IconButton(
+                        icon: Icon(
+                          Icons.arrow_upward,
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                        onPressed: () {
+                          bottomScrollcontroller
+                              .animateTo(
+                                  bottomScrollcontroller
+                                      .position.minScrollExtent,
+                                  duration: const Duration(milliseconds: 200),
+                                  curve: Curves.easeIn)
+                              .then(
+                            (value) {
+                              if (mounted) {
+                                setState(() {
+                                  isOnTop = true;
+                                  isScrollingDown = false;
+                                });
+                              }
+                              showBottomBar();
                             },
-                          )),
-                        )),
+                          );
+                        },
+                      )),
+                    )),
                   ))),
           Positioned(
               bottom: widget.start,
@@ -184,9 +182,11 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                               indicator: UnderlineTabIndicator(
                                 borderSide: BorderSide(
                                     width: 4,
-                                    color: widget.bottomtabcontroller.index == 0
+                                    color: widget.bottomtabcontroller.index ==
+                                            0
                                         ? widget.selectedColor
-                                        : widget.bottomtabcontroller.index == 1
+                                        : widget.bottomtabcontroller.index ==
+                                                1
                                             ? widget.selectedColor
                                             : widget.bottomtabcontroller
                                                         .index ==
@@ -220,7 +220,9 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                                   height: 45,
                                   child: Padding(
                                     padding: const EdgeInsets.only(top: 8.0),
-                                    child: Icon(FluentIcons.person_accounts_20_regular,
+                                    child: Icon(
+                                        FluentIcons
+                                            .person_accounts_20_regular,
                                         color: widget.unselectedColor),
                                   ),
                                 ),

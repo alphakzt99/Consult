@@ -11,86 +11,81 @@ class Consultant extends StatefulWidget {
   State<Consultant> createState() => _ConsultantState();
 }
 
-class _ConsultantState extends State<Consultant> {
+class _ConsultantState extends State<Consultant>
+    with SingleTickerProviderStateMixin {
   ScrollController controller = ScrollController();
   ScrollController gridController = ScrollController();
+  late AnimationController animationController;
+  TextEditingController controller1 = TextEditingController();
+  TextEditingController controller2 = TextEditingController();
+  bool isCollapsed = false;
+
   DateTime dt = DateTime.now();
-  var _d1;
-  var _d2;
-  var _t1;
-  var _t2;
+   var _d1;
+   var _d2;
+   var _t1;
+   var _t2;
+  @override
+  void initState() {
+    animationController = AnimationController(vsync: this);
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    // TODO: implement dispose
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     Widget _datetimepicker() {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            "Date: $_d1,   Time: $_t1",
-            textAlign: TextAlign.start,
-            style: Theme.of(context).textTheme.headline5,
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          DateTimePicker(
-            initialSelectedDate: dt,
-            startDate: dt.subtract(const Duration(days: 1)),
-            endDate: dt.add(const Duration(days: 60)),
-            startTime: DateTime(dt.year, dt.month, dt.day, 6),
-            endTime: DateTime(dt.year, dt.month, dt.day, 18),
-            timeInterval: const Duration(minutes: 15),
-            datePickerTitle: "Pick your preferred date",
-            timePickerTitle: "Pick your preferred time",
-            is24h: false,
-            numberOfWeeksToDisplay: 4,
-            timeOutOfRangeError: "Sorry, there are no available schedule",
-            onDateChanged: (date) {
-              setState(() {
-                _d1 = DateFormat('dd MMM, yyyy').format(date);
-              });
-            },
-            onTimeChanged: (time) {
-              setState(() {
-                _t1 = DateFormat('hh:mm:ss aa').format(time);
-              });
-            },
-          ),
-        ],
+      return Container(
+        width: size.width,
+        height: size.height * 0.6,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Date: $_d1,   Time: $_t1",
+              textAlign: TextAlign.start,
+              style: Theme.of(context).textTheme.headline5,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            DateTimePicker(
+              initialSelectedDate: dt,
+              startDate: dt.subtract(const Duration(hours: 1)),
+              endDate: dt.add(const Duration(days: 60)),
+              startTime: DateTime(dt.year, dt.month, dt.day, 6),
+              endTime: DateTime(dt.year, dt.month, dt.day, 18),
+              timeInterval: const Duration(minutes: 45),
+              datePickerTitle: "Pick your preferred date",
+              timePickerTitle: "Pick your preferred time",
+              is24h: false,
+              numberOfWeeksToDisplay: 4,
+              timeOutOfRangeError: "Sorry, there are no available schedule",
+              onDateChanged: (date) {
+                setState(() {
+                  _d1 = DateFormat('dd MMM, yyyy').format(date);
+                });
+              },
+              onTimeChanged: (time) {
+                setState(() {
+                  _t1 = DateFormat('hh:mm:ss aa').format(time);
+                });
+              },
+            ),
+          ],
+        ),
       );
     }
 
     return Scaffold(
-      bottomSheet: BottomSheet(
-        backgroundColor: Colors.white,
-          elevation: 5,
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-          onClosing: () {},
-          builder: ((context) {
-            return SingleChildScrollView(
-              child: Container(
-                padding: const EdgeInsets.all(10),
-                width: size.width,
-                height: size.height,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Make an appointment",
-                        textAlign: TextAlign.start,
-                        style: Theme.of(context).textTheme.headline2,
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      _datetimepicker(),
-                    ]),
-              ),
-            );
-          })),
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         elevation: 0,
@@ -153,7 +148,141 @@ class _ConsultantState extends State<Consultant> {
                           style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all(
                                   Theme.of(context).colorScheme.onPrimary)),
-                          onPressed: () {},
+                          onPressed: () {
+                            showModalBottomSheet(
+                                shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(20),
+                                        topRight: Radius.circular(20))),
+                                isDismissible: true,
+                                isScrollControlled: true,
+                                context: context,
+                                builder: (context) => BottomSheet(
+                                    shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(20),
+                                            topRight: Radius.circular(20))),
+                                    animationController: animationController,
+                                    backgroundColor: Colors.white,
+                                    elevation: 5,
+                                    onClosing: () {},
+                                    builder: ((context) {
+                                      return Container(
+                                        padding: const EdgeInsets.all(20),
+                                        width: size.width,
+                                        height: size.height * 0.9,
+                                        child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              const Text(
+                                                "Schedule An Appointment",
+                                                textAlign: TextAlign.start,
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 24,
+                                                    fontFamily: "RobotoSlab",
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              const SizedBox(
+                                                height: 20,
+                                              ),
+                                              TextFormField(
+                                                enabled: isCollapsed,
+                                                validator: ((value) {
+                                                  if (value!.isEmpty) {
+                                                    return 'Enter your name';
+                                                  }
+                                                  return null;
+                                                }),
+                                                controller: controller1,
+                                                decoration: isCollapsed
+                                                    ? InputDecoration(
+                                                        labelText: "Name",
+                                                        labelStyle: Theme.of(
+                                                                context)
+                                                            .primaryTextTheme
+                                                            .bodyText2,
+                                                        hintText:
+                                                            "Alisson Carter",
+                                                        hintStyle: Theme.of(
+                                                                context)
+                                                            .primaryTextTheme
+                                                            .headline2,
+                                                        contentPadding:
+                                                            const EdgeInsets
+                                                                .all(10),
+                                                      )
+                                                    : InputDecoration(
+                                                        hintText:
+                                                            "Alisson Carter",
+                                                        hintStyle: Theme.of(
+                                                                context)
+                                                            .primaryTextTheme
+                                                            .headline2,
+                                                        contentPadding:
+                                                            const EdgeInsets.all(10)),
+                                                onFieldSubmitted: (value) {
+                                                  controller1.text;
+                                                },
+                                                onTap: (() {
+                                                  setState(() {
+                                                    isCollapsed = true;
+                                                  });
+                                                }),
+                                              ),
+                                              TextFormField(
+                                                enabled: true,
+                                                validator: ((value) {
+                                                  if (value!.isEmpty) {
+                                                    return 'Enter your Email';
+                                                  }
+                                                  return null;
+                                                }),
+                                                controller: controller2,
+                                                decoration: isCollapsed
+                                                    ? InputDecoration(
+                                                        labelText: "Email",
+                                                        labelStyle: Theme.of(
+                                                                context)
+                                                            .primaryTextTheme
+                                                            .bodyText2,
+                                                        hintText:
+                                                            "someone@example.com",
+                                                        hintStyle: Theme.of(
+                                                                context)
+                                                            .primaryTextTheme
+                                                            .headline2,
+                                                        contentPadding:
+                                                            const EdgeInsets.all(10),
+                                                      )
+                                                    : InputDecoration(
+                                                        hintText:
+                                                            "someone@example.com",
+                                                        hintStyle: Theme.of(
+                                                                context)
+                                                            .primaryTextTheme
+                                                            .headline2,
+                                                        contentPadding:
+                                                            const EdgeInsets.all(10)),
+                                                onFieldSubmitted: (value) {
+                                                  controller2.text;
+                                                },
+                                                onTap: (() {
+                                                  setState(() {
+                                                    isCollapsed = true;
+                                                  });
+                                                }),
+                                              ),
+                                              const SizedBox(
+                                                height: 20,
+                                              ),
+                                              _datetimepicker(),
+                                            ]),
+                                      );
+                                    })));
+                          },
                           child: Text(
                             "Book",
                             style: Theme.of(context).textTheme.bodyText2,

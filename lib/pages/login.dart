@@ -57,7 +57,6 @@ class _LoginState extends State<Login> {
                       ),
                       TextField(
                         onTap: () {
-                          
                           setState(() {
                             tapped1 = true;
                           });
@@ -66,7 +65,6 @@ class _LoginState extends State<Login> {
                         style: Theme.of(context).primaryTextTheme.headline3,
                         decoration: tapped1
                             ? InputDecoration(
-                                
                                 labelText: "Email Address",
                                 labelStyle: Theme.of(context)
                                     .primaryTextTheme
@@ -76,7 +74,6 @@ class _LoginState extends State<Login> {
                                     .primaryTextTheme
                                     .headline2)
                             : InputDecoration(
-                             
                                 hintText: "Email Address",
                                 hintStyle: Theme.of(context)
                                     .primaryTextTheme
@@ -87,16 +84,14 @@ class _LoginState extends State<Login> {
                       ),
                       TextField(
                         onTap: () {
-                         
                           setState(() {
-                             tapped = true;
+                            tapped = true;
                           });
                         },
                         cursorHeight: 20,
                         style: Theme.of(context).primaryTextTheme.headline3,
                         decoration: tapped
                             ? InputDecoration(
-                                
                                 labelText: "Password",
                                 labelStyle: Theme.of(context)
                                     .primaryTextTheme
@@ -106,7 +101,6 @@ class _LoginState extends State<Login> {
                                     .primaryTextTheme
                                     .headline2)
                             : InputDecoration(
-                               
                                 hintText: "Password",
                                 hintStyle: Theme.of(context)
                                     .primaryTextTheme

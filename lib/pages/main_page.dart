@@ -24,7 +24,7 @@ class Main extends StatefulWidget {
   State<Main> createState() => _MainState();
 }
 
-class _MainState extends State<Main> with TickerProviderStateMixin {
+class _MainState extends State<Main> with SingleTickerProviderStateMixin {
   bool tapped = false;
   late int _currentPage;
   late ScrollController horizontalcontroller = ScrollController();
@@ -62,7 +62,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
   }
 
   Future<String> getData() async {
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     return 'Super';
   }
 
@@ -86,24 +86,21 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
       )
     ];
     Widget TabItem(num, index) {
-      return Container(
-        child: Column(children: [
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-            padding: const EdgeInsets.all(10),
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-                gradient: const RadialGradient(colors: [
-                  Colors.white,
-                  Colors.white54,
-                ]),
-                borderRadius: BorderRadius.circular(25)),
-            child: items[num],
-          ),
-          
-        ]),
-      );
+      return Column(children: [
+        Container(
+          margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+          padding: const EdgeInsets.all(10),
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+              gradient: const RadialGradient(colors: [
+                Colors.white,
+                Colors.white54,
+              ]),
+              borderRadius: BorderRadius.circular(25)),
+          child: items[num],
+        ),
+      ]);
     }
 
     return Scaffold(
@@ -167,8 +164,8 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
                                       Theme.of(context).colorScheme.onTertiary,
                                   indicatorWeight: 5,
                                   tabs: [
-                                    TabItem(0,  controller.index),
-                                    TabItem(1,  controller.index),
+                                    TabItem(0, controller.index),
+                                    TabItem(1, controller.index),
                                     TabItem(2, controller.index)
                                   ],
                                 ),
@@ -389,8 +386,8 @@ class Clipper extends CustomClipper<Path> {
     path0.moveTo(0, 0);
     path0.cubicTo(0, 140, 0, 140, 0, 190);
     path0.quadraticBezierTo(0, 240, 140, 240);
-    path0.quadraticBezierTo(
-        size.width / 2, size.height - size.height*0.18, size.width * 3 / 4, size.height - size.height * 0.18);
+    path0.quadraticBezierTo(size.width / 2, size.height - size.height * 0.18,
+        size.width * 3 / 4, size.height - size.height * 0.18);
     path0.quadraticBezierTo(
         size.width, size.height - 40, size.width, size.height);
     path0.lineTo(size.width, 0);
@@ -436,8 +433,9 @@ class _GeneralCardState extends State<GeneralCard> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return GestureDetector(
-      onTap: (){
-        Navigator.of(context).push(MaterialPageRoute(builder: ((context) => Consultant())));
+      onTap: () {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: ((context) => Consultant())));
       },
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -517,7 +515,7 @@ class _GeneralCardState extends State<GeneralCard> {
                         TextSpan(text: "Category"),
                         TextSpan(text: "      Field")
                       ])),
-                 const SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   Row(
@@ -541,7 +539,8 @@ class _GeneralCardState extends State<GeneralCard> {
                       MaterialButton(
                         minWidth: 100,
                         elevation: 0,
-                        color: Theme.of(context).colorScheme.onSecondaryContainer,
+                        color:
+                            Theme.of(context).colorScheme.onSecondaryContainer,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                         onPressed: () {},

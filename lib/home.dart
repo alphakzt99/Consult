@@ -13,8 +13,9 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> with TickerProviderStateMixin {
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   late int CurrentPage;
+
   late TabController tabcontroller;
   @override
   void initState() {
@@ -63,7 +64,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               child: Container(
                   width: size.width,
                   height: size.height * 0.4,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: Colors.white,
                       image: DecorationImage(
                           image: AssetImage('lib/photos/consult.jpg')))),
@@ -74,7 +75,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   child: ClipPath(
                 clipper: BackgroundClipper(),
                 child: Container(
-                    padding: EdgeInsets.only(right: 30),
+                    padding: const EdgeInsets.only(right: 30),
                     color: Theme.of(context).colorScheme.onPrimary,
                     width: size.width,
                     height: size.height * 0.7,
@@ -116,24 +117,22 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                     style:
                                         Theme.of(context).textTheme.bodyText1)
                               ])),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              
                               MaterialButton(
                                 minWidth: size.width * 0.9,
                                 height: 50,
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onPrimary,
+                                color: Theme.of(context).colorScheme.onPrimary,
                                 shape: RoundedRectangleBorder(
-                                  side: BorderSide(
-                                    width: 3,
-                                    color: Theme.of(context).backgroundColor),
+                                    side: BorderSide(
+                                        width: 3,
+                                        color:
+                                            Theme.of(context).backgroundColor),
                                     borderRadius: BorderRadius.circular(5)),
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
@@ -166,7 +165,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                 child: Text(
                                   "Explore",
                                   style: TextStyle(
-                                    fontFamily: "Roboto",
+                                      fontFamily: "Roboto",
                                       color: Theme.of(context)
                                           .colorScheme
                                           .onBackground,
@@ -174,7 +173,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
-                             const  SizedBox(height: 20,),
+                              const SizedBox(
+                                height: 20,
+                              ),
                               MaterialButton(
                                 minWidth: size.width * 0.9,
                                 padding: const EdgeInsets.all(0),
@@ -187,7 +188,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                 },
                                 child: Text(
                                   "Get Started",
-                                  style: Theme.of(context).primaryTextTheme.bodyText2,
+                                  style: Theme.of(context)
+                                      .primaryTextTheme
+                                      .bodyText2,
                                 ),
                               ),
                             ],
