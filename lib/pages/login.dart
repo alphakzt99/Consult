@@ -182,7 +182,7 @@ class _LoginState extends State<Login> {
                             )
                           ]),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     TextButton(

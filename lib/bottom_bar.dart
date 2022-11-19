@@ -216,7 +216,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                                   ),
                                 ),
                                 Tab(
-                                  iconMargin: EdgeInsets.only(bottom: 0),
+                                  iconMargin: const EdgeInsets.only(bottom: 0),
                                   height: 45,
                                   child: Padding(
                                     padding: const EdgeInsets.only(top: 8.0),

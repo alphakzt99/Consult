@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:date_time_picker_widget/date_time_picker_widget.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:intl/intl.dart';
 
@@ -21,12 +24,13 @@ class _ConsultantState extends State<Consultant>
   bool isCollapsed = false;
 
   DateTime dt = DateTime.now();
-   var _d1;
-   var _d2;
-   var _t1;
-   var _t2;
+  late String _d1;
+  late String _t1;
+
   @override
   void initState() {
+    _d1 = DateFormat("dd MMM, yyyy").format(dt);
+    _t1 = DateFormat("hh:mm:ss aa").format(dt);
     animationController = AnimationController(vsync: this);
     // TODO: implement initState
     super.initState();
@@ -43,45 +47,42 @@ class _ConsultantState extends State<Consultant>
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     Widget _datetimepicker() {
-      return Container(
-        width: size.width,
-        height: size.height * 0.6,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Date: $_d1,   Time: $_t1",
-              textAlign: TextAlign.start,
-              style: Theme.of(context).textTheme.headline5,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            DateTimePicker(
-              initialSelectedDate: dt,
-              startDate: dt.subtract(const Duration(hours: 1)),
-              endDate: dt.add(const Duration(days: 60)),
-              startTime: DateTime(dt.year, dt.month, dt.day, 6),
-              endTime: DateTime(dt.year, dt.month, dt.day, 18),
-              timeInterval: const Duration(minutes: 45),
-              datePickerTitle: "Pick your preferred date",
-              timePickerTitle: "Pick your preferred time",
-              is24h: false,
-              numberOfWeeksToDisplay: 4,
-              timeOutOfRangeError: "Sorry, there are no available schedule",
-              onDateChanged: (date) {
-                setState(() {
-                  _d1 = DateFormat('dd MMM, yyyy').format(date);
-                });
-              },
-              onTimeChanged: (time) {
-                setState(() {
-                  _t1 = DateFormat('hh:mm:ss aa').format(time);
-                });
-              },
-            ),
-          ],
-        ),
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Date: $_d1,   Time: $_t1",
+            textAlign: TextAlign.start,
+            style: Theme.of(context).textTheme.headline5,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          DateTimePicker(
+            initialSelectedDate: dt,
+            startDate: dt.subtract(const Duration(hours: 1)),
+            endDate: dt.add(const Duration(days: 60)),
+            startTime: DateTime(dt.year, dt.month, dt.day, 6),
+            endTime: DateTime(dt.year, dt.month, dt.day, 18),
+            timeInterval: const Duration(minutes: 60),
+            datePickerTitle: "Pick your preferred date",
+            timePickerTitle: "Pick your preferred time",
+            is24h: false,
+            numberOfWeeksToDisplay: 4,
+            timeOutOfRangeError: "Sorry, there are no available schedule",
+            onDateChanged: (date) {
+              _d1 = DateFormat("dd MMM, yyyy").format(date);
+              setState(() {
+                _d1;
+              });
+            },
+            onTimeChanged: (time) {
+              setState(() {
+                _t1 = DateFormat('hh:mm:ss aa').format(time);
+              });
+            },
+          ),
+        ],
       );
     }
 
@@ -144,155 +145,193 @@ class _ConsultantState extends State<Consultant>
                           )
                         ],
                       ),
-                      TextButton(
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                  Theme.of(context).colorScheme.onPrimary)),
-                          onPressed: () {
-                            showModalBottomSheet(
-                                shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(20),
-                                        topRight: Radius.circular(20))),
-                                isDismissible: true,
-                                isScrollControlled: true,
-                                context: context,
-                                builder: (context) => BottomSheet(
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TextButton(
+                              style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                      Theme.of(context).colorScheme.onPrimary)),
+                              onPressed: () {
+                                showModalBottomSheet(
                                     shape: const RoundedRectangleBorder(
                                         borderRadius: BorderRadius.only(
                                             topLeft: Radius.circular(20),
                                             topRight: Radius.circular(20))),
-                                    animationController: animationController,
-                                    backgroundColor: Colors.white,
-                                    elevation: 5,
-                                    onClosing: () {},
-                                    builder: ((context) {
-                                      return Container(
-                                        padding: const EdgeInsets.all(20),
-                                        width: size.width,
-                                        height: size.height * 0.9,
-                                        child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              const Text(
-                                                "Schedule An Appointment",
-                                                textAlign: TextAlign.start,
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 24,
-                                                    fontFamily: "RobotoSlab",
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              const SizedBox(
-                                                height: 20,
-                                              ),
-                                              TextFormField(
-                                                enabled: isCollapsed,
-                                                validator: ((value) {
-                                                  if (value!.isEmpty) {
-                                                    return 'Enter your name';
-                                                  }
-                                                  return null;
-                                                }),
-                                                controller: controller1,
-                                                decoration: isCollapsed
-                                                    ? InputDecoration(
-                                                        labelText: "Name",
-                                                        labelStyle: Theme.of(
-                                                                context)
-                                                            .primaryTextTheme
-                                                            .bodyText2,
-                                                        hintText:
-                                                            "Alisson Carter",
-                                                        hintStyle: Theme.of(
-                                                                context)
-                                                            .primaryTextTheme
-                                                            .headline2,
-                                                        contentPadding:
-                                                            const EdgeInsets
-                                                                .all(10),
-                                                      )
-                                                    : InputDecoration(
-                                                        hintText:
-                                                            "Alisson Carter",
-                                                        hintStyle: Theme.of(
-                                                                context)
-                                                            .primaryTextTheme
-                                                            .headline2,
-                                                        contentPadding:
-                                                            const EdgeInsets.all(10)),
-                                                onFieldSubmitted: (value) {
-                                                  controller1.text;
-                                                },
-                                                onTap: (() {
-                                                  setState(() {
-                                                    isCollapsed = true;
-                                                  });
-                                                }),
-                                              ),
-                                              TextFormField(
-                                                enabled: true,
-                                                validator: ((value) {
-                                                  if (value!.isEmpty) {
-                                                    return 'Enter your Email';
-                                                  }
-                                                  return null;
-                                                }),
-                                                controller: controller2,
-                                                decoration: isCollapsed
-                                                    ? InputDecoration(
-                                                        labelText: "Email",
-                                                        labelStyle: Theme.of(
-                                                                context)
-                                                            .primaryTextTheme
-                                                            .bodyText2,
-                                                        hintText:
-                                                            "someone@example.com",
-                                                        hintStyle: Theme.of(
-                                                                context)
-                                                            .primaryTextTheme
-                                                            .headline2,
-                                                        contentPadding:
-                                                            const EdgeInsets.all(10),
-                                                      )
-                                                    : InputDecoration(
-                                                        hintText:
-                                                            "someone@example.com",
-                                                        hintStyle: Theme.of(
-                                                                context)
-                                                            .primaryTextTheme
-                                                            .headline2,
-                                                        contentPadding:
-                                                            const EdgeInsets.all(10)),
-                                                onFieldSubmitted: (value) {
-                                                  controller2.text;
-                                                },
-                                                onTap: (() {
-                                                  setState(() {
-                                                    isCollapsed = true;
-                                                  });
-                                                }),
-                                              ),
-                                              const SizedBox(
-                                                height: 20,
-                                              ),
-                                              _datetimepicker(),
-                                            ]),
-                                      );
-                                    })));
-                          },
-                          child: Text(
-                            "Book",
-                            style: Theme.of(context).textTheme.bodyText2,
-                          )),
-                      TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Message",
-                            style: Theme.of(context).primaryTextTheme.bodyText2,
-                          ))
+                                    isDismissible: true,
+                                    isScrollControlled: true,
+                                    context: context,
+                                    builder: (context) => BottomSheet(
+                                        shape: const RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(20),
+                                                topRight: Radius.circular(20))),
+                                        animationController:
+                                            animationController,
+                                        backgroundColor: Colors.white,
+                                        elevation: 5,
+                                        onClosing: () {},
+                                        builder: ((context) {
+                                          return Container(
+                                            padding: const EdgeInsets.all(20),
+                                            width: size.width,
+                                            height: size.height * 0.9,
+                                            child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  const Text(
+                                                    "Schedule An Appointment",
+                                                    textAlign: TextAlign.start,
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 24,
+                                                        fontFamily:
+                                                            "RobotoSlab",
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 20,
+                                                  ),
+                                                  TextFormField(
+                                                    enabled: isCollapsed,
+                                                    validator: ((value) {
+                                                      if (value!.isEmpty) {
+                                                        return 'Enter your name';
+                                                      }
+                                                      return null;
+                                                    }),
+                                                    controller: controller1,
+                                                    decoration: isCollapsed
+                                                        ? InputDecoration(
+                                                            labelText: "Name",
+                                                            labelStyle: Theme
+                                                                    .of(context)
+                                                                .primaryTextTheme
+                                                                .bodyText2,
+                                                            hintText:
+                                                                "Alisson Carter",
+                                                            hintStyle: Theme.of(
+                                                                    context)
+                                                                .primaryTextTheme
+                                                                .headline2,
+                                                            contentPadding:
+                                                                const EdgeInsets
+                                                                    .all(10),
+                                                          )
+                                                        : InputDecoration(
+                                                            hintText:
+                                                                "Alisson Carter",
+                                                            hintStyle: Theme.of(
+                                                                    context)
+                                                                .primaryTextTheme
+                                                                .headline2,
+                                                            contentPadding:
+                                                                const EdgeInsets
+                                                                    .all(10)),
+                                                    onFieldSubmitted: (value) {
+                                                      controller1.text;
+                                                    },
+                                                    onTap: (() {
+                                                      setState(() {
+                                                        isCollapsed = true;
+                                                      });
+                                                    }),
+                                                  ),
+                                                  TextFormField(
+                                                    enabled: true,
+                                                    validator: ((value) {
+                                                      if (value!.isEmpty) {
+                                                        return 'Enter your Email';
+                                                      }
+                                                      return null;
+                                                    }),
+                                                    controller: controller2,
+                                                    decoration: isCollapsed
+                                                        ? InputDecoration(
+                                                            labelText: "Email",
+                                                            labelStyle: Theme
+                                                                    .of(context)
+                                                                .primaryTextTheme
+                                                                .bodyText2,
+                                                            hintText:
+                                                                "someone@example.com",
+                                                            hintStyle: Theme.of(
+                                                                    context)
+                                                                .primaryTextTheme
+                                                                .headline2,
+                                                            contentPadding:
+                                                                const EdgeInsets
+                                                                    .all(10),
+                                                          )
+                                                        : InputDecoration(
+                                                            hintText:
+                                                                "someone@example.com",
+                                                            hintStyle: Theme.of(
+                                                                    context)
+                                                                .primaryTextTheme
+                                                                .headline2,
+                                                            contentPadding:
+                                                                const EdgeInsets
+                                                                    .all(10)),
+                                                    onFieldSubmitted: (value) {
+                                                      controller2.text;
+                                                    },
+                                                    onTap: (() {
+                                                      setState(() {
+                                                        isCollapsed = true;
+                                                      });
+                                                    }),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 20,
+                                                  ),
+                                                  _datetimepicker(),
+                                                  const SizedBox(
+                                                    height: 20,
+                                                  ),
+                                                  MaterialButton(
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        20)),
+                                                    minWidth: size.width * 0.5,
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            15),
+                                                    height: 20,
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .onPrimary,
+                                                    onPressed: () {},
+                                                    child: Text(
+                                                      "Confirm",
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline3,
+                                                    ),
+                                                  )
+                                                ]),
+                                          );
+                                        })));
+                              },
+                              child: Text(
+                                "Book",
+                                style: Theme.of(context).textTheme.bodyText2,
+                              )),
+                          TextButton(
+                              onPressed: () {},
+                              child: Text(
+                                "Message",
+                                style: Theme.of(context)
+                                    .primaryTextTheme
+                                    .bodyText2,
+                              ))
+                        ],
+                      )
                     ]),
               ),
               Container(
